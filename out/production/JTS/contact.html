@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Jesta Tech Solutions - Get in touch for web development, app development, and digital marketing services.">
+    <meta name="keywords" content="contact, get quote, tech solutions contact, jesta tech contact">
+    <meta name="author" content="Jesta Tech Solutions">
+    
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <title>Contact Us | Jesta Tech Solutions</title>
+</head>
+<body>
+    <!-- Desktop Header Navigation -->
+    <header class="desktop-header">
+        <div class="container">
+            <div class="header-content">
+                <button class="hamburger-menu" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav class="desktop-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html" class="active">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="logo">
+                    <h1><i class="fas fa-code"></i> JTS</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-overlay"></div>
+        <div class="container">
+            <h1>Get in Touch</h1>
+            <p>We'd Love to Hear From You</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-content">
+                <!-- Contact Info Cards -->
+                <div class="contact-info-wrapper">
+                    <div class="section-header">
+                        <h2>Contact Information</h2>
+                        <div class="section-divider"></div>
+                        <p>Reach out to us through any of these channels</p>
+                    </div>
+                    
+                    <div class="contact-cards">
+                        <div class="contact-card fade-in-scroll">
+                            <div class="contact-card-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h3>Our Location</h3>
+                            <p>Anantapur, Andhra Pradesh<br>India - 515001</p>
+                        </div>
+                        
+                        <div class="contact-card fade-in-scroll">
+                            <div class="contact-card-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <h3>Phone Number</h3>
+                            <p>+91 12345 67890<br>Mon - Sat: 9AM - 7PM</p>
+                        </div>
+                        
+                        <div class="contact-card fade-in-scroll">
+                            <div class="contact-card-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3>Email Address</h3>
+                            <p>info@jestatech.com<br>support@jestatech.com</p>
+                        </div>
+                        
+                        <div class="contact-card fade-in-scroll">
+                            <div class="contact-card-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3>Working Hours</h3>
+                            <p>Mon - Fri: 9AM - 7PM<br>Sat: 10AM - 4PM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-wrapper fade-in-scroll">
+                    <div class="section-header">
+                        <h2>Send Us a Message</h2>
+                        <div class="section-divider"></div>
+                        <p>Fill out the form below and we'll get back to you shortly</p>
+                    </div>
+                    
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name"><i class="fas fa-user"></i> Full Name *</label>
+                                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email"><i class="fas fa-envelope"></i> Email Address *</label>
+                                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject"><i class="fas fa-tag"></i> Subject *</label>
+                                <input type="text" id="subject" name="subject" placeholder="What's this about?" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service"><i class="fas fa-briefcase"></i> Service Interested In</label>
+                            <select id="service" name="service">
+                                <option value="">Select a service</option>
+                                <option value="web-development">Website Development</option>
+                                <option value="app-development">App Development</option>
+                                <option value="hosting">Hosting Services</option>
+                                <option value="server-maintenance">Server Maintenance</option>
+                                <option value="social-media">Social Media Management</option>
+                                <option value="digital-marketing">Digital Marketing & SEO</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message"><i class="fas fa-comment-dots"></i> Message *</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Tell us about your project or inquiry" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary submit-btn">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                    
+                    <div class="form-message" id="formMessage"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Visit Our Office</h2>
+                <div class="section-divider"></div>
+            </div>
+        </div>
+        <div class="map-container">
+            <!-- Google Maps Embed for Anantapur, Andhra Pradesh -->
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248057.18836793656!2d77.43756654999998!3d14.681950799999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb14a1b6c1c4a31%3A0x6ce7c1087d53eb8e!2sAnantapur%2C%20Andhra%20Pradesh!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin" 
+                width="100%" 
+                height="450" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item fade-in-scroll">
+                    <div class="faq-question">
+                        <h3>What services do you offer?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer a comprehensive range of services including Website Development, Android & Native App Development, Hosting Services, Server Maintenance, Social Media Management, and Digital Marketing & SEO.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in-scroll">
+                    <div class="faq-question">
+                        <h3>How long does a typical project take?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Project timelines vary based on complexity and requirements. A standard website typically takes 2-4 weeks, while mobile apps can take 6-12 weeks. We'll provide a detailed timeline during consultation.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in-scroll">
+                    <div class="faq-question">
+                        <h3>Do you provide support after project completion?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We offer comprehensive post-launch support and maintenance packages. Our team is available 24/7 to address any issues and ensure your project runs smoothly.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in-scroll">
+                    <div class="faq-question">
+                        <h3>What is your pricing structure?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our pricing is project-based and depends on your specific requirements. Contact us for a free consultation and customized quote tailored to your needs and budget.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-code"></i> Jesta Tech</h3>
+                    <p>Empowering Digital Innovation</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">App Development</a></li>
+                        <li><a href="services.html">Digital Marketing</a></li>
+                        <li><a href="services.html">SEO Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> Anantapur, Andhra Pradesh</li>
+                        <li><i class="fas fa-phone"></i> +91 12345 67890</li>
+                        <li><i class="fas fa-envelope"></i> info@jestatech.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Jesta Tech Solutions. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="terms.html">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav">
+        <a href="index.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="services.html" class="nav-item">
+            <i class="fas fa-briefcase"></i>
+            <span>Services</span>
+        </a>
+        <a href="portfolio.html" class="nav-item">
+            <i class="fas fa-folder-open"></i>
+            <span>Portfolio</span>
+        </a>
+        <a href="contact.html" class="nav-item active">
+            <i class="fas fa-envelope"></i>
+            <span>Contact</span>
+        </a>
+        <a href="#" class="nav-item" id="menuToggle">
+            <i class="fas fa-bars"></i>
+            <span>Menu</span>
+        </a>
+    </nav>
+
+    <!-- Side Menu Drawer -->
+    <div class="side-menu" id="sideMenu">
+        <div class="side-menu-header">
+            <h3>Menu</h3>
+            <button class="close-menu" id="closeMenu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="side-menu-links">
+            <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+            <li><a href="terms.html"><i class="fas fa-file-contract"></i> Terms & Conditions</a></li>
+            <li><a href="privacy.html"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+            <li><a href="contact.html" class="active"><i class="fas fa-comment-dots"></i> Feedback</a></li>
+        </ul>
+    </div>
+
+    <!-- Side Menu Overlay -->
+    <div class="side-menu-overlay" id="sideMenuOverlay"></div>
+
+    <!-- WhatsApp Chat Button -->
+    <a href="https://wa.me/911234567890" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
