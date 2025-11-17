@@ -28,6 +28,9 @@ async function loadDashboardData() {
         updateRecentProjects();
         updateRecentActivity();
 
+        // Setup revenue chart after data is loaded
+        setupRevenueChart();
+
         showToast('Dashboard loaded successfully', 'success');
     } catch (error) {
         console.error('Error loading dashboard:', error);
@@ -322,6 +325,155 @@ function isThisWeek(dateString) {
 }
 
 // ============================================
+// REVENUE CHART
+// ============================================
+
+let revenueChart = null;
+
+function setupRevenueChart() {
+    const canvas = document.getElementById('revenueChart');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+
+    // Initial chart render with default data
+    renderRevenueChart(7);
+
+    // Setup time range selector
+    const timeRangeSelect = document.getElementById('chartTimeRange');
+    if (timeRangeSelect) {
+        timeRangeSelect.addEventListener('change', (e) => {
+            renderRevenueChart(parseInt(e.target.value));
+        });
+    }
+}
+
+function renderRevenueChart(days = 7) {
+    const { billings } = dashboardData;
+
+    // Generate date labels
+    const labels = [];
+    const revenueData = [];
+    const today = new Date();
+
+    for (let i = days - 1; i >= 0; i--) {
+        const date = new Date(today);
+        date.setDate(date.getDate() - i);
+
+        if (days <= 7) {
+            labels.push(date.toLocaleDateString('en-US', { weekday: 'short' }));
+        } else if (days <= 30) {
+            labels.push(date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+        } else {
+            labels.push(date.toLocaleDateString('en-US', { month: 'short' }));
+        }
+
+        // Calculate revenue for this date
+        const dayRevenue = billings
+            .filter(b => {
+                if (!b.paidDate || b.status !== 'PAID') return false;
+                const paidDate = new Date(b.paidDate);
+                return paidDate.toDateString() === date.toDateString();
+            })
+            .reduce((sum, b) => sum + (parseFloat(b.amount) || 0), 0);
+
+        revenueData.push(dayRevenue);
+    }
+
+    // Destroy existing chart if it exists
+    if (revenueChart) {
+        revenueChart.destroy();
+    }
+
+    // Create new chart
+    const ctx = document.getElementById('revenueChart').getContext('2d');
+    revenueChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Revenue (₹)',
+                data: revenueData,
+                borderColor: '#2563eb',
+                backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                borderWidth: 2,
+                fill: true,
+                tension: 0.4,
+                pointRadius: 4,
+                pointBackgroundColor: '#2563eb',
+                pointBorderColor: '#fff',
+                pointBorderWidth: 2,
+                pointHoverRadius: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            aspectRatio: 2.5,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        font: {
+                            size: 12,
+                            family: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+                        },
+                        usePointStyle: true,
+                        padding: 15
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    padding: 12,
+                    titleFont: {
+                        size: 13
+                    },
+                    bodyFont: {
+                        size: 12
+                    },
+                    callbacks: {
+                        label: function(context) {
+                            return 'Revenue: ₹' + context.parsed.y.toLocaleString('en-IN');
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return '₹' + value.toLocaleString('en-IN');
+                        },
+                        font: {
+                            size: 11
+                        }
+                    },
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.05)'
+                    }
+                },
+                x: {
+                    ticks: {
+                        font: {
+                            size: 11
+                        }
+                    },
+                    grid: {
+                        display: false
+                    }
+                }
+            },
+            interaction: {
+                intersect: false,
+                mode: 'index'
+            }
+        }
+    });
+}
+
+// ============================================
 // CHART PLACEHOLDER INTERACTION
 // ============================================
 
@@ -329,9 +481,6 @@ function setupChartInteraction() {
     const chartContainer = document.querySelector('.chart-container');
     if (chartContainer) {
         chartContainer.style.cursor = 'pointer';
-        chartContainer.addEventListener('click', () => {
-            window.location.href = '/admin/analytics';
-        });
         chartContainer.title = 'Click to view detailed analytics';
     }
 }
@@ -359,14 +508,8 @@ function setupTopBarIcons() {
         settingsIcon.style.cursor = 'pointer';
     }
 
-    // User profile dropdown
-    const userProfile = document.querySelector('.user-profile');
-    if (userProfile) {
-        userProfile.addEventListener('click', () => {
-            showToast('Profile menu - Coming soon', 'success');
-        });
-        userProfile.style.cursor = 'pointer';
-    }
+    // User profile dropdown is handled by admin-common.js
+    // No need to add click listener here
 }
 
 // ============================================

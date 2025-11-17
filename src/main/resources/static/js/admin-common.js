@@ -1,6 +1,168 @@
 // Admin Common JavaScript - Handles all admin panel functionality
 
 // ============================================
+// PROFILE MENU & USER SESSION
+// ============================================
+
+// Load current user information
+async function loadCurrentUser() {
+    try {
+        const response = await fetch('/admin/api/current-user');
+        if (!response.ok) {
+            console.warn('User not authenticated, status:', response.status);
+            // Only redirect if we get a clear 401 and we're not already on login page
+            if (response.status === 401 && window.location.pathname !== '/admin/login') {
+                console.log('Session expired or not authenticated, redirecting to login...');
+                // Add a small delay to prevent redirect loops
+                setTimeout(() => {
+                    window.location.href = '/admin/login';
+                }, 500);
+            }
+            return null;
+        }
+
+        const userData = await response.json();
+
+        // Check if we got an error response
+        if (userData.error) {
+            console.warn('Error in user data:', userData.error);
+            return null;
+        }
+
+        updateProfileUI(userData);
+        return userData;
+    } catch (error) {
+        console.error('Error loading user data:', error);
+        // Don't redirect on network errors - could be temporary
+        // Only log the error
+        return null;
+    }
+}
+
+// Update UI with user data
+function updateProfileUI(userData) {
+    const username = userData.username || 'Admin User';
+    const email = userData.email || 'admin@admin.com';
+    const role = userData.role || 'Administrator';
+
+    // Generate initials from username
+    const initials = getInitials(username);
+
+    // Update all user display elements
+    const userAvatar = document.getElementById('userAvatar');
+    const userName = document.getElementById('userName');
+    const userRole = document.getElementById('userRole');
+    const dropdownUserName = document.getElementById('dropdownUserName');
+    const dropdownUserEmail = document.getElementById('dropdownUserEmail');
+
+    if (userAvatar) userAvatar.textContent = initials;
+    if (userName) userName.textContent = username;
+    if (userRole) userRole.textContent = role;
+    if (dropdownUserName) dropdownUserName.textContent = username;
+    if (dropdownUserEmail) dropdownUserEmail.textContent = email;
+}
+
+// Generate initials from name (e.g., "Diwakar Y" -> "DY")
+function getInitials(name) {
+    if (!name) return 'AD';
+
+    // Remove extra whitespace and split into words
+    const words = name.trim().split(/\s+/);
+
+    if (words.length === 1) {
+        // Single word: take first 2 characters
+        return words[0].substring(0, 2).toUpperCase();
+    } else {
+        // Multiple words: take first letter of first and last word
+        return (words[0].charAt(0) + words[words.length - 1].charAt(0)).toUpperCase();
+    }
+}
+
+// Toggle profile dropdown
+function toggleProfileDropdown() {
+    const dropdown = document.getElementById('profileDropdown');
+    if (dropdown) {
+        dropdown.classList.toggle('active');
+        console.log('Dropdown toggled. Active:', dropdown.classList.contains('active'));
+    } else {
+        console.error('Cannot toggle - dropdown element not found');
+    }
+}
+
+// Handle logout
+async function handleLogout() {
+    if (confirm('Are you sure you want to logout?')) {
+        try {
+            // Clear any local storage/session storage
+            localStorage.clear();
+            sessionStorage.clear();
+
+            // Redirect to logout endpoint
+            window.location.href = '/admin/logout';
+        } catch (error) {
+            console.error('Logout error:', error);
+            // Force redirect even on error
+            window.location.href = '/admin/logout';
+        }
+    }
+}
+
+// Setup profile dropdown listeners
+function setupProfileMenu() {
+    const profileBtn = document.getElementById('userProfileBtn');
+    const dropdown = document.getElementById('profileDropdown');
+
+    if (!profileBtn) {
+        console.warn('Profile button not found (userProfileBtn)');
+        return;
+    }
+
+    if (!dropdown) {
+        console.warn('Profile dropdown not found (profileDropdown)');
+        return;
+    }
+
+    console.log('Setting up profile menu...');
+
+    // Toggle on click - use direct event listener
+    profileBtn.addEventListener('click', function(e) {
+        console.log('Profile button clicked!');
+        e.preventDefault();
+        e.stopPropagation();
+
+        const isActive = dropdown.classList.contains('active');
+        console.log('Dropdown currently active:', isActive);
+
+        if (isActive) {
+            dropdown.classList.remove('active');
+            console.log('Dropdown closed');
+        } else {
+            dropdown.classList.add('active');
+            console.log('Dropdown opened');
+        }
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', function(e) {
+        const clickedProfileBtn = document.getElementById('userProfileBtn');
+        if (clickedProfileBtn && !clickedProfileBtn.contains(e.target)) {
+            if (dropdown.classList.contains('active')) {
+                console.log('Clicking outside - closing dropdown');
+                dropdown.classList.remove('active');
+            }
+        }
+    });
+
+    // Prevent dropdown from closing when clicking inside it
+    dropdown.addEventListener('click', function(e) {
+        console.log('Clicked inside dropdown');
+        e.stopPropagation();
+    });
+
+    console.log('Profile menu setup complete');
+}
+
+// ============================================
 // UTILITY FUNCTIONS
 // ============================================
 
@@ -284,4 +446,34 @@ function confirmAction(message, onConfirm) {
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Admin Common JS loaded');
+
+    // Load user profile on all admin pages (except login)
+    if (window.location.pathname.startsWith('/admin') &&
+        window.location.pathname !== '/admin/login') {
+
+        console.log('Initializing admin page:', window.location.pathname);
+
+        // Initialize profile menu with delay to ensure:
+        // 1. DOM is fully ready
+        // 2. Session is properly established (especially important after login redirect)
+        setTimeout(() => {
+            console.log('Loading current user...');
+            loadCurrentUser().then(user => {
+                if (user) {
+                    console.log('User loaded successfully:', user.username);
+                    setupProfileMenu();
+
+                    // Debug: Check if elements exist
+                    const profileBtn = document.getElementById('userProfileBtn');
+                    const dropdown = document.getElementById('profileDropdown');
+                    console.log('Profile button found:', profileBtn !== null);
+                    console.log('Profile dropdown found:', dropdown !== null);
+                } else {
+                    console.warn('User data not loaded');
+                }
+            }).catch(err => {
+                console.error('Failed to load user:', err);
+            });
+        }, 200); // Increased delay to 200ms for session stability
+    }
 });

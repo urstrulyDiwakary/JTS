@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - Jesta Tech Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -217,6 +218,7 @@
             align-items: center;
             gap: 12px;
             cursor: pointer;
+            position: relative;
         }
 
         .user-avatar {
@@ -229,6 +231,8 @@
             justify-content: center;
             color: white;
             font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
         }
 
         .user-info h4 {
@@ -239,6 +243,100 @@
         .user-info p {
             font-size: 0.75rem;
             color: #6b7280;
+        }
+
+        /* Profile Dropdown */
+        .profile-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .profile-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .profile-dropdown::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            right: 20px;
+            width: 12px;
+            height: 12px;
+            background: white;
+            transform: rotate(45deg);
+            box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .dropdown-header {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .dropdown-header h4 {
+            font-size: 0.95rem;
+            margin-bottom: 3px;
+        }
+
+        .dropdown-header p {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+
+        .dropdown-menu {
+            list-style: none;
+            padding: 8px 0;
+        }
+
+        .dropdown-menu li {
+            padding: 0;
+        }
+
+        .dropdown-menu a,
+        .dropdown-menu button {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: var(--text-dark);
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.2s ease;
+        }
+
+        .dropdown-menu a:hover,
+        .dropdown-menu button:hover {
+            background: var(--light-bg);
+        }
+
+        .dropdown-menu i {
+            width: 18px;
+            font-size: 1rem;
+            color: #6b7280;
+        }
+
+        .dropdown-menu .logout-btn {
+            color: var(--danger-color);
+        }
+
+        .dropdown-menu .logout-btn i {
+            color: var(--danger-color);
         }
 
         /* Dashboard Content */
@@ -379,14 +477,16 @@
 
         /* Chart Placeholder */
         .chart-container {
-            height: 300px;
+            min-height: 300px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 8px;
-            color: white;
-            font-size: 1.1rem;
+            position: relative;
+        }
+
+        .chart-container canvas {
+            max-height: 300px;
         }
 
         /* Recent Activity */
@@ -658,16 +758,29 @@
                 <div class="settings-icon" onclick="window.location.href='/admin/settings'" title="Settings">
                     <i class="fas fa-cog"></i>
                 </div>
-                <div class="user-profile-dropdown">
-                    <div class="user-avatar">AD</div>
-                </div>
-                <div class="user-profile">
-                    <div class="user-avatar">AD</div>
+                <div class="user-profile" id="userProfileBtn">
+                    <div class="user-avatar" id="userAvatar">AD</div>
                     <div class="user-info">
-                        <h4>Admin User</h4>
-                        <p>Administrator</p>
+                        <h4 id="userName">Admin User</h4>
+                        <p id="userRole">Administrator</p>
                     </div>
                     <i class="fas fa-chevron-down"></i>
+
+                    <!-- Profile Dropdown -->
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <div class="dropdown-header">
+                            <h4 id="dropdownUserName">Admin User</h4>
+                            <p id="dropdownUserEmail">admin@admin.com</p>
+                        </div>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <button onclick="handleLogout()" class="logout-btn">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span>Logout</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -740,18 +853,18 @@
 
             <!-- Charts and Activity -->
             <div class="content-grid">
-                <div class="card">
+                <div class="card" onclick="navigateToAnalytics(event)" style="cursor: pointer;">
                     <div class="card-header">
                         <h2>Revenue Analytics</h2>
-                        <select>
-                            <option>Last 7 Days</option>
-                            <option>Last 30 Days</option>
-                            <option>Last 3 Months</option>
-                            <option>Last Year</option>
+                        <select id="chartTimeRange" onclick="event.stopPropagation()">
+                            <option value="7">Last 7 Days</option>
+                            <option value="30">Last 30 Days</option>
+                            <option value="90">Last 3 Months</option>
+                            <option value="365">Last Year</option>
                         </select>
                     </div>
-                    <div class="chart-container">
-                        <p><i class="fas fa-chart-area"></i> Chart Visualization Area</p>
+                    <div class="chart-container" style="background: white; padding: 20px;">
+                        <canvas id="revenueChart"></canvas>
                     </div>
                 </div>
 
@@ -888,6 +1001,15 @@
     </main>
 
     <script>
+
+        // Navigate to Analytics page when chart area is clicked
+        function navigateToAnalytics(event) {
+            // Don't navigate if clicking on the select dropdown
+            if (event.target.tagName !== 'SELECT' && !event.target.closest('select')) {
+                window.location.href = '/admin/analytics';
+            }
+        }
+
         // Toggle Sidebar
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');

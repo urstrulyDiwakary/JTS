@@ -210,6 +210,14 @@
             transform: rotate(90deg);
         }
 
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            position: relative;
+        }
+
         .user-avatar {
             width: 40px;
             height: 40px;
@@ -220,6 +228,113 @@
             justify-content: center;
             color: white;
             font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .user-info h4 {
+            font-size: 0.9rem;
+            margin-bottom: 2px;
+        }
+
+        .user-info p {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        /* Profile Dropdown */
+        .profile-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .profile-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .profile-dropdown::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            right: 20px;
+            width: 12px;
+            height: 12px;
+            background: white;
+            transform: rotate(45deg);
+            box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .dropdown-header {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .dropdown-header h4 {
+            font-size: 0.95rem;
+            margin-bottom: 3px;
+        }
+
+        .dropdown-header p {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+
+        .dropdown-menu {
+            list-style: none;
+            padding: 8px 0;
+        }
+
+        .dropdown-menu li {
+            padding: 0;
+        }
+
+        .dropdown-menu a,
+        .dropdown-menu button {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: var(--text-dark);
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.2s ease;
+            text-align: left;
+        }
+
+        .dropdown-menu a:hover,
+        .dropdown-menu button:hover {
+            background: var(--light-bg);
+        }
+
+        .dropdown-menu i {
+            width: 18px;
+            font-size: 1rem;
+            color: #6b7280;
+        }
+
+        .dropdown-menu .logout-btn {
+            color: var(--danger-color);
+        }
+
+        .dropdown-menu .logout-btn i {
+            color: var(--danger-color);
         }
 
         /* Content */
@@ -965,7 +1080,30 @@
                 <div class="settings-icon" onclick="window.location.href='/admin/settings'" title="Settings">
                     <i class="fas fa-cog"></i>
                 </div>
-                <div class="user-avatar">AD</div>
+                <div class="user-profile" id="userProfileBtn">
+                    <div class="user-avatar" id="userAvatar">AD</div>
+                    <div class="user-info">
+                        <h4 id="userName">Admin User</h4>
+                        <p id="userRole">Administrator</p>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+
+                    <!-- Profile Dropdown -->
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <div class="dropdown-header">
+                            <h4 id="dropdownUserName">Admin User</h4>
+                            <p id="dropdownUserEmail">admin@admin.com</p>
+                        </div>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <button onclick="handleLogout()" class="logout-btn">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span>Logout</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
 
