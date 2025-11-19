@@ -1,0 +1,730 @@
+/* ========================================
+   ADMIN MOBILE NAVIGATION
+   Responsive Bottom Navigation Bar for Mobile Devices
+   This CSS handles the conversion of sidebar to bottom navigation on mobile
+   ======================================== */
+
+/*
+   DESKTOP VIEW (Default):
+   - Sidebar remains visible on the left
+   - Bottom navigation is hidden
+*/
+
+/* Bottom Navigation Container - Hidden by default on desktop */
+.bottom-nav {
+    display: none; /* Hidden on desktop */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--sidebar-bg, #111827);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 8px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Bottom Navigation Menu */
+.bottom-nav-menu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+}
+
+/* Individual Bottom Navigation Items */
+.bottom-nav-item {
+    flex: 1;
+    text-align: center;
+}
+
+/* Bottom Navigation Links */
+.bottom-nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 4px;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.7rem;
+    gap: 4px;
+}
+
+/* Bottom Navigation Icons */
+.bottom-nav-link i {
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+}
+
+/* Bottom Navigation Text Labels */
+.bottom-nav-link span {
+    font-size: 0.65rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+/* Active and Hover States for Bottom Navigation */
+.bottom-nav-link:hover,
+.bottom-nav-link.active {
+    color: rgba(255, 255, 255, 1);
+    background: rgba(37, 99, 235, 0.1);
+    border-radius: 8px;
+}
+
+.bottom-nav-link.active {
+    color: #3d8bfd;
+}
+
+.bottom-nav-link.active i {
+    transform: scale(1.1);
+}
+
+/*
+   MOBILE VIEW (Tablets and below):
+   - Hide the desktop sidebar
+   - Show the bottom navigation bar
+   - Adjust main content margins
+   - Add padding to prevent content overlap
+   - Make all page elements responsive
+*/
+
+@media screen and (max-width: 768px) {
+    /* ========================================
+       NAVIGATION & SIDEBAR
+       ======================================== */
+
+    /* Hide the desktop sidebar completely on mobile */
+    .sidebar {
+        display: none !important;
+    }
+
+    /* Adjust main content to take full width since sidebar is hidden */
+    .main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding-bottom: 80px !important; /* Add padding to prevent content being hidden under bottom nav */
+    }
+
+    /* Ensure expanded state also takes full width */
+    .main-content.expanded {
+        margin-left: 0 !important;
+    }
+
+    /* Show the bottom navigation bar on mobile */
+    .bottom-nav {
+        display: block;
+    }
+
+    /* ========================================
+       TOP BAR & HEADER
+       ======================================== */
+
+    /* Adjust top bar for mobile */
+    .top-bar {
+        padding: 10px 15px !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+    }
+
+    /* Make search bar responsive on mobile */
+    .search-bar {
+        width: 100% !important;
+        max-width: 100% !important;
+        order: 3 !important;
+        margin-top: 10px !important;
+    }
+
+    .top-bar-right {
+        gap: 15px !important;
+    }
+
+    /* Hide some top bar elements on very small screens */
+    .notification-icon,
+    .settings-icon {
+        font-size: 1.1rem !important;
+    }
+
+    /* ========================================
+       CONTENT AREA & PADDING
+       ======================================== */
+
+    /* Adjust content padding on mobile */
+    .content-area,
+    .content {
+        padding: 15px !important;
+    }
+
+    .content-wrapper {
+        padding: 15px !important;
+    }
+
+    .page-content {
+        padding: 15px !important;
+    }
+
+    /* ========================================
+       GRIDS & LAYOUTS
+       ======================================== */
+
+    /* Make all grids single column on mobile */
+    .stats-grid,
+    .dashboard-grid,
+    .cards-grid,
+    .metrics-grid,
+    .overview-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+
+    /* Two column grids for smaller cards */
+    .stats-cards,
+    .quick-stats {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+
+    /* ========================================
+       CARDS & CONTAINERS
+       ======================================== */
+
+    /* Mobile-specific adjustments for stat cards */
+    .stat-card,
+    .card,
+    .dashboard-card,
+    .metric-card {
+        padding: 15px !important;
+        margin-bottom: 15px !important;
+    }
+
+    .stat-card h3,
+    .card h3 {
+        font-size: 0.9rem !important;
+    }
+
+    .stat-card .value,
+    .stat-value {
+        font-size: 1.5rem !important;
+    }
+
+    /* ========================================
+       TABLES
+       ======================================== */
+
+    /* Make tables scrollable horizontally on mobile */
+    .table-container,
+    .data-table-container,
+    table-wrapper {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        display: block !important;
+        max-width: 100% !important;
+    }
+
+    /* Adjust table layout for mobile */
+    table {
+        min-width: 600px !important;
+        font-size: 0.85rem !important;
+    }
+
+    table th,
+    table td {
+        padding: 8px 10px !important;
+        white-space: nowrap !important;
+    }
+
+    /* Hide less important columns on mobile */
+    .hide-mobile {
+        display: none !important;
+    }
+
+    /* ========================================
+       BUTTONS & ACTIONS
+       ======================================== */
+
+    /* Make buttons full width or stack on mobile */
+    .action-buttons,
+    .btn-group,
+    .button-group {
+        flex-direction: column !important;
+        gap: 10px !important;
+        width: 100% !important;
+    }
+
+    .btn,
+    .action-btn,
+    button {
+        width: 100% !important;
+        padding: 12px !important;
+        font-size: 0.9rem !important;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        margin: 5px 0 !important;
+    }
+
+    /* ========================================
+       FORMS
+       ======================================== */
+
+    /* Make form elements full width */
+    .form-group,
+    .form-field {
+        margin-bottom: 15px !important;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    input[type="date"],
+    input[type="tel"],
+    input[type="url"],
+    select,
+    textarea {
+        width: 100% !important;
+        padding: 12px !important;
+        font-size: 16px !important; /* Prevent zoom on iOS */
+    }
+
+    /* ========================================
+       MODALS & POPUPS
+       ======================================== */
+
+    /* Make modals full screen or nearly full screen on mobile */
+    .modal,
+    .popup,
+    .dialog {
+        width: 95% !important;
+        max-width: 95% !important;
+        margin: 10px auto !important;
+        max-height: 90vh !important;
+        overflow-y: auto !important;
+    }
+
+    .modal-content,
+    .popup-content {
+        padding: 20px 15px !important;
+    }
+
+    .modal-header,
+    .popup-header {
+        padding: 15px !important;
+        flex-wrap: wrap !important;
+    }
+
+    /* ========================================
+       CHARTS & GRAPHS
+       ======================================== */
+
+    /* Make charts responsive */
+    .chart-container,
+    canvas {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    .chart-wrapper {
+        padding: 15px 10px !important;
+    }
+
+    /* ========================================
+       FILTERS & DROPDOWNS
+       ======================================== */
+
+    /* Make filters stack vertically */
+    .filters,
+    .filter-group,
+    .filter-bar {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+
+    .filter-dropdown,
+    select.filter {
+        width: 100% !important;
+        margin: 5px 0 !important;
+    }
+
+    /* ========================================
+       HEADERS & TITLES
+       ======================================== */
+
+    /* Adjust header sizes for mobile */
+    .page-header,
+    .section-header {
+        padding: 15px !important;
+        flex-wrap: wrap !important;
+    }
+
+    .page-title,
+    h1 {
+        font-size: 1.5rem !important;
+    }
+
+    h2 {
+        font-size: 1.3rem !important;
+    }
+
+    h3 {
+        font-size: 1.1rem !important;
+    }
+
+    h4 {
+        font-size: 1rem !important;
+    }
+
+    /* ========================================
+       TABS & NAVIGATION
+       ======================================== */
+
+    /* Make tabs scrollable horizontally */
+    .tabs,
+    .tab-list {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        flex-wrap: nowrap !important;
+    }
+
+    .tab {
+        min-width: auto !important;
+        padding: 10px 15px !important;
+        font-size: 0.9rem !important;
+    }
+
+    /* ========================================
+       USER PROFILE & AVATARS
+       ======================================== */
+
+    .user-profile,
+    .profile-section {
+        flex-direction: column !important;
+        text-align: center !important;
+    }
+
+    .user-avatar,
+    .avatar {
+        margin: 0 auto 10px !important;
+    }
+
+    /* ========================================
+       PAGINATION
+       ======================================== */
+
+    .pagination {
+        flex-wrap: wrap !important;
+        gap: 5px !important;
+        justify-content: center !important;
+    }
+
+    .page-btn,
+    .pagination-btn {
+        padding: 8px 12px !important;
+        font-size: 0.85rem !important;
+    }
+
+    /* ========================================
+       BREADCRUMBS
+       ======================================== */
+
+    .breadcrumb {
+        font-size: 0.85rem !important;
+        flex-wrap: wrap !important;
+    }
+
+    /* ========================================
+       BADGES & LABELS
+       ======================================== */
+
+    .badge,
+    .label,
+    .tag {
+        font-size: 0.75rem !important;
+        padding: 4px 8px !important;
+    }
+
+    /* ========================================
+       PROJECT/USER CARDS
+       ======================================== */
+
+    .project-card,
+    .user-card {
+        margin-bottom: 15px !important;
+    }
+
+    .project-grid,
+    .user-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+
+    /* ========================================
+       TASK ITEMS
+       ======================================== */
+
+    .task-item,
+    .task-card {
+        padding: 12px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .task-header {
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+    }
+
+    .task-actions {
+        flex-wrap: wrap !important;
+        gap: 5px !important;
+    }
+
+    /* ========================================
+       INVOICE/BILLING ITEMS
+       ======================================== */
+
+    .invoice-card,
+    .billing-item {
+        padding: 15px !important;
+    }
+
+    .invoice-header {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+
+    /* ========================================
+       ANALYTICS WIDGETS
+       ======================================== */
+
+    .analytics-widget,
+    .metric-widget {
+        padding: 15px !important;
+        margin-bottom: 15px !important;
+    }
+
+    .widget-header {
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+    }
+
+    /* ========================================
+       MISCELLANEOUS
+       ======================================== */
+
+    /* Hide toggle button on mobile as sidebar is not visible */
+    .toggle-btn {
+        display: none !important;
+    }
+
+    /* Adjust mobile menu button if present */
+    .mobile-menu-btn {
+        display: none !important;
+    }
+
+    /* Hide empty states on very small screens */
+    .empty-state-illustration {
+        max-width: 200px !important;
+        margin: 0 auto !important;
+    }
+
+    /* Adjust spacing */
+    .mb-4,
+    .mb-5 {
+        margin-bottom: 15px !important;
+    }
+
+    .mt-4,
+    .mt-5 {
+        margin-top: 15px !important;
+    }
+
+    /* Make images responsive */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    /* Adjust profile dropdown */
+    .profile-dropdown {
+        right: 0 !important;
+        left: auto !important;
+        width: 250px !important;
+    }
+}
+
+/*
+   SMALL MOBILE VIEW (Phones in portrait):
+   - Further optimize spacing for smaller screens
+   - Reduce font sizes and padding
+*/
+
+@media screen and (max-width: 480px) {
+    /* Even smaller bottom nav items for very small screens */
+    .bottom-nav-link {
+        padding: 6px 2px;
+        font-size: 0.65rem;
+    }
+
+    .bottom-nav-link i {
+        font-size: 1.1rem;
+    }
+
+    .bottom-nav-link span {
+        font-size: 0.6rem;
+    }
+
+    /* Further reduce padding for main content */
+    .main-content {
+        padding-bottom: 75px !important;
+    }
+
+    /* Make top bar elements more compact */
+    .top-bar {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px !important;
+    }
+
+    .top-bar-right {
+        gap: 15px !important;
+    }
+
+    /* Stack stat cards in single column */
+    .stats-cards,
+    .quick-stats {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Smaller font sizes */
+    .page-title,
+    h1 {
+        font-size: 1.3rem !important;
+    }
+
+    h2 {
+        font-size: 1.1rem !important;
+    }
+
+    h3 {
+        font-size: 1rem !important;
+    }
+
+    /* More compact cards */
+    .stat-card,
+    .card {
+        padding: 12px !important;
+    }
+
+    /* Smaller table text */
+    table {
+        font-size: 0.75rem !important;
+    }
+
+    table th,
+    table td {
+        padding: 6px 8px !important;
+    }
+
+    /* Ensure content doesn't overflow */
+    body {
+        overflow-x: hidden;
+    }
+
+    * {
+        max-width: 100%;
+    }
+}
+
+/*
+   LANDSCAPE MOBILE VIEW:
+   - Optimize for phones in landscape mode
+*/
+
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    .bottom-nav {
+        padding: 4px 0;
+    }
+
+    .bottom-nav-link {
+        padding: 4px 2px;
+    }
+
+    .bottom-nav-link i {
+        font-size: 1rem;
+    }
+
+    .bottom-nav-link span {
+        font-size: 0.55rem;
+    }
+
+    /* Reduce vertical spacing in landscape */
+    .stat-card,
+    .card {
+        padding: 10px !important;
+        margin-bottom: 10px !important;
+    }
+}
+
+/*
+   ACCESSIBILITY IMPROVEMENTS:
+   - Ensure touch targets are large enough
+   - Add focus states for keyboard navigation
+*/
+
+.bottom-nav-link {
+    min-height: 48px; /* Minimum touch target size for accessibility */
+    min-width: 48px;
+}
+
+.bottom-nav-link:focus {
+    outline: 2px solid #3d8bfd;
+    outline-offset: 2px;
+}
+
+/* Smooth scrolling to prevent jarring jumps when clicking navigation */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Prevent body scroll when bottom nav is present on mobile */
+@media screen and (max-width: 768px) {
+    body {
+        padding-bottom: env(safe-area-inset-bottom, 0); /* Handle iPhone notch */
+    }
+
+    .bottom-nav {
+        padding-bottom: env(safe-area-inset-bottom, 8px); /* Handle iPhone notch */
+    }
+
+    /* Ensure horizontal scrolling for tables */
+    .table-container::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .table-container::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    .table-container::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 3px;
+    }
+
+    .table-container::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+}
+

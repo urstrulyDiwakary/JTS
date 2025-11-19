@@ -29,21 +29,57 @@ function initializeSideMenu() {
     const closeMenu = document.getElementById('closeMenu');
     const sideMenu = document.getElementById('sideMenu');
     const sideMenuOverlay = document.getElementById('sideMenuOverlay');
-    
+    const sideMenuLinks = document.querySelectorAll('.side-menu-links a');
+
+    // Open side menu
     if (mobileMenuToggle) {
         mobileMenuToggle.addEventListener('click', function(e) {
             e.preventDefault();
+            e.stopPropagation();
             openSideMenu();
         });
     }
     
+    // Close side menu via close button
     if (closeMenu) {
-        closeMenu.addEventListener('click', closeSideMenu);
+        closeMenu.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            closeSideMenu();
+        });
     }
     
+    // Close side menu when clicking on overlay (outside menu)
     if (sideMenuOverlay) {
-        sideMenuOverlay.addEventListener('click', closeSideMenu);
+        sideMenuOverlay.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeSideMenu();
+        });
     }
+
+    // Close side menu when clicking on a navigation link
+    sideMenuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            // Small delay for smooth UX before closing
+            setTimeout(() => {
+                closeSideMenu();
+            }, 200);
+        });
+    });
+
+    // Prevent click events inside side menu from closing it
+    if (sideMenu) {
+        sideMenu.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
+
+    // Close side menu on ESC key press
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && sideMenu && sideMenu.classList.contains('active')) {
+            closeSideMenu();
+        }
+    });
 }
 
 function openSideMenu() {
@@ -58,8 +94,10 @@ function openSideMenu() {
         sideMenuOverlay.classList.add('active');
     }
     
-    // Prevent body scroll when menu is open
+    // Prevent body scroll when menu is open (iOS fix)
     document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
 }
 
 function closeSideMenu() {
@@ -75,7 +113,9 @@ function closeSideMenu() {
     }
     
     // Restore body scroll
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.width = '';
 }
 
 // === TESTIMONIALS CAROUSEL ===

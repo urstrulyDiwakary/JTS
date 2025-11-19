@@ -1,0 +1,14 @@
+User-agent: *
+Sitemap: https://jestatechsolutions.in/sitemap.xml
+
+Disallow: /api/
+Disallow: /admin/
+
+Allow: /terms
+Allow: /privacy
+Allow: /contact
+Allow: /about
+Allow: /portfolio
+Allow: /services
+Allow: /
+

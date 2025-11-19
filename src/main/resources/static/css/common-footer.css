@@ -1,0 +1,124 @@
+/* Global Footer Styles */
+.global-footer {
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+    color: #ffffff;
+    padding: 60px 0 20px;
+    margin-top: 80px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #3b82f6;
+}
+
+.footer-section p,
+.footer-section a {
+    color: #d1d5db;
+    line-height: 1.8;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: #3b82f6;
+}
+
+.footer-contact-info {
+    margin: 15px 0;
+}
+
+.footer-contact-info i {
+    width: 25px;
+    color: #3b82f6;
+    margin-right: 10px;
+}
+
+.footer-social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.footer-social-links a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(59, 130, 246, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.footer-social-links a:hover {
+    background: #3b82f6;
+    transform: translateY(-3px);
+}
+
+.footer-social-links i {
+    color: #3b82f6;
+    font-size: 1.2rem;
+}
+
+.footer-social-links a:hover i {
+    color: #ffffff;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #9ca3af;
+}
+
+.footer-bottom p {
+    margin: 5px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .global-footer {
+        padding: 40px 0 20px;
+        margin-top: 60px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .footer-section h3 {
+        font-size: 1.3rem;
+    }
+
+    .footer-social-links {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .global-footer {
+        padding: 30px 0 15px;
+    }
+
+    .footer-section h3 {
+        font-size: 1.2rem;
+    }
+
+    .footer-social-links a {
+        width: 35px;
+        height: 35px;
+    }
+}
+

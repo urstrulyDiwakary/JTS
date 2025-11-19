@@ -1,0 +1,838 @@
+/* ========================================
+   MODERN ADMIN HEADER - PROFESSIONAL UI
+   Premium header design with clean aesthetics
+   ======================================== */
+
+/* ========================================
+   TOP BAR - MAIN HEADER CONTAINER
+   ======================================== */
+
+.top-bar {
+    /* Layout & Positioning */
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+
+    /* Display & Alignment */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /* Spacing */
+    padding: 16px 32px;
+
+    /* Visual Design */
+    background: #ffffff;
+    backdrop-filter: blur(10px);
+
+    /* Shadow & Border */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+    /* Smooth Transitions */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced shadow on scroll effect (optional - can be added via JS) */
+.top-bar.scrolled {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* ========================================
+   SEARCH BAR - LEFT SECTION
+   ======================================== */
+
+.search-bar {
+    /* Display & Alignment */
+    display: flex;
+    align-items: center;
+
+    /* Sizing */
+    min-width: 320px;
+    max-width: 480px;
+
+    /* Spacing */
+    padding: 11px 18px;
+    gap: 12px;
+
+    /* Visual Design */
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+
+    /* Smooth Transitions */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-bar:hover {
+    background: #ffffff;
+    border-color: #d1d5db;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.05);
+}
+
+.search-bar:focus-within {
+    background: #ffffff;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.search-bar i {
+    font-size: 16px;
+    color: #6b7280;
+    transition: color 0.3s ease;
+}
+
+.search-bar:focus-within i {
+    color: #2563eb;
+}
+
+.search-bar input {
+    border: none;
+    background: none;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 400;
+    color: #1f2937;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.search-bar input::placeholder {
+    color: #9ca3af;
+    font-weight: 400;
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: none;
+    font-size: 20px;
+    color: #374151;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-menu-btn:hover {
+    background: #f3f4f6;
+    color: #2563eb;
+}
+
+/* ========================================
+   TOP BAR RIGHT - ICONS & PROFILE SECTION
+   ======================================== */
+
+.top-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+/* ========================================
+   NOTIFICATION ICON - MODERN DESIGN
+   ======================================== */
+
+.notification-icon {
+    position: relative;
+    cursor: pointer;
+
+    /* Icon Container */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+
+    /* Visual Design */
+    background: #f9fafb;
+    border-radius: 10px;
+    border: 1px solid transparent;
+
+    /* Smooth Transitions */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.notification-icon:hover {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+}
+
+.notification-icon:active {
+    transform: translateY(0);
+}
+
+.notification-icon i {
+    font-size: 18px;
+    color: #374151;
+    transition: all 0.3s ease;
+}
+
+.notification-icon:hover i {
+    color: #2563eb;
+    transform: scale(1.05);
+}
+
+/* Notification Badge - Enhanced */
+.notification-badge {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+
+    /* Sizing */
+    min-width: 19px;
+    height: 19px;
+
+    /* Layout */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+
+    /* Visual Design */
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: #ffffff;
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+
+    /* Typography */
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+
+    /* Animation */
+    animation: pulse-badge 2s ease-in-out infinite;
+}
+
+@keyframes pulse-badge {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+}
+
+/* ========================================
+   SETTINGS ICON - MODERN DESIGN
+   ======================================== */
+
+.settings-icon {
+    position: relative;
+    cursor: pointer;
+
+    /* Icon Container */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+
+    /* Visual Design */
+    background: #f9fafb;
+    border-radius: 10px;
+    border: 1px solid transparent;
+
+    /* Smooth Transitions */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.settings-icon:hover {
+    background: #f3f4f6;
+    border-color: #e5e7eb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.settings-icon:active {
+    transform: translateY(0);
+}
+
+.settings-icon i {
+    font-size: 18px;
+    color: #374151;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.settings-icon:hover i {
+    color: #2563eb;
+    transform: rotate(90deg);
+}
+
+/* ========================================
+   USER PROFILE - PREMIUM DESIGN
+   ======================================== */
+
+.user-profile {
+    position: relative;
+    cursor: pointer;
+
+    /* Layout */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    /* Spacing */
+    padding: 6px 12px 6px 6px;
+
+    /* Visual Design */
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+
+    /* Smooth Transitions */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.user-profile:hover {
+    background: #ffffff;
+    border-color: #d1d5db;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
+}
+
+.user-profile:active {
+    transform: translateY(0);
+}
+
+/* ========================================
+   USER AVATAR - CIRCULAR WITH GRADIENT
+   ======================================== */
+
+.user-avatar {
+    /* Sizing */
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+
+    /* Layout */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Visual Design */
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+
+    /* Typography */
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    /* Smooth Transitions */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.user-profile:hover .user-avatar {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+/* ========================================
+   USER INFO - TYPOGRAPHY & SPACING
+   ======================================== */
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0; /* Enable text truncation */
+}
+
+.user-info h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1f2937;
+    line-height: 1.3;
+    margin: 0;
+
+    /* Text truncation */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+
+    /* Smooth Transitions */
+    transition: color 0.3s ease;
+}
+
+.user-profile:hover .user-info h4 {
+    color: #2563eb;
+}
+
+.user-info p {
+    font-size: 12px;
+    font-weight: 400;
+    color: #6b7280;
+    line-height: 1.3;
+    margin: 0;
+
+    /* Text truncation */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+}
+
+/* Chevron Icon in User Profile */
+.user-profile > i {
+    font-size: 12px;
+    color: #9ca3af;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-left: 4px;
+}
+
+.user-profile:hover > i {
+    color: #2563eb;
+    transform: translateY(2px);
+}
+
+.user-profile.active > i {
+    transform: rotate(180deg);
+}
+
+/* ========================================
+   PROFILE DROPDOWN - ELEGANT MENU
+   ======================================== */
+
+.profile-dropdown {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+
+    /* Sizing */
+    min-width: 260px;
+
+    /* Visual Design */
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+
+    /* Initially Hidden */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+
+    /* Smooth Transitions */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Overflow */
+    overflow: hidden;
+}
+
+.profile-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Dropdown Header */
+.dropdown-header {
+    padding: 20px;
+    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.dropdown-header h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 4px 0;
+    line-height: 1.3;
+}
+
+.dropdown-header p {
+    font-size: 13px;
+    font-weight: 400;
+    color: #6b7280;
+    margin: 0;
+    line-height: 1.3;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    list-style: none;
+    margin: 0;
+    padding: 8px;
+}
+
+.dropdown-menu li {
+    margin: 0;
+}
+
+.dropdown-menu button,
+.dropdown-menu a {
+    /* Full Width */
+    width: 100%;
+
+    /* Layout */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    /* Spacing */
+    padding: 12px 14px;
+
+    /* Reset */
+    background: none;
+    border: none;
+    border-radius: 8px;
+
+    /* Typography */
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    text-align: left;
+    text-decoration: none;
+
+    /* Cursor */
+    cursor: pointer;
+
+    /* Smooth Transitions */
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dropdown-menu button:hover,
+.dropdown-menu a:hover {
+    background: #f3f4f6;
+    color: #1f2937;
+    transform: translateX(4px);
+}
+
+.dropdown-menu button i,
+.dropdown-menu a i {
+    font-size: 16px;
+    color: #6b7280;
+    transition: color 0.2s ease;
+}
+
+.dropdown-menu button:hover i,
+.dropdown-menu a:hover i {
+    color: #2563eb;
+}
+
+/* Logout Button - Special Styling */
+.logout-btn {
+    color: #dc2626 !important;
+}
+
+.logout-btn:hover {
+    background: #fef2f2 !important;
+    color: #991b1b !important;
+}
+
+.logout-btn i {
+    color: #dc2626 !important;
+}
+
+.logout-btn:hover i {
+    color: #991b1b !important;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - MOBILE & TABLET
+   ======================================== */
+
+/* Tablet View (≤ 1024px) */
+@media screen and (max-width: 1024px) {
+    .top-bar {
+        padding: 14px 24px;
+    }
+
+    .search-bar {
+        min-width: 240px;
+        max-width: 320px;
+    }
+
+    .top-bar-right {
+        gap: 16px;
+    }
+
+    .user-info h4,
+    .user-info p {
+        max-width: 120px;
+    }
+}
+
+/* Mobile View (≤ 768px) */
+@media screen and (max-width: 768px) {
+    .top-bar {
+        padding: 12px 16px;
+        gap: 0;
+        justify-content: space-between;
+    }
+
+    /* Show mobile menu button */
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    /* HIDE SEARCH BAR ON MOBILE */
+    .search-bar {
+        display: none !important;
+    }
+
+    /* Hide mobile menu button container wrapper if it exists */
+    .top-bar > div:first-child {
+        display: none;
+    }
+
+    /* Make top-bar-right take full space and center */
+    .top-bar-right {
+        gap: 16px;
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    /* Smaller icons */
+    .notification-icon,
+    .settings-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+    .notification-icon i,
+    .settings-icon i {
+        font-size: 16px;
+    }
+
+    /* Hide user info text on mobile */
+    .user-info {
+        display: none;
+    }
+
+    .user-profile > i {
+        display: none;
+    }
+
+    /* Adjust user profile */
+    .user-profile {
+        padding: 4px;
+        border-radius: 50%;
+        background: transparent;
+        border-color: transparent;
+    }
+
+    .user-profile:hover {
+        background: #f3f4f6;
+    }
+
+    .user-avatar {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+    }
+
+    /* Adjust dropdown position */
+    .profile-dropdown {
+        right: -10px;
+        min-width: 240px;
+    }
+}
+
+/* Small Mobile View (≤ 480px) */
+@media screen and (max-width: 480px) {
+    .top-bar {
+        padding: 10px 12px;
+    }
+
+    /* Ensure search bar stays hidden */
+    .search-bar {
+        display: none !important;
+    }
+
+    .top-bar-right {
+        gap: 12px;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .notification-icon,
+    .settings-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .notification-icon i,
+    .settings-icon i {
+        font-size: 15px;
+    }
+
+    .user-avatar {
+        width: 34px;
+        height: 34px;
+        min-width: 34px;
+        font-size: 12px;
+    }
+
+    /* Keep settings icon visible on small screens for better UX */
+    .settings-icon {
+        display: flex;
+    }
+}
+
+/* ========================================
+   ACCESSIBILITY IMPROVEMENTS
+   ======================================== */
+
+/* Focus States */
+.notification-icon:focus,
+.settings-icon:focus,
+.user-profile:focus {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+}
+
+.search-bar input:focus {
+    /* Already handled by :focus-within */
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .top-bar,
+    .search-bar,
+    .notification-icon,
+    .settings-icon,
+    .user-profile,
+    .user-avatar,
+    .profile-dropdown,
+    .notification-icon i,
+    .settings-icon i,
+    .user-info h4,
+    .user-profile > i {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .top-bar {
+        border-bottom: 2px solid #000000;
+    }
+
+    .search-bar,
+    .notification-icon,
+    .settings-icon,
+    .user-profile {
+        border-width: 2px;
+    }
+}
+
+/* Dark Mode Support (Optional - for future enhancement) */
+@media (prefers-color-scheme: dark) {
+    .top-bar {
+        background: #1f2937;
+        border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .search-bar {
+        background: #374151;
+        border-color: #4b5563;
+    }
+
+    .search-bar input {
+        color: #f3f4f6;
+    }
+
+    .search-bar input::placeholder {
+        color: #9ca3af;
+    }
+
+    .notification-icon,
+    .settings-icon,
+    .user-profile {
+        background: #374151;
+        border-color: #4b5563;
+    }
+
+    .notification-icon:hover,
+    .settings-icon:hover {
+        background: #4b5563;
+    }
+
+    .user-profile:hover {
+        background: #4b5563;
+        border-color: #6b7280;
+    }
+
+    .user-info h4 {
+        color: #f3f4f6;
+    }
+
+    .profile-dropdown {
+        background: #1f2937;
+        border-color: #4b5563;
+    }
+
+    .dropdown-header {
+        background: #374151;
+        border-bottom-color: #4b5563;
+    }
+}
+
+/* ========================================
+   ANIMATION KEYFRAMES
+   ======================================== */
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Apply animations to dropdown */
+.profile-dropdown.active {
+    animation: fadeInDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+/* Hide elements on specific breakpoints */
+.hide-on-mobile {
+    display: initial;
+}
+
+@media screen and (max-width: 768px) {
+    .hide-on-mobile {
+        display: none !important;
+    }
+}
+
+.show-on-mobile {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .show-on-mobile {
+        display: initial !important;
+    }
+}
+

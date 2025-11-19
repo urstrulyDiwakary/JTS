@@ -749,6 +749,12 @@
             }
         }
     </style>
+
+    <!-- Modern Header CSS -->
+    <link rel="stylesheet" href="/css/admin-header-modern.css">
+
+    <!-- Mobile Navigation CSS -->
+    <link rel="stylesheet" href="/css/admin-mobile-nav.css">
 </head>
 <body>
     <!-- Sidebar -->
@@ -1187,6 +1193,51 @@
             </form>
         </div>
     </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="bottom-nav">
+        <ul class="bottom-nav-menu">
+            <li class="bottom-nav-item">
+                <a href="/admin/dashboard" class="bottom-nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="bottom-nav-item">
+                <a href="/admin/users" class="bottom-nav-link active">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
+                </a>
+            </li>
+            <li class="bottom-nav-item">
+                <a href="/admin/projects" class="bottom-nav-link">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li class="bottom-nav-item">
+                <a href="/admin/tasks" class="bottom-nav-link">
+                    <i class="fas fa-tasks"></i>
+                    <span>Tasks</span>
+                </a>
+            </li>
+            <li class="bottom-nav-item">
+                <a href="/admin/analytics" class="bottom-nav-link">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analytics</span>
+                </a>
+            </li>
+            <li class="bottom-nav-item">
+                <a href="/admin/billing" class="bottom-nav-link">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span>Billing</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Mobile Navigation JavaScript -->
+    <script src="/js/admin-mobile-nav.js"></script>
 
     <script src="/js/admin-common.js"></script>
     <script src="/js/admin-users.js"></script>

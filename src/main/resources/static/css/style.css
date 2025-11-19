@@ -118,9 +118,11 @@ ul {
     top: 0;
     left: 0;
     right: 0;
+    width: 100%;
     z-index: 1000;
-    padding: 15px 0;
+    padding: 10px 0;
     display: none;
+    overflow: hidden;
 }
 
 /* === MOBILE HEADER === */
@@ -131,11 +133,65 @@ ul {
     top: 0;
     left: 0;
     right: 0;
+    width: 100%;
     z-index: 1200;
-    padding: 15px 0;
+    padding: 8px 0;
     display: none;
+    overflow: hidden;
 }
 
+/* Mobile header with hamburger and logo on left, JTS text centered */
+.mobile-header-content {
+    position: relative;
+    height: 65px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* Place hamburger on left side */
+.hamburger-menu {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+/* Logo image on right side of hamburger (left area) */
+.mobile-logo-img {
+    position: absolute;
+    left: 56px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 48px !important;
+    width: auto;
+    max-width: 48px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.12));
+    display: block;
+    z-index: 2;
+    flex-shrink: 0;
+}
+
+/* JTS text centered in header */
+.mobile-logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+}
+
+.mobile-logo h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+/* Keep base layout props */
 .mobile-header-content {
     display: flex;
     justify-content: space-between;
@@ -160,15 +216,6 @@ ul {
     color: var(--primary-dark);
 }
 
-.mobile-logo h1 {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--primary-color);
-}
-
-.mobile-logo i {
-    margin-right: 8px;
-}
 
 .header-content {
     display: flex;
@@ -176,10 +223,26 @@ ul {
     align-items: center;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.desktop-logo-img {
+    height: 60px !important;
+    width: auto;
+    max-width: 60px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.1));
+    flex-shrink: 0;
+}
+
 .logo h1 {
     font-size: 24px;
     font-weight: 700;
     color: var(--primary-color);
+    margin: 0;
 }
 
 .logo i {
@@ -1745,95 +1808,174 @@ ul {
     color: var(--primary-color);
 }
 
-/* === SIDE MENU === */
+/* === SIDE MENU - MOBILE DRAWER FROM LEFT === */
 .side-menu {
     position: fixed;
     top: 0;
-    right: 0;
-    left: auto;
-    width: 280px;
+    left: 0; /* Changed from right to left */
+    width: 75%; /* 75% width on mobile */
+    max-width: 320px; /* Maximum width for larger screens */
     height: 100vh;
     background: var(--light-color);
-    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 1100;
-    overflow-y: auto;
-    padding-top: 0;
-    transform: translateX(100%);
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 2px 0 16px rgba(0, 0, 0, 0.3); /* Shadow on right side */
+    z-index: 2000; /* ensure above .mobile-header (1200) */
+    overflow: hidden; /* Hide overflow on container */
+    padding: 0;
+    transform: translateX(-100%); /* Start hidden on the LEFT */
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth ease-out animation */
+    display: flex;
+    flex-direction: column; /* Stack header and content */
+    height: 100dvh; /* use dynamic viewport height on mobile to avoid top clipping */
 }
 
 .side-menu.active {
-    transform: translateX(0);
+    transform: translateX(0); /* Slide IN from left */
 }
 
+/* Side menu header - FIXED at top, doesn't scroll */
 .side-menu-header {
-    padding: 20px;
+    padding: 16px 20px; /* Reduced from 22px */
     background: var(--primary-color);
     color: var(--light-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-shrink: 0; /* Prevent header from shrinking */
+    min-height: auto; /* Changed from 70px for natural sizing */
+    height: auto; /* Natural height */
+    position: relative; /* Stay at top */
+    z-index: 1; /* Above content */
+}
+
+/* Scrollable content wrapper */
+.side-menu-links {
+    padding: 8px 0; /* Reduced from 16px */
+    margin: 0; /* Remove any default margin */
+    list-style: none;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    overflow-y: auto; /* Allow vertical scrolling */
+    flex: 1; /* Take remaining height */
+    -webkit-overflow-scrolling: touch; /* Smooth iOS scrolling */
+}
+
+/* Custom scrollbar for navigation links */
+.side-menu-links::-webkit-scrollbar {
+    width: 6px;
+}
+
+.side-menu-links::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.side-menu-links::-webkit-scrollbar-thumb {
+    background: rgba(13, 110, 253, 0.3);
+    border-radius: 3px;
+}
+
+.side-menu-links::-webkit-scrollbar-thumb:hover {
+    background: rgba(13, 110, 253, 0.5);
 }
 
 .side-menu-header h3 {
-    font-size: 20px;
+    font-size: 18px; /* Reduced from 20px */
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Reduced from 10px */
+    margin: 0; /* Remove default margin */
+    line-height: 1.2; /* Tighter line height */
 }
 
+.side-menu-header h3 i {
+    font-size: 20px; /* Reduced from 22px */
+}
+
+/* Close button with modern styling */
 .close-menu {
-    background: none;
+    background: rgba(255, 255, 255, 0.2);
     border: none;
     color: var(--light-color);
-    font-size: 24px;
+    font-size: 20px; /* Reduced from 22px */
     cursor: pointer;
-    padding: 5px;
-    transition: transform 0.3s ease;
+    padding: 6px 8px; /* Reduced from 8px 10px */
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px; /* Reduced from 40px */
+    height: 36px; /* Reduced from 40px */
 }
 
 .close-menu:hover {
+    background: rgba(255, 255, 255, 0.3);
     transform: rotate(90deg);
 }
 
-.side-menu-links {
-    padding: 20px 0;
+/* Navigation links list items */
+.side-menu-links li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-.side-menu-links li {
-    border-bottom: 1px solid var(--border-color);
+.side-menu-links li:first-child {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.side-menu-links li:last-child {
+    border-bottom: none;
 }
 
 .side-menu-links a {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 18px 20px;
+    gap: 14px; /* Reduced from 16px */
+    padding: 14px 20px; /* Reduced from 16px */
     color: var(--text-primary);
     font-weight: 500;
+    font-size: 15px;
     transition: all 0.3s ease;
+    position: relative;
 }
 
-.side-menu-links a:hover,
+.side-menu-links a:hover {
+    background: rgba(13, 110, 253, 0.08);
+    color: var(--primary-color);
+    padding-left: 24px; /* Slight indent on hover */
+}
+
 .side-menu-links a.active {
-    background: var(--bg-light);
+    background: rgba(13, 110, 253, 0.12);
+    color: var(--primary-color);
+    border-left: 4px solid var(--primary-color);
+    padding-left: 16px; /* Compensate for border */
+}
+
+/* Icon styling with consistent width for alignment */
+.side-menu-links i {
+    font-size: 18px;
+    width: 24px;
+    text-align: center;
+    flex-shrink: 0; /* Prevent icon from shrinking */
     color: var(--primary-color);
 }
 
-.side-menu-links i {
-    font-size: 18px;
-    width: 25px;
+.side-menu-links a:hover i {
+    transform: scale(1.1);
 }
 
+/* Semi-transparent backdrop overlay */
 .side-menu-overlay {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1099;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    backdrop-filter: blur(4px); /* Modern blur effect */
+    z-index: 1999; /* place overlay just under the drawer but above mobile header */
     opacity: 0;
     visibility: hidden;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.35s;
     pointer-events: none;
 }
 
@@ -1841,6 +1983,13 @@ ul {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+    cursor: pointer; /* Indicate it's clickable */
+}
+
+@supports (height: 100dvh) {
+    .side-menu {
+        height: 100dvh; /* explicitly prefer dvh when supported */
+    }
 }
 
 /* === WHATSAPP BUTTON === */
@@ -1976,6 +2125,12 @@ ul {
     
     .footer {
         display: none !important;
+    }
+
+    /* Side menu responsive adjustments */
+    .side-menu {
+        width: 80%; /* Slightly wider on smaller tablets */
+        max-width: 320px;
     }
 
     .hero-section {
@@ -2122,6 +2277,39 @@ ul {
 
     .footer {
         display: none !important;
+    }
+
+    /* Adjust logo and text size for small screens */
+    .mobile-logo-img {
+        height: 42px !important;
+        width: auto;
+        max-width: 42px;
+        left: 52px;
+    }
+
+    .mobile-logo h1 {
+        font-size: 16px;
+    }
+
+    .mobile-header-content {
+        height: 56px;
+        max-width: 100%;
+    }
+
+    /* Side menu responsive adjustments for small screens */
+    .side-menu {
+        width: 85%; /* Wider on small screens for better usability */
+        max-width: 300px;
+    }
+
+    .side-menu-links a {
+        padding: 14px 16px;
+        font-size: 14px;
+    }
+
+    .side-menu-links i {
+        font-size: 16px;
+        width: 22px;
     }
 
     .hero-section {
