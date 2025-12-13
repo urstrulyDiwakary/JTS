@@ -183,25 +183,28 @@ function showToast(message, type = 'success') {
             .toast {
                 position: fixed;
                 top: 20px;
-                right: 20px;
+                left: 50%;
+                transform: translateX(-50%);
                 background: white;
-                padding: 15px 20px;
+                padding: 15px 25px;
                 border-radius: 8px;
                 box-shadow: 0 4px 12px rgba(0,0,0,0.15);
                 display: flex;
                 align-items: center;
-                gap: 10px;
+                gap: 12px;
                 z-index: 10000;
-                animation: slideIn 0.3s ease;
+                animation: slideInTop 0.3s ease;
+                white-space: nowrap;
             }
-            .toast-success { border-left: 4px solid #10b981; }
-            .toast-error { border-left: 4px solid #ef4444; }
-            .toast i { font-size: 1.2rem; }
+            .toast-success { border-left: 4px solid #10b981; background-color: #f0fdf4; }
+            .toast-error { border-left: 4px solid #ef4444; background-color: #fef2f2; }
+            .toast i { font-size: 1.3rem; }
             .toast-success i { color: #10b981; }
             .toast-error i { color: #ef4444; }
-            @keyframes slideIn {
-                from { transform: translateX(400px); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
+            .toast span { font-weight: 500; color: #1f2937; }
+            @keyframes slideInTop {
+                from { transform: translateX(-50%) translateY(-100%); opacity: 0; }
+                to { transform: translateX(-50%) translateY(0); opacity: 1; }
             }
         `;
         document.head.appendChild(style);

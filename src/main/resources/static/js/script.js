@@ -10,6 +10,7 @@ let testimonialInterval;
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functionality
     initializeSideMenu();
+    initializeMobileBottomNav();
     initializeTestimonialCarousel();
     initializeScrollAnimations();
     initializeCounters();
@@ -116,6 +117,105 @@ function closeSideMenu() {
     document.body.style.overflow = '';
     document.body.style.position = '';
     document.body.style.width = '';
+}
+
+// === MOBILE BOTTOM NAVIGATION FUNCTIONALITY ===
+function initializeMobileBottomNav() {
+    const navItems = document.querySelectorAll('.mobile-bottom-nav .nav-item');
+
+    // Set active state on page load based on current URL
+    updateActiveNavItem();
+
+    navItems.forEach(navItem => {
+        navItem.addEventListener('click', function(e) {
+            // Prevent default navigation
+            e.preventDefault();
+
+            const targetHref = this.getAttribute('href');
+            const currentPath = window.location.pathname;
+
+            // Don't navigate if already on the page
+            if (targetHref === currentPath || (targetHref === '/' && currentPath === '/')) {
+                return;
+            }
+
+            // Remove active class from all nav items with fade out
+            navItems.forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Add active class to clicked item with fade in
+            this.classList.add('active');
+
+            // Add bounce animation class
+            this.classList.add('bounce');
+
+            // Remove bounce class after animation completes
+            setTimeout(() => {
+                this.classList.remove('bounce');
+            }, 600);
+
+            // Navigate after showing the active state change
+            setTimeout(() => {
+                window.location.href = targetHref;
+            }, 200);
+        });
+
+        // Add touch feedback for better mobile experience
+        navItem.addEventListener('touchstart', function(e) {
+            // Only add touch feedback if not active
+            if (!this.classList.contains('active')) {
+                this.style.transform = 'scale(0.95)';
+            }
+        });
+
+        navItem.addEventListener('touchend', function() {
+            this.style.transform = '';
+        });
+
+        navItem.addEventListener('touchcancel', function() {
+            this.style.transform = '';
+        });
+    });
+}
+
+// Update active nav item based on current URL
+function updateActiveNavItem() {
+    const navItems = document.querySelectorAll('.mobile-bottom-nav .nav-item');
+    const currentPath = window.location.pathname;
+
+    navItems.forEach(navItem => {
+        const itemPath = navItem.getAttribute('href');
+
+        // Remove active class from all
+        navItem.classList.remove('active');
+
+        // Add active class to matching item
+        if (itemPath === currentPath || (itemPath === '/' && currentPath === '/')) {
+            navItem.classList.add('active');
+        }
+
+        // Handle root path variations
+        if (currentPath === '' || currentPath === '/index' || currentPath === '/index.html') {
+            if (itemPath === '/') {
+                navItem.classList.add('active');
+            }
+        }
+
+        // Handle specific page matching
+        if (currentPath.includes('/services') && itemPath === '/services') {
+            navItem.classList.add('active');
+        }
+        if (currentPath.includes('/portfolio') && itemPath === '/portfolio') {
+            navItem.classList.add('active');
+        }
+        if (currentPath.includes('/about') && itemPath === '/about') {
+            navItem.classList.add('active');
+        }
+        if (currentPath.includes('/contact') && itemPath === '/contact') {
+            navItem.classList.add('active');
+        }
+    });
 }
 
 // === TESTIMONIALS CAROUSEL ===
@@ -327,13 +427,13 @@ function initializeContactForm() {
         e.preventDefault();
         
         // Get form values
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const phone = document.getElementById('phone').value;
-        const subject = document.getElementById('subject').value;
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const subject = document.getElementById('subject').value.trim();
         const service = document.getElementById('service').value;
-        const message = document.getElementById('message').value;
-        
+        const message = document.getElementById('message').value.trim();
+
         // Basic validation
         if (!name || !email || !subject || !message) {
             showFormMessage('Please fill in all required fields.', 'error');
@@ -347,25 +447,53 @@ function initializeContactForm() {
             return;
         }
         
-        // Simulate form submission
-        // In production, replace this with actual form submission to server
+        // Prepare form data
+        const formData = {
+            name: name,
+            email: email,
+            phone: phone,
+            subject: subject,
+            service: service,
+            message: message
+        };
+
+        // Update submit button
         const submitBtn = contactForm.querySelector('.submit-btn');
         const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitBtn.disabled = true;
         
-        // Simulate API call
-        setTimeout(function() {
-            showFormMessage('Thank you for your message! We will get back to you soon.', 'success');
-            contactForm.reset();
+        // Submit to backend API
+        fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                showFormMessage(data.message || 'Thank you for your message! We will get back to you soon.', 'success');
+                contactForm.reset();
+
+                // Hide success message after 5 seconds
+                setTimeout(function() {
+                    hideFormMessage();
+                }, 5000);
+            } else {
+                showFormMessage(data.message || 'Something went wrong. Please try again.', 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showFormMessage('Network error. Please check your connection and try again.', 'error');
+        })
+        .finally(() => {
+            // Reset submit button
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
-            
-            // Hide success message after 5 seconds
-            setTimeout(function() {
-                hideFormMessage();
-            }, 5000);
-        }, 2000);
+        });
     });
 }
 
@@ -416,39 +544,46 @@ function initializeSmoothScroll() {
 
 // === HIGHLIGHT ACTIVE NAVIGATION ===
 function highlightActiveNav() {
-    // Get current page filename
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    
+    // Get current page path
+    const currentPath = window.location.pathname;
+
     // Update desktop navigation
     const desktopNavLinks = document.querySelectorAll('.desktop-nav a');
     desktopNavLinks.forEach(link => {
-        const linkPage = link.getAttribute('href');
-        if (linkPage === currentPage) {
+        const linkPath = link.getAttribute('href');
+        link.classList.remove('active');
+
+        if (linkPath === currentPath ||
+            (linkPath === '/' && (currentPath === '/' || currentPath === '' || currentPath === '/index' || currentPath === '/index.html'))) {
             link.classList.add('active');
-        } else {
-            link.classList.remove('active');
         }
     });
     
-    // Update mobile bottom navigation
+    // Update mobile bottom navigation with circular highlight
     const mobileNavLinks = document.querySelectorAll('.mobile-bottom-nav .nav-item');
     mobileNavLinks.forEach(link => {
-        const linkPage = link.getAttribute('href');
-        if (linkPage === currentPage) {
+        const linkPath = link.getAttribute('href');
+        link.classList.remove('active');
+
+        // Match exact path or handle root variations
+        if (linkPath === currentPath) {
             link.classList.add('active');
-        } else {
-            link.classList.remove('active');
+        } else if (linkPath === '/' && (currentPath === '/' || currentPath === '' || currentPath === '/index' || currentPath === '/index.html')) {
+            link.classList.add('active');
+        } else if (currentPath.includes(linkPath) && linkPath !== '/') {
+            link.classList.add('active');
         }
     });
     
     // Update side menu navigation
     const sideMenuLinks = document.querySelectorAll('.side-menu-links a');
     sideMenuLinks.forEach(link => {
-        const linkPage = link.getAttribute('href');
-        if (linkPage === currentPage) {
+        const linkPath = link.getAttribute('href');
+        link.classList.remove('active');
+
+        if (linkPath === currentPath ||
+            (linkPath === '/' && (currentPath === '/' || currentPath === '' || currentPath === '/index' || currentPath === '/index.html'))) {
             link.classList.add('active');
-        } else {
-            link.classList.remove('active');
         }
     });
 }

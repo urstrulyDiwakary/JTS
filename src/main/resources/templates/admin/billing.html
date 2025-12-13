@@ -7,19 +7,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root { --primary: #2563eb; --success: #10b981; --warning: #f59e0b; --danger: #ef4444; --light-bg: #f3f4f6; --sidebar-bg: #111827; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--light-bg); }
-        .sidebar { position: fixed; left: 0; top: 0; height: 100vh; width: 260px; background: var(--sidebar-bg); padding: 20px 0; transition: 0.3s; z-index: 100; }
-        .sidebar-header { display: flex; align-items: center; justify-content: space-between; padding: 0 20px 30px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .logo { display: flex; align-items: center; gap: 12px; color: white; font-size: 1.3rem; font-weight: 700; }
-        .logo i { font-size: 1.5rem; color: var(--primary); }
-        .toggle-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; }
-        .nav-menu { list-style: none; padding: 20px 0; }
-        .nav-link { display: flex; align-items: center; gap: 15px; padding: 14px 20px; color: rgba(255,255,255,0.7); text-decoration: none; transition: 0.3s; }
-        .nav-link:hover, .nav-link.active { background: #374151; color: white; }
-        .nav-link.active { border-left: 4px solid var(--primary); }
-        .main-content { margin-left: 260px; transition: 0.3s; min-height: 100vh; }
-        .top-bar { background: white; padding: 20px 30px; display: flex; justify-content: space-between; box-shadow: 0 2px 4px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 50; }
+        :root { --primary: #2563eb; --success: #10b981; --warning: #f59e0b; --danger: #ef4444; --light-bg: #f3f4f6; --sidebar-bg: #4169E1; --hover-bg: #1e40af; --text-light: #ffffff; --text-dark: #1f2937; --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        html { height: 100%; }
+        body { font-family: var(--font-family); background: var(--light-bg); height: 100%; }
+        .sidebar { position: fixed; left: 0; top: 0; height: 100vh; width: 260px; background: var(--sidebar-bg); padding: 20px 0; transition: 0.3s; z-index: 100; display: flex; flex-direction: column; }
+        .sidebar-header { display: flex; align-items: center; justify-content: space-between; padding: 0 20px 25px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); flex-shrink: 0; }
+        .logo { display: flex; align-items: center; gap: 12px; color: var(--text-light); font-size: 1.3rem; font-weight: 700; font-family: var(--font-family); white-space: nowrap; }
+        .logo i { font-size: 1.5rem; color: var(--primary); display: flex; align-items: center; justify-content: center; }
+        .toggle-btn { background: none; border: none; color: var(--text-light); font-size: 1.2rem; cursor: pointer; padding: 8px; border-radius: 6px; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; }
+        .toggle-btn:hover { background: rgba(255,255,255,0.1); transform: scale(1.05); }
+        .toggle-btn i { font-size: 1.2rem; }
+        .nav-menu { list-style: none; padding: 15px 0; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+        .nav-link { display: flex; align-items: center; gap: 15px; padding: 14px 20px; color: rgba(255,255,255,0.7); text-decoration: none; transition: 0.3s; font-size: 0.95rem; font-family: var(--font-family); margin: 0 10px; border-radius: 6px; font-weight: 500; }
+        .nav-link:hover { background: var(--hover-bg); color: var(--text-light); }
+        .nav-link.active { background: var(--hover-bg); color: var(--text-light); border-left: 4px solid var(--primary); padding-left: 16px; }
+        .nav-link i { font-size: 1.1rem; width: 20px; text-align: center; display: flex; align-items: center; justify-content: center; }
+        .main-content { margin-left: 260px; transition: 0.3s; min-height: 100vh; display: flex; flex-direction: column; }
+        .top-bar { background: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 50; flex-shrink: 0; gap: 20px; }
         .user-profile { display: flex; align-items: center; gap: 12px; cursor: pointer; position: relative; }
         .user-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; }
         .user-info h4 { font-size: 0.9rem; margin-bottom: 2px; }
@@ -83,16 +87,17 @@
 <body>
 <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
-        <div class="logo"><i class="fas fa-code"></i><span>Jesta Tech</span></div>
+        <div class="logo"><span>Jesta Tech Solutions</span></div>
         <button class="toggle-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
     </div>
     <ul class="nav-menu">
         <li><a href="/admin/dashboard" class="nav-link"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
-        <li><a href="/admin/users" class="nav-link"><i class="fas fa-users"></i><span>Users</span></a></li>
+        <li><a href="/admin/forms" class="nav-link"><i class="fas fa-list-check"></i><span>Forms</span></a></li>
         <li><a href="/admin/projects" class="nav-link"><i class="fas fa-project-diagram"></i><span>Projects</span></a></li>
         <li><a href="/admin/tasks" class="nav-link"><i class="fas fa-tasks"></i><span>Tasks</span></a></li>
         <li><a href="/admin/analytics" class="nav-link"><i class="fas fa-chart-line"></i><span>Analytics</span></a></li>
         <li><a href="/admin/billing" class="nav-link active"><i class="fas fa-file-invoice-dollar"></i><span>Billing</span></a></li>
+        <li><a href="/admin/users" class="nav-link"><i class="fas fa-users"></i><span>Users</span></a></li>
     </ul>
 </aside>
 
@@ -251,12 +256,6 @@
             </a>
         </li>
         <li class="bottom-nav-item">
-            <a href="/admin/users" class="bottom-nav-link">
-                <i class="fas fa-users"></i>
-                <span>Users</span>
-            </a>
-        </li>
-        <li class="bottom-nav-item">
             <a href="/admin/projects" class="bottom-nav-link">
                 <i class="fas fa-project-diagram"></i>
                 <span>Projects</span>
@@ -278,6 +277,12 @@
             <a href="/admin/billing" class="bottom-nav-link active">
                 <i class="fas fa-file-invoice-dollar"></i>
                 <span>Billing</span>
+            </a>
+        </li>
+        <li class="bottom-nav-item">
+            <a href="/admin/users" class="bottom-nav-link">
+                <i class="fas fa-users"></i>
+                <span>Users</span>
             </a>
         </li>
     </ul>

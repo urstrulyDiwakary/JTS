@@ -12,6 +12,232 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/css/style.css">
 
+    <!-- Critical CSS for Contact Page Layout -->
+    <style>
+        /* Base: ensure html/body take full height and no stray margins */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            position: relative;
+        }
+
+        /* ALWAYS show mobile navigation on screens <= 1024px */
+        @media (max-width: 1024px) {
+            /* Force display of mobile bottom nav - override any global CSS */
+            .mobile-bottom-nav {
+                display: flex !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                position: fixed !important;
+                bottom: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                width: 100vw !important;
+                margin: 0 !important;
+                z-index: 10000 !important;
+                background: #FFFFFF !important;
+                box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15) !important;
+                justify-content: space-around !important;
+                align-items: center !important;
+                padding: 8px 2px calc(8px + env(safe-area-inset-bottom, 0px)) 2px !important;
+                border-top: 1px solid #dee2e6 !important;
+                min-height: 64px !important;
+                height: auto !important;
+                max-height: 75px !important;
+                transform: translateZ(0) !important;
+                -webkit-transform: translateZ(0) !important;
+                backdrop-filter: blur(10px) !important;
+                -webkit-backdrop-filter: blur(10px) !important;
+                will-change: transform !important;
+                overflow: visible !important;
+                pointer-events: all !important;
+            }
+
+            /* Reserve space at bottom for fixed nav */
+            body {
+                padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)) !important;
+                margin-bottom: 0 !important;
+            }
+
+            .contact-section,
+            .map-section,
+            .faq-section {
+                margin-bottom: 20px !important;
+            }
+
+            /* Style each nav item */
+            .mobile-bottom-nav .nav-item {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+                flex: 1 1 0 !important;
+                flex-basis: 20% !important;
+                min-width: 0 !important;
+                max-width: 20% !important;
+                padding: 6px 2px !important;
+                margin: 0 !important;
+                text-decoration: none !important;
+                color: #6c757d !important;
+                font-size: 10px !important;
+                text-align: center !important;
+                transition: all 0.3s ease !important;
+                user-select: none !important;
+                -webkit-tap-highlight-color: transparent !important;
+                overflow: hidden !important;
+                box-sizing: border-box !important;
+            }
+
+            .mobile-bottom-nav .nav-item i {
+                font-size: 20px !important;
+                margin-bottom: 2px !important;
+                display: block !important;
+                line-height: 1 !important;
+            }
+
+            .mobile-bottom-nav .nav-item span {
+                font-size: 9px !important;
+                line-height: 1.2 !important;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+                max-width: 100% !important;
+                width: 100% !important;
+                display: block !important;
+            }
+
+            .mobile-bottom-nav .nav-item.active {
+                color: #0D6EFD !important;
+                font-weight: 600 !important;
+            }
+
+            .mobile-bottom-nav .nav-item.active i {
+                transform: scale(1.08) !important;
+                color: #0D6EFD !important;
+            }
+
+            /* Lift WhatsApp button above bottom nav */
+            .whatsapp-btn {
+                bottom: calc(84px + env(safe-area-inset-bottom, 0px)) !important;
+            }
+
+            /* Hide desktop footer on mobile */
+            .footer {
+                display: none !important;
+            }
+        }
+
+        /* Extra small screens (240px - 360px) - like your 257px viewport */
+        @media (max-width: 360px) {
+            .mobile-bottom-nav {
+                padding: 6px 1px calc(6px + env(safe-area-inset-bottom, 0px)) 1px !important;
+                min-height: 60px !important;
+                max-height: 68px !important;
+            }
+
+            .mobile-bottom-nav .nav-item {
+                padding: 4px 1px !important;
+                font-size: 8px !important;
+            }
+
+            .mobile-bottom-nav .nav-item i {
+                font-size: 17px !important;
+                margin-bottom: 1px !important;
+            }
+
+            .mobile-bottom-nav .nav-item span {
+                font-size: 8px !important;
+                line-height: 1.1 !important;
+            }
+
+            body {
+                padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px)) !important;
+            }
+
+            .whatsapp-btn {
+                bottom: calc(76px + env(safe-area-inset-bottom, 0px)) !important;
+            }
+        }
+
+        /* Very small screens (≤ 320px) - iPhone SE, narrow devices */
+        @media (max-width: 320px) {
+            .mobile-bottom-nav {
+                padding: 5px 0 calc(5px + env(safe-area-inset-bottom, 0px)) 0 !important;
+                min-height: 56px !important;
+                max-height: 64px !important;
+            }
+
+            .mobile-bottom-nav .nav-item {
+                padding: 3px 0 !important;
+                font-size: 7px !important;
+            }
+
+            .mobile-bottom-nav .nav-item i {
+                font-size: 15px !important;
+                margin-bottom: 1px !important;
+            }
+
+            .mobile-bottom-nav .nav-item span {
+                font-size: 7px !important;
+                line-height: 1 !important;
+            }
+
+            body {
+                padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px)) !important;
+            }
+
+            .whatsapp-btn {
+                bottom: calc(70px + env(safe-area-inset-bottom, 0px)) !important;
+            }
+        }
+
+        /* Tablet optimizations (768px - 1024px) */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .mobile-bottom-nav {
+                padding: 10px 8px calc(10px + env(safe-area-inset-bottom, 0px)) 8px !important;
+                min-height: 70px !important;
+                max-height: 80px !important;
+            }
+
+            .mobile-bottom-nav .nav-item {
+                padding: 8px 6px !important;
+                font-size: 12px !important;
+            }
+
+            .mobile-bottom-nav .nav-item i {
+                font-size: 22px !important;
+                margin-bottom: 3px !important;
+            }
+
+            .mobile-bottom-nav .nav-item span {
+                font-size: 11px !important;
+            }
+
+            body {
+                padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px)) !important;
+            }
+
+            .whatsapp-btn {
+                bottom: calc(92px + env(safe-area-inset-bottom, 0px)) !important;
+            }
+        }
+
+        /* Desktop - hide mobile nav */
+        @media (min-width: 1025px) {
+            .mobile-bottom-nav {
+                display: none !important;
+            }
+
+            body {
+                padding-bottom: 0 !important;
+            }
+        }
+    </style>
+
     <title>Contact Us | Jesta Tech Solutions</title>
 </head>
 <body>
@@ -59,7 +285,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="contact-section">
+    <section class="contact-section" style="margin-bottom: 30px;">
         <div class="container">
             <div class="contact-content">
                 <!-- Contact Info Cards -->
@@ -170,7 +396,7 @@
     </section>
 
     <!-- Map Section -->
-    <section class="map-section">
+    <section class="map-section" style="margin-bottom: 30px;">
         <div class="container">
             <div class="section-header">
                 <h2>Visit Our Office</h2>
@@ -192,7 +418,7 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="faq-section">
+    <section class="faq-section" style="margin-bottom: 40px;">
         <div class="container">
             <div class="section-header">
                 <h2>Frequently Asked Questions</h2>
@@ -295,27 +521,28 @@
         </div>
     </footer>
 
-    <!-- Mobile Bottom Navigation -->
-    <nav class="mobile-bottom-nav">
-        <a href="/" class="nav-item">
-            <i class="fas fa-home"></i>
-            <span>Home</span>
+    <!-- Mobile Bottom Navigation - FORCE VISIBLE -->
+    <nav class="mobile-bottom-nav contact-page-mobile-nav" role="navigation" aria-label="Mobile bottom navigation"
+         style="display: flex !important; visibility: visible !important; opacity: 1 !important; position: fixed !important; bottom: 0px !important; left: 0px !important; right: 0px !important; width: 100vw !important; max-width: 100vw !important; z-index: 99999 !important; background-color: rgb(255, 255, 255) !important; background: #FFFFFF !important; box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15) !important; justify-content: space-around !important; align-items: center !important; padding: 8px 4px 8px 4px !important; border-top: 1px solid #dee2e6 !important; min-height: 64px !important; height: auto !important; max-height: 75px !important; margin: 0 !important; transform: translateZ(0) !important; -webkit-transform: translateZ(0) !important; pointer-events: all !important; box-sizing: border-box !important;">
+        <a href="/" class="nav-item" aria-label="Home" style="display: flex !important; visibility: visible !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; flex: 1 1 0% !important; flex-basis: 20% !important; min-width: 0 !important; max-width: 20% !important; padding: 4px 2px !important; margin: 0 !important; text-decoration: none !important; color: #6c757d !important; font-size: 9px !important; text-align: center !important; box-sizing: border-box !important;">
+            <i class="fas fa-home" aria-hidden="true" style="font-size: 17px !important; margin-bottom: 2px !important; display: block !important; line-height: 1 !important;"></i>
+            <span style="font-size: 8px !important; line-height: 1.1 !important; white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; max-width: 100% !important; display: block !important;">Home</span>
         </a>
-        <a href="/services" class="nav-item">
-            <i class="fas fa-briefcase"></i>
-            <span>Services</span>
+        <a href="/services" class="nav-item" aria-label="Services" style="display: flex !important; visibility: visible !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; flex: 1 1 0% !important; flex-basis: 20% !important; min-width: 0 !important; max-width: 20% !important; padding: 4px 2px !important; margin: 0 !important; text-decoration: none !important; color: #6c757d !important; font-size: 9px !important; text-align: center !important; box-sizing: border-box !important;">
+            <i class="fas fa-briefcase" aria-hidden="true" style="font-size: 17px !important; margin-bottom: 2px !important; display: block !important; line-height: 1 !important;"></i>
+            <span style="font-size: 8px !important; line-height: 1.1 !important; white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; max-width: 100% !important; display: block !important;">Services</span>
         </a>
-        <a href="/portfolio" class="nav-item">
-            <i class="fas fa-folder-open"></i>
-            <span>Portfolio</span>
+        <a href="/portfolio" class="nav-item" aria-label="Portfolio" style="display: flex !important; visibility: visible !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; flex: 1 1 0% !important; flex-basis: 20% !important; min-width: 0 !important; max-width: 20% !important; padding: 4px 2px !important; margin: 0 !important; text-decoration: none !important; color: #6c757d !important; font-size: 9px !important; text-align: center !important; box-sizing: border-box !important;">
+            <i class="fas fa-folder-open" aria-hidden="true" style="font-size: 17px !important; margin-bottom: 2px !important; display: block !important; line-height: 1 !important;"></i>
+            <span style="font-size: 8px !important; line-height: 1.1 !important; white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; max-width: 100% !important; display: block !important;">Portfolio</span>
         </a>
-        <a href="/about" class="nav-item">
-            <i class="fas fa-info-circle"></i>
-            <span>About</span>
+        <a href="/about" class="nav-item" aria-label="About" style="display: flex !important; visibility: visible !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; flex: 1 1 0% !important; flex-basis: 20% !important; min-width: 0 !important; max-width: 20% !important; padding: 4px 2px !important; margin: 0 !important; text-decoration: none !important; color: #6c757d !important; font-size: 9px !important; text-align: center !important; box-sizing: border-box !important;">
+            <i class="fas fa-info-circle" aria-hidden="true" style="font-size: 17px !important; margin-bottom: 2px !important; display: block !important; line-height: 1 !important;"></i>
+            <span style="font-size: 8px !important; line-height: 1.1 !important; white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; max-width: 100% !important; display: block !important;">About</span>
         </a>
-        <a href="/contact" class="nav-item active">
-            <i class="fas fa-envelope"></i>
-            <span>Contact</span>
+        <a href="/contact" class="nav-item active" aria-label="Contact" aria-current="page" style="display: flex !important; visibility: visible !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; flex: 1 1 0% !important; flex-basis: 20% !important; min-width: 0 !important; max-width: 20% !important; padding: 4px 2px !important; margin: 0 !important; text-decoration: none !important; color: #0D6EFD !important; font-weight: 600 !important; font-size: 9px !important; text-align: center !important; box-sizing: border-box !important;">
+            <i class="fas fa-envelope" aria-hidden="true" style="font-size: 17px !important; margin-bottom: 2px !important; display: block !important; line-height: 1 !important; color: #0D6EFD !important;"></i>
+            <span style="font-size: 8px !important; line-height: 1.1 !important; white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; max-width: 100% !important; display: block !important;">Contact</span>
         </a>
     </nav>
 
@@ -332,6 +559,23 @@
             <li><a href="/privacy"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
             <li><a href="/contact"><i class="fas fa-comment-dots"></i> Feedback</a></li>
         </ul>
+        <div class="side-menu-social">
+            <h4>Connect With Us</h4>
+            <div class="side-menu-social-links">
+                <a href="https://www.facebook.com/share/1Bo8k8gFUf/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://x.com/JTS_solutions?t=eod0dW7xJ3yaJVEMr5PoZg&s=08" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/109288157/admin/dashboard/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://www.instagram.com/jestatechsolutions?igsh=ajhldzM3d3ZqanVl" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
     </div>
 
     <!-- Side Menu Overlay -->
@@ -344,5 +588,109 @@
 
     <script src="/js/script.js" defer></script>
     <script src="/js/common-seo.js" defer></script>
+
+    <!-- AGGRESSIVE Mobile Navigation Display Fix -->
+    <script>
+        (function() {
+            console.log('🔧 Contact Page: Initializing mobile navigation fix...');
+
+            function forceMobileNavDisplay() {
+                const mobileNav = document.querySelector('.mobile-bottom-nav');
+                const width = window.innerWidth;
+                const height = window.innerHeight;
+
+                console.log('📱 Viewport:', width + 'x' + height);
+
+                if (!mobileNav) {
+                    console.error('❌ Mobile navigation element not found!');
+                    return;
+                }
+
+                console.log('✅ Mobile navigation element found');
+
+                if (width <= 1024) {
+                    console.log('📱 Mobile/Tablet detected (width <= 1024px)');
+
+                    // Nuclear option: Set every possible display property
+                    const forceStyles = {
+                        'display': 'flex',
+                        'visibility': 'visible',
+                        'opacity': '1',
+                        'position': 'fixed',
+                        'bottom': '0px',
+                        'left': '0px',
+                        'right': '0px',
+                        'width': '100vw',
+                        'max-width': '100vw',
+                        'z-index': '99999',
+                        'background': '#FFFFFF',
+                        'background-color': 'rgb(255, 255, 255)',
+                        'box-shadow': '0 -4px 20px rgba(0, 0, 0, 0.15)',
+                        'justify-content': 'space-around',
+                        'align-items': 'center',
+                        'padding': '8px 4px',
+                        'border-top': '1px solid #dee2e6',
+                        'min-height': '64px',
+                        'height': 'auto',
+                        'max-height': '75px',
+                        'margin': '0',
+                        'transform': 'translateZ(0)',
+                        '-webkit-transform': 'translateZ(0)',
+                        'pointer-events': 'all',
+                        'box-sizing': 'border-box'
+                    };
+
+                    // Apply each style with !important
+                    for (const [prop, value] of Object.entries(forceStyles)) {
+                        mobileNav.style.setProperty(prop, value, 'important');
+                    }
+
+                    // Force body padding
+                    document.body.style.setProperty('padding-bottom', '84px', 'important');
+
+                    // Check computed styles
+                    const computed = window.getComputedStyle(mobileNav);
+                    console.log('🎨 Computed display:', computed.display);
+                    console.log('🎨 Computed visibility:', computed.visibility);
+                    console.log('🎨 Computed position:', computed.position);
+                    console.log('🎨 Computed bottom:', computed.bottom);
+                    console.log('🎨 Computed z-index:', computed.zIndex);
+
+                    if (computed.display === 'none') {
+                        console.error('⚠️ WARNING: Display is still "none" after forcing!');
+                        // Try one more time
+                        mobileNav.setAttribute('style', mobileNav.getAttribute('style') + ' display: flex !important;');
+                    } else {
+                        console.log('✅ Mobile navigation successfully forced to display!');
+                    }
+                } else {
+                    console.log('🖥️ Desktop detected (width > 1024px) - hiding navigation');
+                    mobileNav.style.setProperty('display', 'none', 'important');
+                    document.body.style.setProperty('padding-bottom', '0', 'important');
+                }
+            }
+
+            // Run immediately
+            forceMobileNavDisplay();
+
+            // Run when DOM is fully loaded
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', forceMobileNavDisplay);
+            }
+
+            // Run after a short delay to override any conflicting scripts
+            setTimeout(forceMobileNavDisplay, 100);
+            setTimeout(forceMobileNavDisplay, 500);
+
+            // Handle window resize
+            let resizeTimer;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(forceMobileNavDisplay, 100);
+            });
+
+            console.log('🎉 Mobile navigation fix initialized');
+        })();
+    </script>
 </body>
 </html>

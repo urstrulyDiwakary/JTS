@@ -29,17 +29,22 @@
             --danger-color: #ef4444;
             --dark-bg: #1f2937;
             --light-bg: #f3f4f6;
-            --sidebar-bg: #111827;
+            --sidebar-bg: #4169E1;
             --text-light: #ffffff;
             --text-dark: #1f2937;
             --border-color: #e5e7eb;
-            --hover-bg: #374151;
+            --hover-bg: #1e40af;
+        }
+
+        html {
+            height: 100%;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--light-bg);
             color: var(--text-dark);
+            height: 100%;
         }
 
         /* Sidebar Styles */
@@ -54,6 +59,8 @@
             transition: all 0.3s ease;
             z-index: 100;
             overflow-y: auto;
+            display: flex;
+            flex-direction: column;
         }
 
         .sidebar.collapsed {
@@ -64,8 +71,9 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 20px 30px;
+            padding: 0 20px 25px 20px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            flex-shrink: 0;
         }
 
         .logo {
@@ -76,11 +84,15 @@
             font-size: 1.3rem;
             font-weight: 700;
             white-space: nowrap;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .logo i {
             font-size: 1.5rem;
             color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .sidebar.collapsed .logo span {
@@ -93,7 +105,23 @@
             color: var(--text-light);
             font-size: 1.2rem;
             cursor: pointer;
-            padding: 5px;
+            padding: 8px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+        }
+
+        .toggle-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+
+        .toggle-btn i {
+            font-size: 1.2rem;
         }
 
         .sidebar.collapsed .toggle-btn {
@@ -102,11 +130,15 @@
 
         .nav-menu {
             list-style: none;
-            padding: 20px 0;
+            padding: 15px 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .nav-item {
-            margin: 5px 0;
+            margin: 0;
         }
 
         .nav-link {
@@ -118,6 +150,11 @@
             text-decoration: none;
             transition: all 0.3s ease;
             white-space: nowrap;
+            font-size: 0.95rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0 10px;
+            border-radius: 6px;
+            font-weight: 500;
         }
 
         .nav-link:hover,
@@ -128,11 +165,16 @@
 
         .nav-link.active {
             border-left: 4px solid var(--primary-color);
+            padding-left: 16px;
         }
 
         .nav-link i {
             font-size: 1.1rem;
             width: 20px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .sidebar.collapsed .nav-link span {
@@ -144,6 +186,8 @@
             margin-left: 260px;
             transition: all 0.3s ease;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .main-content.expanded {
@@ -161,6 +205,8 @@
             position: sticky;
             top: 0;
             z-index: 50;
+            flex-shrink: 0;
+            gap: 20px;
         }
 
         .search-bar {
@@ -704,8 +750,7 @@
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <div class="logo">
-                <i class="fas fa-code"></i>
-                <span>Jesta Tech</span>
+                <span>Jesta Tech Solutions</span>
             </div>
             <button class="toggle-btn" onclick="toggleSidebar()">
                 <i class="fas fa-bars"></i>
@@ -720,9 +765,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/admin/users" class="nav-link">
-                    <i class="fas fa-users"></i>
-                    <span>Users</span>
+                <a href="/admin/forms" class="nav-link">
+                    <i class="fas fa-list-check"></i>
+                    <span>Forms</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -747,6 +792,12 @@
                 <a href="/admin/billing" class="nav-link">
                     <i class="fas fa-file-invoice-dollar"></i>
                     <span>Billing</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/admin/users" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
                 </a>
             </li>
         </ul>
@@ -1071,12 +1122,6 @@
                 </a>
             </li>
             <li class="bottom-nav-item">
-                <a href="/admin/users" class="bottom-nav-link">
-                    <i class="fas fa-users"></i>
-                    <span>Users</span>
-                </a>
-            </li>
-            <li class="bottom-nav-item">
                 <a href="/admin/projects" class="bottom-nav-link">
                     <i class="fas fa-project-diagram"></i>
                     <span>Projects</span>
@@ -1098,6 +1143,12 @@
                 <a href="/admin/billing" class="bottom-nav-link">
                     <i class="fas fa-file-invoice-dollar"></i>
                     <span>Billing</span>
+                </a>
+            </li>
+            <li class="bottom-nav-item">
+                <a href="/admin/users" class="bottom-nav-link">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
                 </a>
             </li>
         </ul>

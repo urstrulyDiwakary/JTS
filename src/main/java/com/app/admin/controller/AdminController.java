@@ -84,6 +84,15 @@ public class AdminController {
         return "admin/tasks";
     }
 
+    @GetMapping("/forms")
+    public String forms(Model model, HttpSession session) {
+        if (session.getAttribute("adminUser") == null) {
+            return "redirect:/admin/login";
+        }
+        model.addAttribute("pageTitle", "Forms");
+        return "admin/forms";
+    }
+
     @GetMapping("/login")
     public String login(Model model, HttpSession session) {
         // If already logged in, redirect to dashboard

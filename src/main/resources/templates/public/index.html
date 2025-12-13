@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,14 +58,21 @@
 
     <!-- Hero Section -->
     <section class="hero-section">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title fade-in">Empowering Digital Innovation</h1>
-            <p class="hero-subtitle fade-in-delay">Your Partner in Tech Growth</p>
-            <div class="hero-buttons fade-in-delay-2">
-                <a href="/contact" class="btn btn-primary">Get a Quote</a>
-                <a href="/portfolio" class="btn btn-secondary">Explore Our Work</a>
-            </div>
+        <img
+            src="/INDEX.webp"
+            th:src="@{/INDEX.webp}"
+            srcset="/INDEX.webp 1920w, /INDEX.webp 1280w, /INDEX.webp 768w, /INDEX.webp 480w"
+            sizes="(min-width: 1920px) 1920px, (min-width: 1280px) 1280px, (min-width: 768px) 768px, 100vw"
+            alt="Hero Banner - Empowering Digital Innovation"
+            class="hero-background-image"
+            loading="eager"
+        >
+<!--        <div class="hero-overlay"></div>-->
+<!--        <div class="hero-content">-->
+<!--&lt;!&ndash;            <div class="hero-buttons fade-in-delay-2">&ndash;&gt;-->
+<!--&lt;!&ndash;                <a href="/contact" class="btn btn-primary">Get a Quote</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                <a href="/portfolio" class="btn btn-secondary">Explore Our Work</a>&ndash;&gt;-->
+<!--            </div>-->
         </div>
         <div class="scroll-indicator">
             <i class="fas fa-chevron-down"></i>
@@ -87,14 +94,14 @@
                     <div class="highlight-icon">
                         <i class="fas fa-award"></i>
                     </div>
-                    <h3>100+ Projects</h3>
+                    <h3>30+ Projects</h3>
                     <p>Successfully Delivered</p>
                 </div>
                 <div class="highlight-card">
                     <div class="highlight-icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <h3>50+ Clients</h3>
+                    <h3>30+ Clients</h3>
                     <p>Satisfied Worldwide</p>
                 </div>
                 <div class="highlight-card">
@@ -108,7 +115,7 @@
                     <div class="highlight-icon">
                         <i class="fas fa-trophy"></i>
                     </div>
-                    <h3>5+ Years</h3>
+                    <h3>3+ Years</h3>
                     <p>Industry Experience</p>
                 </div>
             </div>
@@ -124,53 +131,92 @@
                 <p>Comprehensive Tech Solutions for Your Business</p>
             </div>
             <div class="services-grid">
+                <!-- Website Development -->
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-laptop-code"></i>
+                    <div class="service-media">
+                        <img src="/WEB.png" th:src="@{/WEB.png}" class="lazy-service" loading="lazy">
                     </div>
-                    <h3>Website Development</h3>
-                    <p>Custom, responsive websites built with modern technologies to elevate your online presence.</p>
-                    <a href="/services" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <div class="service-body">
+                        <h3>Website Development</h3>
+                        <p>Custom, responsive websites built with modern technologies to elevate your online presence.</p>
+                    </div>
                 </div>
+
+                <!-- App Development -->
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
+                    <div class="service-media">
+                        <img src="/APP.png" th:src="@{/APP.png}" class="lazy-service" loading="lazy">
                     </div>
-                    <h3>App Development</h3>
-                    <p>Native Android and cross-platform apps designed for seamless user experiences.</p>
-                    <a href="/services" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <div class="service-body">
+                        <h3>App Development</h3>
+                        <p>Native Android and cross-platform apps designed for seamless user experiences.</p>
+                    </div>
                 </div>
+
+                <!-- Hosting Services -->
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-server"></i>
+                    <div class="service-media">
+                        <img src="/HOST.png" th:src="@{/HOST.png}" class="lazy-service" loading="lazy">
                     </div>
-                    <h3>Hosting Services</h3>
-                    <p>Reliable, secure, and high-performance hosting solutions for your applications.</p>
-                    <a href="/services" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <div class="service-body">
+                        <h3>Hosting Services</h3>
+                        <p>Reliable, secure, and high-performance hosting solutions for your applications.</p>
+                    </div>
                 </div>
+
+                <!-- Server Maintenance -->
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-tools"></i>
+                    <div class="service-media">
+                        <img src="/SERVER.png" th:src="@{/SERVER.png}" class="lazy-service" loading="lazy">
                     </div>
-                    <h3>Server Maintenance</h3>
-                    <p>24/7 server monitoring and maintenance to ensure optimal performance.</p>
-                    <a href="/services" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <div class="service-body">
+                        <h3>Server Maintenance</h3>
+                        <p>24/7 server monitoring and maintenance to ensure optimal performance.</p>
+                    </div>
                 </div>
+
+                <!-- Social Media Management -->
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-bullhorn"></i>
+                    <div class="service-media">
+                        <img src="/SM.png" th:src="@{/SM.png}" class="lazy-service" loading="lazy">
                     </div>
-                    <h3>Social Media Management</h3>
-                    <p>Strategic social media campaigns to boost your brand visibility and engagement.</p>
-                    <a href="/services" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <div class="service-body">
+                        <h3>Social Media Management</h3>
+                        <p>Strategic social media campaigns to boost your brand visibility and engagement.</p>
+                    </div>
                 </div>
+
+                <!-- Digital Marketing & SEO -->
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
+                    <div class="service-media">
+                        <img src="/DM.png" th:src="@{/DM.png}" class="lazy-service" loading="lazy">
                     </div>
-                    <h3>Digital Marketing & SEO</h3>
-                    <p>Data-driven marketing strategies to increase traffic and conversions.</p>
-                    <a href="/services" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <div class="service-body">
+                        <h3>Digital Marketing &amp; SEO</h3>
+                        <p>Data-driven marketing strategies to increase traffic and conversions.</p>
+                    </div>
+                </div>
+
+                <!-- Video Editing & Poster Design -->
+                <div class="service-card">
+                    <div class="service-media">
+                        <img src="/images/services/video edit.webp" th:src="@{/images/services/video edit.webp}" alt="Video Editing &amp; Poster Design" class="lazy-service" loading="lazy">
+                    </div>
+                    <div class="service-body">
+                        <h3>Video Editing &amp; Poster Design</h3>
+                        <p>Professional poster designs and creative edits tailored for branding, promotions, and business marketing.</p>
+                    </div>
+                </div>
+
+                <!-- Video Ad Creation -->
+                <div class="service-card">
+                    <div class="service-media">
+                        <img src="/images/services/video ad.webp" th:src="@{/images/services/video ad.webp}" alt="Video Ad Creation" class="lazy-service" loading="lazy">
+                    </div>
+                    <div class="service-body">
+                        <h3>Video Ad Creation</h3>
+                        <p>Engaging and high-quality video advertisements crafted to boost brand visibility and deliver impactful marketing results.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -276,10 +322,10 @@
                     <h3>Jesta Tech Solutions</h3>
                     <p>Empowering Digital Innovation</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/share/1Bo8k8gFUf/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+                        <a href="https://x.com/JTS_solutions?t=eod0dW7xJ3yaJVEMr5PoZg&s=08" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/company/109288157/admin/dashboard/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/jestatechsolutions?igsh=ajhldzM3d3ZqanVl" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -303,7 +349,7 @@
                 <div class="footer-section">
                     <h4>Contact Info</h4>
                     <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> Anantapur, Andhra Pradesh</li>
+                        <li><i class="fas fa-map-marker-alt"></i>  Andhra Pradesh,Anantapur,515001</li>
                         <li><i class="fas fa-phone"></i> +91 8520999351</li>
                         <li><i class="fas fa-envelope"></i> jestatechsolutions@gmail.com</li>
                     </ul>
@@ -358,18 +404,93 @@
             <li><a href="/privacy"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
             <li><a href="/contact"><i class="fas fa-comment-dots"></i> Feedback</a></li>
         </ul>
+        <div class="side-menu-social">
+            <h4>Connect With Us</h4>
+            <div class="side-menu-social-links">
+                <a href="https://www.facebook.com/share/1Bo8k8gFUf/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://x.com/JTS_solutions?t=eod0dW7xJ3yaJVEMr5PoZg&s=08" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/109288157/admin/dashboard/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://www.instagram.com/jestatechsolutions?igsh=ajhldzM3d3ZqanVl" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
     </div>
 
     <!-- Side Menu Overlay -->
     <div class="side-menu-overlay" id="sideMenuOverlay"></div>
 
     <!-- WhatsApp Chat Button -->
-    <a href="https://wa.me/918520999351" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <a href="https://wa.me/9185209999351" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <!-- Main JavaScript -->
     <script src="/js/script.js" defer></script>
     <script src="/js/common-seo.js" defer></script>
+    <script>
+        // Robust lazy/remote-image loader with local fallback.
+        document.addEventListener('DOMContentLoaded', function () {
+            const imgs = document.querySelectorAll('img.lazy-service');
+            imgs.forEach(img => {
+                const remote = img.dataset.src;
+
+                // If local src already loaded (hero.png fallback), show it immediately.
+                if (img.complete && img.naturalWidth) {
+                    img.classList.add('loaded');
+                }
+
+                // If there's a remote URL, try to preload it and swap only on success.
+                if (!remote) return;
+
+                const tester = new Image();
+                let settled = false;
+                const timeout = setTimeout(() => {
+                    if (settled) return;
+                    settled = true;
+                    // leave fallback in place
+                }, 5000);
+
+                // Ensure local fallback becomes visible when it finishes loading
+                const showIfLoaded = () => {
+                    if (img.complete && img.naturalWidth) img.classList.add('loaded');
+                };
+                img.addEventListener('load', showIfLoaded);
+                // If already loaded from cache, show immediately
+                showIfLoaded();
+
+                tester.onload = function () {
+                    if (settled) return;
+                    clearTimeout(timeout);
+                    settled = true;
+                    try {
+                        img.src = remote;
+                        // ensure visible with fade-in
+                        img.classList.add('loaded');
+                    } catch (e) {
+                        // keep fallback
+                    }
+                };
+
+                tester.onerror = function () {
+                    if (settled) return;
+                    clearTimeout(timeout);
+                    settled = true;
+                };
+
+                // Start preload
+                tester.src = remote;
+
+                // If tester was already cached and loaded, trigger onload handler.
+                if (tester.complete && tester.naturalWidth) tester.onload();
+            });
+        });
+    </script>
 </body>
 </html>

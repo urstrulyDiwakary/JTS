@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,13 +19,13 @@
     <meta property="og:title" content="Our Services | Jesta Tech Solutions">
     <meta property="og:description" content="Comprehensive tech services including Web Development, Android App Development, SEO, Digital Marketing, Branding, and AI Tools.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://jestatechsolutions.com/services">
-    <meta property="og:image" content="https://jestatechsolutions.com/jts.png">
+    <meta property="og:url" content="https://jestatechsolutions.in/services">
+    <meta property="og:image" content="https://jestatechsolutions.in/jts.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@JTS_solutions">
     <meta name="twitter:title" content="Our Services | Jesta Tech Solutions">
     <meta name="twitter:description" content="Comprehensive tech services including Web Development, Android App Development, SEO, and Digital Marketing.">
-    <meta name="twitter:image" content="https://jestatechsolutions.com/jts.png">
+    <meta name="twitter:image" content="https://jestatechsolutions.in/jts.png">
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"Organization","name":"Jesta Tech Solutions","alternateName":"JTS","url":"https://jestatechsolutions.com","logo":"https://jestatechsolutions.com/jts.png","email":"jestatechsolutions@gmail.com","telephone":"+91-8520999351","address":{"@type":"PostalAddress","addressLocality":"Anantapur","addressRegion":"Andhra Pradesh","postalCode":"515001","addressCountry":"IN"},"sameAs":["https://www.facebook.com/share/1Bo8k8gFUf/","https://x.com/JTS_solutions?t=eod0dW7xJ3yaJVEMr5PoZg&s=08","https://www.linkedin.com/company/109288157/admin/dashboard/","https://www.instagram.com/jestatechsolutions?igsh=ajhldzM3d3ZqanVl"]}
     </script>
@@ -70,12 +70,14 @@
     </header>
 
     <!-- Page Header -->
-    <section class="page-header">
-        <div class="page-header-overlay"></div>
-        <div class="container">
-            <h1>Our Services</h1>
-            <p>Comprehensive Technology Solutions for Your Business</p>
-        </div>
+    <section class="page-header" style="background: none;">
+<!--        <div class="page-header-overlay"></div>-->
+        <!-- Banner image for desktop only -->
+        <img src="/scard.png" alt="Banner" class="desktop-banner-img" style="width:100%;display:block;object-fit:cover;max-height:350px;margin:0 auto;@media (max-width: 991px){display:none;}">
+<!--        <div class="container">-->
+<!--            <h1>Our Services</h1>-->
+<!--            <p>Comprehensive Technology Solutions for Your Business</p>-->
+<!--        </div>-->
     </section>
 
     <!-- Services Detail Section -->
@@ -84,9 +86,11 @@
             <div class="services-detail-grid">
                 <!-- Website Development -->
                 <div class="service-detail-card fade-in-scroll">
-                    <div class="service-detail-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
+                    <img src="/images/services/webs.webp" th:src="@{/images/services/webs.webp}"
+                         srcset="/images/services/webs.webp 1600w, /images/services/webs.webp 1024w, /images/services/webs.webp 480w"
+                         th:srcset="@{/images/services/webs.webp 1600w, /images/services/webs.webp 1024w, /images/services/webs.webp 480w}"
+                         sizes="(min-width:1200px) 800px, (min-width:768px) 520px, 100vw"
+                         alt="Website Development Service" class="service-detail-image">
                     <h3>Website Development</h3>
                     <p>Transform your digital presence with our custom website development services. We create responsive, SEO-friendly, and user-centric websites that drive engagement and conversions.</p>
                     <ul class="service-features">
@@ -101,10 +105,12 @@
 
                 <!-- App Development -->
                 <div class="service-detail-card fade-in-scroll">
-                    <div class="service-detail-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Android & Native App Development</h3>
+                    <img src="/images/services/adns.webp" th:src="@{/images/services/adns.webp}"
+                         srcset="/images/services/adns.webp 1600w, /images/services/adns.webp 1024w, /images/services/adns.webp 480w"
+                         th:srcset="@{/images/services/adns.webp 1600w, /images/services/adns.webp 1024w, /images/services/adns.webp 480w}"
+                         sizes="(min-width:1200px) 800px, (min-width:768px) 520px, 100vw"
+                         alt="Android & Native App Development Service" class="service-detail-image">
+                    <h3>Android &amp; Native App Development</h3>
                     <p>Build powerful mobile applications that engage users and grow your business. We specialize in native Android development and cross-platform solutions.</p>
                     <ul class="service-features">
                         <li><i class="fas fa-check-circle"></i> Native Android Apps</li>
@@ -118,9 +124,10 @@
 
                 <!-- Hosting Services -->
                 <div class="service-detail-card fade-in-scroll">
-                    <div class="service-detail-icon">
-                        <i class="fas fa-server"></i>
-                    </div>
+                    <img src="/images/services/hss.webp" th:src="@{/images/services/hss.webp}"
+                         srcset="/images/services/hss.webp 1600w, /images/services/hss.webp 1024w, /images/services/hss.webp 480w"
+                         sizes="(min-width:1200px) 800px, (min-width:768px) 520px, 100vw"
+                         alt="Hosting Services" class="service-detail-image">
                     <h3>Hosting Services</h3>
                     <p>Reliable, secure, and high-performance hosting solutions tailored to your needs. From shared hosting to dedicated servers, we've got you covered.</p>
                     <ul class="service-features">
@@ -135,9 +142,10 @@
 
                 <!-- Server Maintenance -->
                 <div class="service-detail-card fade-in-scroll">
-                    <div class="service-detail-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
+                    <img src="/images/services/servs.webp" th:src="@{/images/services/servs.webp}"
+                         srcset="/images/services/servs.webp 1600w, /images/services/servs.webp 1024w, /images/services/servs.webp 480w"
+                         sizes="(min-width:1200px) 800px, (min-width:768px) 520px, 100vw"
+                         alt="Server Maintenance Service" class="service-detail-image">
                     <h3>Server Maintenance</h3>
                     <p>Keep your servers running smoothly with our 24/7 monitoring and maintenance services. We ensure optimal performance and security at all times.</p>
                     <ul class="service-features">
@@ -152,9 +160,10 @@
 
                 <!-- Social Media Management -->
                 <div class="service-detail-card fade-in-scroll">
-                    <div class="service-detail-icon">
-                        <i class="fas fa-bullhorn"></i>
-                    </div>
+                    <img src="/images/services/SM.webp" th:src="@{/images/services/SM.webp}"
+                         srcset="/images/services/SM.webp 1600w, /images/services/SM.webp 1024w, /images/services/SM.webp 480w"
+                         sizes="(min-width:1200px) 800px, (min-width:768px) 520px, 100vw"
+                         alt="Social Media Management Service" class="service-detail-image">
                     <h3>Social Media Management</h3>
                     <p>Build your brand presence and engage with your audience through strategic social media management. We create content that resonates and drives results.</p>
                     <ul class="service-features">
@@ -169,10 +178,11 @@
 
                 <!-- Digital Marketing & SEO -->
                 <div class="service-detail-card fade-in-scroll">
-                    <div class="service-detail-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Digital Marketing & SEO</h3>
+                    <img src="/images/services/dms.webp" th:src="@{/images/services/dms.webp}"
+                         srcset="/images/services/dms.webp 1600w, /images/services/dms.webp 1024w, /images/services/dms.webp 480w"
+                         sizes="(min-width:1200px) 800px, (min-width:768px) 520px, 100vw"
+                         alt="Digital Marketing &amp; SEO Service" class="service-detail-image">
+                    <h3>Digital Marketing &amp; SEO</h3>
                     <p>Increase your online visibility and drive qualified traffic with our comprehensive digital marketing and SEO services. Get found by your target audience.</p>
                     <ul class="service-features">
                         <li><i class="fas fa-check-circle"></i> Search Engine Optimization</li>
@@ -180,6 +190,42 @@
                         <li><i class="fas fa-check-circle"></i> Content Marketing</li>
                         <li><i class="fas fa-check-circle"></i> Email Marketing</li>
                         <li><i class="fas fa-check-circle"></i> Conversion Optimization</li>
+                    </ul>
+                    <a href="/contact" class="service-btn">Get Started</a>
+                </div>
+
+                <!-- Video Editing & Poster Design -->
+                <div class="service-detail-card fade-in-scroll">
+                    <img src="/images/services/veps.webp" th:src="@{/images/services/veps.webp}"
+                         srcset="/images/services/veps.webp 1600w, /images/services/veps.webp 1024w, /images/services/veps.webp 480w"
+                         sizes="(min-width:1200px) 800px, (min-width:768px) 520px, 100vw"
+                         alt="Video Editing &amp; Poster Design" class="service-detail-image">
+                    <h3>Video Editing &amp; Poster Design</h3>
+                    <p>Professional poster designs and creative edits tailored for branding, promotions, and business marketing. We craft visual assets that elevate your brand and convert viewers into customers.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Poster Design for Print & Digital</li>
+                        <li><i class="fas fa-check-circle"></i> Color Grading & Motion Graphics</li>
+                        <li><i class="fas fa-check-circle"></i> Brand-Aligned Creative Edits</li>
+                        <li><i class="fas fa-check-circle"></i> Promotional Materials & Banners</li>
+                        <li><i class="fas fa-check-circle"></i> Fast Turnaround & Revisions</li>
+                    </ul>
+                    <a href="/contact" class="service-btn">Get Started</a>
+                </div>
+
+                <!-- Video Ad Creation -->
+                <div class="service-detail-card fade-in-scroll">
+                    <img src="/images/services/vads.webp" th:src="@{/images/services/vads.webp}"
+                         srcset="/images/services/vads.webp 1600w, /images/services/vads.webp 1024w, /images/services/vads.webp 480w"
+                         sizes="(min-width:1200px) 800px, (min-width:768px) 520px, 100vw"
+                         alt="Video Ad Creation" class="service-detail-image">
+                    <h3>Video Ad Creation</h3>
+                    <p>Engaging and high-quality video advertisements crafted to boost brand visibility and deliver impactful marketing results. From script to final cut, we create ads optimized for social platforms and paid media.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Scriptwriting & Storyboarding</li>
+                        <li><i class="fas fa-check-circle"></i> Professional Editing & Motion Graphics</li>
+                        <li><i class="fas fa-check-circle"></i> Platform-Optimized Formats (15s/30s/60s)</li>
+                        <li><i class="fas fa-check-circle"></i> A/B Creative Variants for Ads</li>
+                        <li><i class="fas fa-check-circle"></i> Analytics & Performance Recommendations</li>
                     </ul>
                     <a href="/contact" class="service-btn">Get Started</a>
                 </div>
@@ -199,7 +245,7 @@
                     <div class="why-icon">
                         <i class="fas fa-users-cog"></i>
                     </div>
-                    <div class="counter" data-target="50">0</div>
+                    <div class="counter" data-target="15">0</div>
                     <h3>Expert Team</h3>
                     <p>Skilled professionals with years of experience</p>
                 </div>
@@ -207,7 +253,7 @@
                     <div class="why-icon">
                         <i class="fas fa-project-diagram"></i>
                     </div>
-                    <div class="counter" data-target="100">0</div>
+                    <div class="counter" data-target="30">0</div>
                     <h3>Projects Completed</h3>
                     <p>Successfully delivered across industries</p>
                 </div>
@@ -215,7 +261,7 @@
                     <div class="why-icon">
                         <i class="fas fa-smile"></i>
                     </div>
-                    <div class="counter" data-target="95">0</div>
+                    <div class="counter" data-target="99">0</div>
                     <h3>Client Satisfaction</h3>
                     <p>High satisfaction rate from our clients</p>
                 </div>
@@ -330,6 +376,7 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 Jesta Tech Solutions. All Rights Reserved.</p>
+                <p>Designed & Developed with <i class="fas fa-heart" style="color: #ef4444;"></i> by JTS Team</p>
                 <div class="footer-links">
                     <a href="/privacy">Privacy Policy</a>
                     <span>|</span>
@@ -340,25 +387,25 @@
     </footer>
 
     <!-- Mobile Bottom Navigation -->
-    <nav class="mobile-bottom-nav">
-        <a href="/" class="nav-item">
-            <i class="fas fa-home"></i>
+    <nav class="mobile-bottom-nav" role="navigation" aria-label="Mobile bottom navigation">
+        <a href="/" class="nav-item" aria-label="Home">
+            <i class="fas fa-home" aria-hidden="true"></i>
             <span>Home</span>
         </a>
-        <a href="/services" class="nav-item active">
-            <i class="fas fa-briefcase"></i>
+        <a href="/services" class="nav-item active" aria-label="Services" aria-current="page">
+            <i class="fas fa-briefcase" aria-hidden="true"></i>
             <span>Services</span>
         </a>
-        <a href="/portfolio" class="nav-item">
-            <i class="fas fa-folder-open"></i>
+        <a href="/portfolio" class="nav-item" aria-label="Portfolio">
+            <i class="fas fa-folder-open" aria-hidden="true"></i>
             <span>Portfolio</span>
         </a>
-        <a href="/about" class="nav-item">
-            <i class="fas fa-info-circle"></i>
+        <a href="/about" class="nav-item" aria-label="About">
+            <i class="fas fa-info-circle" aria-hidden="true"></i>
             <span>About</span>
         </a>
-        <a href="/contact" class="nav-item">
-            <i class="fas fa-envelope"></i>
+        <a href="/contact" class="nav-item" aria-label="Contact">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
             <span>Contact</span>
         </a>
     </nav>
@@ -376,6 +423,23 @@
             <li><a href="/privacy"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
             <li><a href="/contact"><i class="fas fa-comment-dots"></i> Feedback</a></li>
         </ul>
+        <div class="side-menu-social">
+            <h4>Connect With Us</h4>
+            <div class="side-menu-social-links">
+                <a href="https://www.facebook.com/share/1Bo8k8gFUf/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://x.com/JTS_solutions?t=eod0dW7xJ3yaJVEMr5PoZg&s=08" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/109288157/admin/dashboard/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://www.instagram.com/jestatechsolutions?igsh=ajhldzM3d3ZqanVl" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
     </div>
 
     <!-- Side Menu Overlay -->
