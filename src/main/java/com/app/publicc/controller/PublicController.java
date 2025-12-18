@@ -11,6 +11,7 @@ public class PublicController {
 
     @GetMapping
     public String home(Model model) {
+        System.out.println("🏠 [PublicController] Home page requested - Serving public/index");
         model.addAttribute("pageTitle", "Home");
         return "public/index";
     }

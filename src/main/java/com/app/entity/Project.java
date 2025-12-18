@@ -39,6 +39,18 @@ public class Project {
     @Column
     private String clientName;
 
+    @Column
+    private String category;
+
+    @Column
+    private Double budget;
+
+    @Column
+    private Integer progress;
+
+    @Column(length = 10000)
+    private String filePaths; // JSON array of file paths
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 

@@ -3,6 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/jts-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/jts-32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicons/jts-48.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicons/jts-64.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicons/jts-96.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="/favicons/jts-128.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/jts-192.png">
+    <link rel="icon" type="image/png" sizes="256x256" href="/favicons/jts-256.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicons/jts-512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon-180.png">
+    <!-- Fallback -->
+    <link rel="icon" type="image/png" href="/jts.png" />
+
     <title>Users Management - Jesta Tech Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -713,6 +728,50 @@
             border-color: var(--primary-color);
         }
 
+        /* Password validation styles */
+        .password-feedback.error {
+            color: var(--danger-color);
+            background-color: #fef2f2;
+            border: 1px solid #fecaca;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+
+        .password-feedback.success {
+            color: var(--success-color);
+            background-color: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+
+        .form-group input.error {
+            border-color: var(--danger-color);
+        }
+
+        .form-group input.success {
+            border-color: var(--success-color);
+        }
+
+        /* Button loading state */
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .fa-spin {
+            animation: fa-spin 2s infinite linear;
+        }
+
+        @keyframes fa-spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(359deg);
+            }
+        }
+
         .form-actions {
             display: flex;
             gap: 15px;
@@ -881,18 +940,18 @@
                     <i class="fas fa-cog"></i>
                 </div>
                 <div class="user-profile" id="userProfileBtn">
-                    <div class="user-avatar" id="userAvatar">AD</div>
+                    <div class="user-avatar" id="userAvatar">U</div>
                     <div class="user-info">
-                        <h4 id="userName">Admin User</h4>
-                        <p id="userRole">Administrator</p>
+                        <h4 id="userName">User</h4>
+                        <p id="userRole">Role</p>
                     </div>
                     <i class="fas fa-chevron-down"></i>
 
                     <!-- Profile Dropdown -->
                     <div class="profile-dropdown" id="profileDropdown">
                         <div class="dropdown-header">
-                            <h4 id="dropdownUserName">Admin User</h4>
-                            <p id="dropdownUserEmail">admin@admin.com</p>
+                            <h4 id="dropdownUserName">User</h4>
+                            <p id="dropdownUserEmail">user@example.com</p>
                         </div>
                         <ul class="dropdown-menu">
                             <li>
@@ -965,209 +1024,22 @@
             </div>
 
             <!-- Users Grid -->
-            <div class="users-grid">
-                <div class="user-card">
-                    <span class="status-badge active">Active</span>
-                    <div class="user-card-header">
-                        <div class="user-image">RK</div>
-                        <div class="user-info">
-                            <h3>Rajesh Kumar</h3>
-                            <p>Full Stack Developer</p>
-                        </div>
-                    </div>
-                    <div class="user-card-body">
-                        <div class="user-detail">
-                            <i class="fas fa-envelope"></i>
-                            <span>rajesh.kumar@jestatech.com</span>
-                        </div>
-                        <div class="user-detail">
-                            <i class="fas fa-phone"></i>
-                            <span>+91 98765 43210</span>
-                        </div>
-                        <div class="user-detail">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Hyderabad, India</span>
-                        </div>
-                        <div class="user-detail">
-                            <i class="fas fa-calendar"></i>
-                            <span>Joined: Jan 15, 2024</span>
-                        </div>
-                    </div>
-                    <div class="user-card-footer">
-                        <button class="card-btn view"><i class="fas fa-eye"></i> View</button>
-                        <button class="card-btn edit"><i class="fas fa-edit"></i> Edit</button>
-                        <button class="card-btn delete"><i class="fas fa-trash"></i></button>
-                    </div>
-                </div>
+            <div class="users-grid" id="usersGrid">
+                <!--
+                    HARDCODED DATA REMOVED:
+                    - Removed 6 hardcoded user cards with personal information
+                    - Removed hardcoded admin user info in header (now uses generic placeholders)
 
-                <div class="user-card">
-                    <span class="status-badge active">Active</span>
-                    <div class="user-card-header">
-                        <div class="user-image">PS</div>
-                        <div class="user-info">
-                            <h3>Priya Sharma</h3>
-                            <p>UI/UX Designer</p>
-                        </div>
-                    </div>
-                    <div class="user-card-body">
-                        <div class="user-detail">
-                            <i class="fas fa-envelope"></i>
-                            <span>priya.sharma@jestatech.com</span>
-                        </div>
-                        <div class="user-detail">
-                            <i class="fas fa-phone"></i>
-                            <span>+91 98765 43211</span>
-                        </div>
-                        <div class="user-detail">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Mumbai, India</span>
-                        </div>
-                        <div class="user-detail">
-                            <i class="fas fa-calendar"></i>
-                            <span>Joined: Feb 20, 2024</span>
-                        </div>
-                    </div>
-                    <div class="user-card-footer">
-                        <button class="card-btn view"><i class="fas fa-eye"></i> View</button>
-                        <button class="card-btn edit"><i class="fas fa-edit"></i> Edit</button>
-                        <button class="card-btn delete"><i class="fas fa-trash"></i></button>
-                    </div>
-                </div>
-
-                <div class="user-card">
-                    <span class="status-badge active">Active</span>
-                    <div class="user-card-header">
-                        <div class="user-image">AM</div>
-                        <div class="user-info">
-                            <h3>Amit Mehta</h3>
-                            <p>Project Manager</p>
-                        </div>
-                    </div>
-                    <div class="user-card-body">
-                        <div class="user-detail">
-                            <i class="fas fa-envelope"></i>
-                            <span>amit.mehta@jestatech.com</span>
-                        </div>
-                        <div class="user-detail">
-                            <i class="fas fa-phone"></i>
-                            <span>+91 98765 43212</span>
-                        </div>
-                        <div class="user-detail">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Bangalore, India</span>
-                        </div>
-                        <div class="user-detail">
-                            <i class="fas fa-calendar"></i>
-                            <span>Joined: Dec 10, 2023</span>
-                        </div>
-                    </div>
-                    <div class="user-card-footer">
-                        <button class="card-btn view"><i class="fas fa-eye"></i> View</button>
-                        <button class="card-btn edit"><i class="fas fa-edit"></i> Edit</button>
-                        <button class="card-btn delete"><i class="fas fa-trash"></i></button>
-                    </div>
-                </div>
-
-                <div class="user-card">
-                    <span class="status-badge inactive">Inactive</span>
-                    <div class="user-card-header">
-                        <div class="user-image">SK</div>
-                        <div class="user-info">
-                            <h3>Sneha Kapoor</h3>
-                            <p>Marketing Lead</p>
-                        </div>
-                    </div>
-                    <div class="user-card-body">
-                        <div class="user-detail">
-                            <i class="fas fa-envelope"></i>
-                            <span>sneha.kapoor@jestatech.com</span>
-                        </div>
-                        <div class="user-detail">
-                            <i class="fas fa-phone"></i>
-                            <span>+91 98765 43213</span>
-                        </div>
-                        <div class="user-detail">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Delhi, India</span>
-                        </div>
-                        <div class="user-detail">
-                            <i class="fas fa-calendar"></i>
-                            <span>Joined: Mar 05, 2024</span>
-                        </div>
-                    </div>
-                    <div class="user-card-footer">
-                        <button class="card-btn view"><i class="fas fa-eye"></i> View</button>
-                        <button class="card-btn edit"><i class="fas fa-edit"></i> Edit</button>
-                        <button class="card-btn delete"><i class="fas fa-trash"></i></button>
-                    </div>
-                </div>
-
-                <div class="user-card">
-                    <span class="status-badge active">Active</span>
-                    <div class="user-card-header">
-                        <div class="user-image">VR</div>
-                        <div class="user-info">
-                            <h3>Vikram Reddy</h3>
-                            <p>Backend Developer</p>
-                        </div>
-                    </div>
-                    <div class="user-card-body">
-                        <div class="user-detail">
-                            <i class="fas fa-envelope"></i>
-                            <span>vikram.reddy@jestatech.com</span>
-                        </div>
-                        <div class="user-detail">
-                            <i class="fas fa-phone"></i>
-                            <span>+91 98765 43214</span>
-                        </div>
-                        <div class="user-detail">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Chennai, India</span>
-                        </div>
-                        <div class="user-detail">
-                            <i class="fas fa-calendar"></i>
-                            <span>Joined: Jan 25, 2024</span>
-                        </div>
-                    </div>
-                    <div class="user-card-footer">
-                        <button class="card-btn view"><i class="fas fa-eye"></i> View</button>
-                        <button class="card-btn edit"><i class="fas fa-edit"></i> Edit</button>
-                        <button class="card-btn delete"><i class="fas fa-trash"></i></button>
-                    </div>
-                </div>
-
-                <div class="user-card">
-                    <span class="status-badge active">Active</span>
-                    <div class="user-card-header">
-                        <div class="user-image">NP</div>
-                        <div class="user-info">
-                            <h3>Neha Patel</h3>
-                            <p>QA Engineer</p>
-                        </div>
-                    </div>
-                    <div class="user-card-body">
-                        <div class="user-detail">
-                            <i class="fas fa-envelope"></i>
-                            <span>neha.patel@jestatech.com</span>
-                        </div>
-                        <div class="user-detail">
-                            <i class="fas fa-phone"></i>
-                            <span>+91 98765 43215</span>
-                        </div>
-                        <div class="user-detail">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Pune, India</span>
-                        </div>
-                        <div class="user-detail">
-                            <i class="fas fa-calendar"></i>
-                            <span>Joined: Apr 12, 2024</span>
-                        </div>
-                    </div>
-                    <div class="user-card-footer">
-                        <button class="card-btn view"><i class="fas fa-eye"></i> View</button>
-                        <button class="card-btn edit"><i class="fas fa-edit"></i> Edit</button>
-                        <button class="card-btn delete"><i class="fas fa-trash"></i></button>
-                    </div>
+                    TO IMPLEMENT:
+                    - Load users dynamically via JavaScript/AJAX from backend API
+                    - Populate user cards using JavaScript templating
+                    - Update user profile in header with actual logged-in user data
+                -->
+                <!-- User cards will be dynamically populated here -->
+                <div class="no-users-message" style="grid-column: 1/-1; text-align: center; padding: 40px; color: #6b7280;">
+                    <i class="fas fa-users" style="font-size: 3rem; margin-bottom: 15px; opacity: 0.5;"></i>
+                    <h3>No Users Found</h3>
+                    <p>No users have been created yet. Click "Add User" to create the first user.</p>
                 </div>
             </div>
 
@@ -1188,10 +1060,11 @@
     <div class="modal" id="userModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Add New User</h2>
-                <button class="close-btn" onclick="closeModal()">&times;</button>
+                <h2>Create Admin User Account</h2>
+                <p style="font-size: 0.9rem; color: #6b7280; margin: 5px 0 0 0;">Create new user with immediate admin panel access</p>
+                <button class="close-btn" onclick="closeModal('userModal')">&times;</button>
             </div>
-            <form>
+            <form id="createUserForm">
                 <div class="form-group">
                     <label>Full Name *</label>
                     <input type="text" name="username" placeholder="Enter full name" required>
@@ -1205,6 +1078,18 @@
                     <input type="tel" name="phone" placeholder="Enter phone number">
                 </div>
                 <div class="form-group">
+                    <label>Password *</label>
+                    <input type="password" name="password" placeholder="Set password (min 8 characters)" required minlength="8" id="userPassword">
+                    <small style="color: #6b7280; font-size: 0.85rem; display: block; margin-top: 5px;">
+                        <i class="fas fa-info-circle"></i> User can login directly with this password
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password *</label>
+                    <input type="password" name="confirmPassword" placeholder="Confirm password" required minlength="8" id="confirmPassword">
+                    <div class="password-feedback" id="passwordMatch" style="font-size: 0.85rem; margin-top: 5px; display: none;"></div>
+                </div>
+                <div class="form-group">
                     <label>Role *</label>
                     <select name="role" required>
                         <option value="">Select Role</option>
@@ -1216,8 +1101,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Department *</label>
-                    <select name="department" required>
+                    <label>Department</label>
+                    <select name="department">
                         <option value="">Select Department</option>
                         <option>Development</option>
                         <option>Design</option>
@@ -1225,10 +1110,6 @@
                         <option>Sales</option>
                         <option>HR</option>
                     </select>
-                </div>
-                <div class="form-group">
-                    <label>Location</label>
-                    <input type="text" name="location" placeholder="Enter location">
                 </div>
                 <div class="form-group">
                     <label>Status</label>
@@ -1292,5 +1173,275 @@
 
     <script src="/js/admin-common.js"></script>
     <script src="/js/admin-users.js"></script>
+
+    <script>
+        // Wait for DOM to be ready - Consolidated event listener
+        document.addEventListener('DOMContentLoaded', function() {
+            // Password validation setup
+            const userPasswordInput = document.getElementById('userPassword');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+
+            if (userPasswordInput) {
+                userPasswordInput.addEventListener('input', function() {
+                    validatePasswordMatch();
+                });
+            }
+
+            if (confirmPasswordInput) {
+                confirmPasswordInput.addEventListener('input', function() {
+                    validatePasswordMatch();
+                });
+            }
+
+            // Form submission setup
+            const form = document.getElementById('createUserForm');
+            if (form) {
+                form.addEventListener('submit', handleFormSubmission);
+            }
+
+            // Modal click outside to close
+            const modal = document.getElementById('userModal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeModal('userModal');
+                    }
+                });
+            }
+        });
+
+        function validatePasswordMatch() {
+            const passwordInput = document.getElementById('userPassword');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            const feedback = document.getElementById('passwordMatch');
+
+            if (!passwordInput || !confirmPasswordInput || !feedback) {
+                console.error('Password validation elements not found');
+                return false;
+            }
+
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+
+            if (confirmPassword === '') {
+                feedback.style.display = 'none';
+                confirmPasswordInput.classList.remove('error', 'success');
+                return false;
+            }
+
+            if (password === confirmPassword) {
+                feedback.textContent = '✓ Passwords match!';
+                feedback.className = 'password-feedback success';
+                feedback.style.display = 'block';
+                confirmPasswordInput.classList.remove('error');
+                confirmPasswordInput.classList.add('success');
+                return true;
+            } else {
+                feedback.textContent = '✗ Passwords do not match';
+                feedback.className = 'password-feedback error';
+                feedback.style.display = 'block';
+                confirmPasswordInput.classList.remove('success');
+                confirmPasswordInput.classList.add('error');
+                return false;
+            }
+        }
+
+        // Form submission handler
+        async function handleFormSubmission(e) {
+                    e.preventDefault();
+
+                    const passwordInput = document.getElementById('userPassword');
+                    const confirmPasswordInput = document.getElementById('confirmPassword');
+
+                    if (!passwordInput || !confirmPasswordInput) {
+                        alert('❌ Password fields not found. Please refresh the page and try again.');
+                        return;
+                    }
+
+                    const password = passwordInput.value;
+                    const confirmPassword = confirmPasswordInput.value;
+
+                    // Validate required fields
+                    const username = document.querySelector('input[name="username"]').value;
+                    const email = document.querySelector('input[name="email"]').value;
+                    const role = document.querySelector('select[name="role"]').value;
+
+                    if (!username || !email || !role || !password) {
+                        alert('❌ Please fill in all required fields (Name, Email, Password, Role).');
+                        return;
+                    }
+
+                    // Validate email format
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        alert('❌ Please enter a valid email address.');
+                        return;
+                    }
+
+                    // Validate password length
+                    if (password.length < 8) {
+                        alert('❌ Password must be at least 8 characters long.');
+                        return;
+                    }
+
+                    // Validate password match
+                    if (password !== confirmPassword) {
+                        alert('❌ Passwords do not match. Please check and try again.');
+                        return;
+                    }
+
+                    // Collect form data
+                    const form = document.getElementById('createUserForm');
+                    const formData = new FormData(form);
+
+                    // Helper function to handle empty strings
+                    const getValue = (key, defaultValue = null) => {
+                        const value = formData.get(key);
+                        return value && value.trim() !== '' ? value.trim() : defaultValue;
+                    };
+
+                    const userData = {
+                        username: getValue('username'),
+                        email: getValue('email'),
+                        password: getValue('password'),
+                        role: getValue('role', 'USER'),
+                        phone: getValue('phone'),
+                        department: getValue('department'),
+                        status: getValue('status', 'Active')
+                    };
+
+                    // Log data being sent for debugging
+                    console.log('Sending user data:', userData);
+
+                    try {
+                        // Show loading state
+                        const submitBtn = form.querySelector('button[type="submit"]');
+                        const originalText = submitBtn.innerHTML;
+                        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating...';
+                        submitBtn.disabled = true;
+
+                        // Send data to backend API
+                        const response = await fetch('/api/admin/users/create', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(userData)
+                        });
+
+                        if (response.ok) {
+                            const createdUser = await response.json();
+
+                            // Show success message with login instructions
+                            const successMessage = `✅ User "${userData.username}" created successfully!\n\n` +
+                                `📧 Login credentials to share:\n` +
+                                `• Username: ${userData.username}\n` +
+                                `• Email: ${userData.email}\n` +
+                                `• Password: ${userData.password}\n\n` +
+                                `✅ Ready to use: User can login directly with these credentials.\n\n` +
+                                `📍 Login URL: ${window.location.origin}/admin/login`;
+
+                            alert(successMessage);
+                            closeModal('userModal');
+
+                            // Reset form
+                            form.reset();
+                            const passwordMatch = document.getElementById('passwordMatch');
+                            if (passwordMatch) {
+                                passwordMatch.style.display = 'none';
+                            }
+                            document.querySelectorAll('.form-group input').forEach(input => {
+                                input.classList.remove('error', 'success');
+                            });
+
+                            // Optionally reload to show the new user in the list
+                            // window.location.reload();
+                        } else {
+                            let errorMessage = 'Unknown error occurred';
+                            try {
+                                const errorData = await response.json();
+                                errorMessage = errorData.message || errorData.error || `Server returned error ${response.status}`;
+                                console.error('Server error details:', errorData);
+                            } catch (parseError) {
+                                try {
+                                    const responseText = await response.text();
+                                    errorMessage = `HTTP ${response.status}: ${response.statusText}`;
+                                    console.error('Response text:', responseText);
+                                } catch (textError) {
+                                    errorMessage = `HTTP ${response.status}: ${response.statusText}`;
+                                }
+                            }
+
+                            // Show specific error message
+                            alert('❌ Error creating user: ' + errorMessage);
+                        }
+
+                        // Restore button state
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+
+                    } catch (error) {
+                        console.error('Network error creating user:', error);
+
+                        let errorMessage = '❌ Network Error: ';
+                        if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+                            errorMessage += 'Cannot connect to server. Please check if the application is running on http://localhost:8000';
+                        } else if (error.name === 'SyntaxError') {
+                            errorMessage += 'Server returned invalid response. Check server logs for database errors.';
+                        } else {
+                            errorMessage += error.message || 'Unknown network error occurred.';
+                        }
+
+                        errorMessage += '\n\nTroubleshooting:\n' +
+                                       '1. Ensure application is running\n' +
+                                       '2. Check database connection\n' +
+                                       '3. Run database setup script if needed\n' +
+                                       '4. Check browser console for detailed errors';
+
+                        alert(errorMessage);
+
+                        // Restore button state
+                        const submitBtn = form.querySelector('button[type="submit"]');
+                        submitBtn.innerHTML = '<i class="fas fa-plus"></i> Add User';
+                        submitBtn.disabled = false;
+                    }
+                }
+
+        // Modal functions
+        function openAddUserModal() {
+            document.getElementById('userModal').classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+
+            // Reset form when closing
+            const form = document.getElementById('createUserForm');
+            if (form) {
+                form.reset();
+                document.getElementById('passwordMatch').style.display = 'none';
+                document.querySelectorAll('.form-group input').forEach(input => {
+                    input.classList.remove('error', 'success');
+                });
+            }
+        }
+
+        // Toggle Sidebar
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+
+            sidebar.classList.toggle('collapsed');
+            mainContent.classList.toggle('expanded');
+        }
+
+        // Toggle Mobile Sidebar
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('mobile-open');
+        }
+
+
+    </script>
 </body>
 </html>

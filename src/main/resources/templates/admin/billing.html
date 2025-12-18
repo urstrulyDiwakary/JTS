@@ -3,6 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/jts-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/jts-32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicons/jts-48.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicons/jts-64.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicons/jts-96.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="/favicons/jts-128.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/jts-192.png">
+    <link rel="icon" type="image/png" sizes="256x256" href="/favicons/jts-256.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicons/jts-512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon-180.png">
+    <!-- Fallback -->
+    <link rel="icon" type="image/png" href="/jts.png" />
+
     <title>Billing - Jesta Tech Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -76,6 +91,91 @@
         .page-btn.active { background: var(--primary); color:#fff; border-color: var(--primary); }
         .action-btn { padding:6px 10px; border:1px solid #e5e7eb; background:#fff; border-radius:6px; cursor:pointer; }
         .action-btn:hover { background: var(--light-bg); }
+
+        /* Invoice Filters Styles */
+        .invoice-filters {
+            display: flex;
+            gap: 15px;
+            align-items: flex-end;
+            flex-wrap: wrap;
+        }
+
+        .filter-item {
+            display: flex;
+            flex-direction: column;
+            min-width: 120px;
+        }
+
+        .filter-item label {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .filter-item input, .filter-item select {
+            padding: 8px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: border-color 0.2s ease;
+            background: white;
+        }
+
+        .filter-item input:focus, .filter-item select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .filter-actions .btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .filter-actions .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        /* Responsive Design for Filters */
+        @media (max-width: 1200px) {
+            .invoice-filters {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 15px;
+            }
+
+            .invoice-filters > div {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 15px;
+            }
+
+            .filter-actions {
+                justify-content: flex-end;
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .invoice-filters > div {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .filter-actions {
+                justify-content: center;
+            }
+        }
     </style>
 
     <!-- Modern Header CSS -->
@@ -111,16 +211,16 @@
             <i class="fas fa-bell" style="font-size: 1.3rem; color: #1f2937; cursor: pointer;" title="Notifications"></i>
             <i class="fas fa-cog" onclick="window.location.href='/admin/settings'" style="font-size: 1.3rem; color: #1f2937; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.color='#2563eb'; this.style.transform='rotate(90deg)'" onmouseout="this.style.color='#1f2937'; this.style.transform='rotate(0deg)'" title="Settings"></i>
             <div class="user-profile" id="userProfileBtn">
-                <div class="user-avatar" id="userAvatar">AD</div>
+                <div class="user-avatar" id="userAvatar">U</div>
                 <div class="user-info">
-                    <h4 id="userName">Admin User</h4>
-                    <p id="userRole">Administrator</p>
+                    <h4 id="userName">User</h4>
+                    <p id="userRole">Role</p>
                 </div>
                 <i class="fas fa-chevron-down"></i>
                 <div class="profile-dropdown" id="profileDropdown">
                     <div class="dropdown-header">
-                        <h4 id="dropdownUserName">Admin User</h4>
-                        <p id="dropdownUserEmail">admin@admin.com</p>
+                        <h4 id="dropdownUserName">User</h4>
+                        <p id="dropdownUserEmail">user@example.com</p>
                     </div>
                     <ul class="dropdown-menu">
                         <li>
@@ -139,14 +239,6 @@
         <div class="page-header">
             <div class="page-title"><h1>Billing Dashboard</h1><p class="breadcrumb">Home / Billing</p></div>
             <div class="header-actions">
-                <div class="filter-group">
-                    <select>
-                        <option>All Status</option>
-                        <option>PAID</option>
-                        <option>PENDING</option>
-                        <option>OVERDUE</option>
-                    </select>
-                </div>
                 <button class="btn btn-secondary"><i class="fas fa-file-export"></i>Export</button>
                 <button class="btn btn-primary" onclick="openAddBillingModal()"><i class="fas fa-plus"></i>Create Invoice</button>
             </div>
@@ -176,7 +268,40 @@
         </div>
 
         <div class="invoices-table">
-            <h2>Recent Invoices</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2>Recent Invoices</h2>
+                <div class="invoice-filters" style="display: flex; gap: 15px; align-items: center;">
+                    <div class="filter-item">
+                        <label style="font-size: 0.85rem; color: #6b7280; margin-bottom: 5px; display: block;">Client Name</label>
+                        <input type="text" id="clientFilter" placeholder="Search client..." style="padding: 8px 12px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 0.9rem; width: 150px;">
+                    </div>
+                    <div class="filter-item">
+                        <label style="font-size: 0.85rem; color: #6b7280; margin-bottom: 5px; display: block;">Status</label>
+                        <select id="statusFilter" style="padding: 8px 12px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 0.9rem; width: 120px;">
+                            <option value="">All Status</option>
+                            <option value="PAID">Paid</option>
+                            <option value="PENDING">Pending</option>
+                            <option value="OVERDUE">Overdue</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label style="font-size: 0.85rem; color: #6b7280; margin-bottom: 5px; display: block;">Due Date</label>
+                        <input type="date" id="dueDateFilter" style="padding: 8px 12px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 0.9rem; width: 140px;">
+                    </div>
+                    <div class="filter-item">
+                        <label style="font-size: 0.85rem; color: #6b7280; margin-bottom: 5px; display: block;">Paid Date</label>
+                        <input type="date" id="paidDateFilter" style="padding: 8px 12px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 0.9rem; width: 140px;">
+                    </div>
+                    <div class="filter-actions" style="margin-top: 20px;">
+                        <button onclick="applyFilters()" class="btn" style="padding: 8px 16px; background: var(--primary); color: white; border: none; border-radius: 6px; font-size: 0.9rem; cursor: pointer; margin-right: 8px;">
+                            <i class="fas fa-filter"></i> Apply
+                        </button>
+                        <button onclick="clearFilters()" class="btn" style="padding: 8px 16px; background: #6b7280; color: white; border: none; border-radius: 6px; font-size: 0.9rem; cursor: pointer;">
+                            <i class="fas fa-times"></i> Clear
+                        </button>
+                    </div>
+                </div>
+            </div>
             <table class="billing-table">
                 <thead>
                 <tr>

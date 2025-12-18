@@ -277,11 +277,12 @@
 
     <!-- Page Header -->
     <section class="page-header">
-        <div class="page-header-overlay"></div>
-        <div class="container">
-            <h1>Get in Touch</h1>
-            <p>We'd Love to Hear From You</p>
-        </div>
+        <img src="/scard.png" alt="Banner" class="desktop-banner-img">
+<!--        <div class="page-header-overlay"></div>-->
+<!--        <div class="container">-->
+<!--            <h1>Contact Us</h1>-->
+<!--            <p>We're here to help—let's talk</p>-->
+<!--        </div>-->
     </section>
 
     <!-- Contact Section -->
@@ -588,6 +589,130 @@
 
     <script src="/js/script.js" defer></script>
     <script src="/js/common-seo.js" defer></script>
+
+    <!-- Contact Form Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Contact form script loaded');
+
+            const contactForm = document.getElementById('contactForm');
+            if (!contactForm) {
+                console.error('Contact form not found');
+                return;
+            }
+
+            console.log('Contact form found, adding event listener');
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                console.log('Form submitted');
+
+                // Get form values
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const subject = document.getElementById('subject').value.trim();
+                const service = document.getElementById('service').value;
+                const message = document.getElementById('message').value.trim();
+
+                // Basic validation
+                if (!name || !email || !subject || !message) {
+                    showFormMessage('Please fill in all required fields.', 'error');
+                    return;
+                }
+
+                // Email validation
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(email)) {
+                    showFormMessage('Please enter a valid email address.', 'error');
+                    return;
+                }
+
+                // Prepare form data
+                const formData = {
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    subject: subject,
+                    service: service,
+                    message: message
+                };
+
+                console.log('Sending form data:', formData);
+
+                // Update submit button
+                const submitBtn = contactForm.querySelector('.submit-btn');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitBtn.disabled = true;
+
+                // Submit to backend API
+                fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => {
+                    console.log('Response status:', response.status);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Response data:', data);
+                    if (data.status === 'success') {
+                        showFormMessage(data.message || 'Thank you for your message! We will get back to you soon.', 'success');
+                        contactForm.reset();
+
+                        // Hide success message after 5 seconds
+                        setTimeout(function() {
+                            hideFormMessage();
+                        }, 5000);
+                    } else {
+                        showFormMessage(data.message || 'Something went wrong. Please try again.', 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showFormMessage('Network error. Please check your connection and try again.', 'error');
+                })
+                .finally(() => {
+                    // Reset submit button
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                });
+            });
+
+            // Form message functions
+            function showFormMessage(message, type) {
+                const formMessage = document.getElementById('formMessage');
+                if (!formMessage) return;
+
+                formMessage.textContent = message;
+                formMessage.className = 'form-message ' + type;
+                formMessage.style.display = 'block';
+                formMessage.style.padding = '15px';
+                formMessage.style.marginTop = '15px';
+                formMessage.style.borderRadius = '5px';
+
+                if (type === 'success') {
+                    formMessage.style.backgroundColor = '#d4edda';
+                    formMessage.style.color = '#155724';
+                    formMessage.style.border = '1px solid #c3e6cb';
+                } else if (type === 'error') {
+                    formMessage.style.backgroundColor = '#f8d7da';
+                    formMessage.style.color = '#721c24';
+                    formMessage.style.border = '1px solid #f5c6cb';
+                }
+            }
+
+            function hideFormMessage() {
+                const formMessage = document.getElementById('formMessage');
+                if (!formMessage) return;
+                formMessage.style.display = 'none';
+            }
+        });
+    </script>
 
     <!-- AGGRESSIVE Mobile Navigation Display Fix -->
     <script>

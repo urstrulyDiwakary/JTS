@@ -501,26 +501,91 @@ function setupSearch() {
 }
 
 function setupFilters() {
-    const filters = document.querySelectorAll('.filter-group select');
-    filters.forEach(filter => {
-        filter.addEventListener('change', () => {
-            applyFilters();
+    // Setup filter event listeners
+    const statusFilter = document.getElementById('statusFilter');
+    const clientFilter = document.getElementById('clientFilter');
+    const dueDateFilter = document.getElementById('dueDateFilter');
+    const paidDateFilter = document.getElementById('paidDateFilter');
+
+    // Add change listeners for dropdowns and date inputs
+    [statusFilter, dueDateFilter, paidDateFilter].forEach(filter => {
+        if (filter) {
+            filter.addEventListener('change', applyFilters);
+        }
+    });
+
+    // Add input listener for client name (real-time search)
+    if (clientFilter) {
+        let debounceTimer;
+        clientFilter.addEventListener('input', () => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(applyFilters, 300); // Debounce for 300ms
         });
+    }
+
+    // Legacy filter support (for existing filter-group elements)
+    const legacyFilters = document.querySelectorAll('.filter-group select');
+    legacyFilters.forEach(filter => {
+        filter.addEventListener('change', applyFilters);
     });
 }
 
 function applyFilters() {
-    const statusFilter = document.querySelector('.filter-group select')?.value;
+    const statusFilter = document.getElementById('statusFilter')?.value || '';
+    const clientFilter = document.getElementById('clientFilter')?.value.toLowerCase() || '';
+    const dueDateFilter = document.getElementById('dueDateFilter')?.value || '';
+    const paidDateFilter = document.getElementById('paidDateFilter')?.value || '';
 
     filteredBillings = billings.filter(billing => {
-        if (statusFilter && statusFilter !== 'All Status') {
-            if ((billing.status || '').toUpperCase() !== statusFilter.toUpperCase()) return false;
+        // Client name filter
+        if (clientFilter && !(billing.clientName || '').toLowerCase().includes(clientFilter)) {
+            return false;
         }
+
+        // Status filter
+        if (statusFilter && (billing.status || '').toUpperCase() !== statusFilter.toUpperCase()) {
+            return false;
+        }
+
+        // Due date filter (exact match)
+        if (dueDateFilter) {
+            const dueDate = billing.dueDate ? new Date(billing.dueDate).toISOString().split('T')[0] : null;
+            if (dueDate !== dueDateFilter) {
+                return false;
+            }
+        }
+
+        // Paid date filter (exact match, only for paid invoices)
+        if (paidDateFilter) {
+            if (billing.status !== 'PAID') {
+                return false; // Only show paid invoices when paid date filter is applied
+            }
+            const paidDate = billing.paidDate ? new Date(billing.paidDate).toISOString().split('T')[0] : null;
+            if (paidDate !== paidDateFilter) {
+                return false;
+            }
+        }
+
         return true;
     });
 
     currentPage = 1;
     renderBillings();
+    showToast(`Filtered ${filteredBillings.length} invoice(s)`, 'info');
+}
+
+function clearFilters() {
+    // Clear all filter inputs
+    document.getElementById('statusFilter').value = '';
+    document.getElementById('clientFilter').value = '';
+    document.getElementById('dueDateFilter').value = '';
+    document.getElementById('paidDateFilter').value = '';
+
+    // Reset filtered billings to show all
+    filteredBillings = [...billings];
+    currentPage = 1;
+    renderBillings();
+    showToast('Filters cleared', 'info');
 }
 
 // ============================================

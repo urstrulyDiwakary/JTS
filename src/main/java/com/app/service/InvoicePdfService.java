@@ -40,14 +40,14 @@ public class InvoicePdfService {
                 .setFontColor(primaryColor);
         document.add(companyName);
 
-        Paragraph companyAddress = new Paragraph("123 Tech Street, Innovation City\nPhone: +91 9876543210\nEmail: info@jestatech.com")
+        Paragraph companyAddress = new Paragraph("Anantapur, Andhra Pradesh 515001\nPhone: +91 8520999351\nEmail: jestatechsolutions@gmail.com")
                 .setFontSize(10)
                 .setFontColor(grayColor);
         document.add(companyAddress);
 
         // Invoice Title
         Paragraph invoiceTitle = new Paragraph("INVOICE")
-                .setFontSize(28)
+                .setFontSize(26)
                 .setBold()
                 .setTextAlignment(TextAlignment.RIGHT)
                 .setMarginTop(20);
@@ -137,7 +137,7 @@ public class InvoicePdfService {
         }
 
         // Footer
-        Paragraph footer = new Paragraph("\nThank you for your business!\n\nTerms & Conditions:\nPayment is due within 30 days from the invoice date.\nPlease include the invoice number on your payment.")
+        Paragraph footer = new Paragraph("\nThank you for your business!\n\nTerms & Conditions:\nPayment must be completed within the timeline mentioned in this invoice.\nJesta Tech Solutions is not responsible for delays caused by client inputs or third-party services.")
                 .setFontSize(10)
                 .setFontColor(grayColor)
                 .setMarginTop(30)

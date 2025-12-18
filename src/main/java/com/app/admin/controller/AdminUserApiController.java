@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/admin/users")
@@ -28,9 +29,60 @@ public class AdminUserApiController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        User created = userService.createUser(user);
-        return ResponseEntity.ok(created);
+    public ResponseEntity<?> createUser(@RequestBody User user) {
+        try {
+            // Log incoming user data for debugging
+            System.out.println("Creating user with data: " + user.toString());
+
+            // Validate required fields
+            if (user.getUsername() == null || user.getUsername().trim().isEmpty()) {
+                return ResponseEntity.badRequest().body(Map.of("message", "Username is required"));
+            }
+            if (user.getEmail() == null || user.getEmail().trim().isEmpty()) {
+                return ResponseEntity.badRequest().body(Map.of("message", "Email is required"));
+            }
+            if (user.getPassword() == null || user.getPassword().trim().isEmpty()) {
+                return ResponseEntity.badRequest().body(Map.of("message", "Password is required"));
+            }
+            if (user.getRole() == null || user.getRole().trim().isEmpty()) {
+                return ResponseEntity.badRequest().body(Map.of("message", "Role is required"));
+            }
+
+            // Clean up empty strings and set proper defaults
+            if (user.getPhone() != null && user.getPhone().trim().isEmpty()) {
+                user.setPhone(null);
+            }
+            if (user.getDepartment() != null && user.getDepartment().trim().isEmpty()) {
+                user.setDepartment(null);
+            }
+            if (user.getStatus() == null || user.getStatus().trim().isEmpty()) {
+                user.setStatus("Active");
+            }
+
+            User created = userService.createUser(user);
+            System.out.println("User created successfully: " + created.getUsername());
+            return ResponseEntity.ok(created);
+
+        } catch (Exception e) {
+            // Log the full error for debugging
+            System.err.println("Error creating user: " + e.getClass().getSimpleName() + ": " + e.getMessage());
+            e.printStackTrace();
+
+            // Return user-friendly error message
+            String errorMessage = e.getMessage();
+            if (errorMessage != null && errorMessage.contains("duplicate key")) {
+                return ResponseEntity.badRequest().body(Map.of("message", "Username or email already exists"));
+            } else if (errorMessage != null && (errorMessage.contains("column") && errorMessage.contains("does not exist"))) {
+                return ResponseEntity.internalServerError().body(Map.of("message",
+                    "Database schema error: Missing required columns. Please run: psql -U postgres -d JTS -f complete_database_fix.sql"));
+            } else if (errorMessage != null && errorMessage.contains("violates not-null constraint")) {
+                return ResponseEntity.badRequest().body(Map.of("message",
+                    "Required field missing: " + errorMessage));
+            } else {
+                return ResponseEntity.internalServerError().body(Map.of("message",
+                    "Failed to create user: " + (errorMessage != null ? errorMessage : "Unknown error")));
+            }
+        }
     }
 
     @PutMapping("/{id}")

@@ -1,0 +1,60 @@
+<!-- Reusable Responsive Banner Fragment using <picture> element -->
+<!--
+    Usage (Thymeleaf):
+    th:replace="public/fragments/banner :: page-banner(
+        base='home',
+        alt='Jesta Tech Solutions – Professional IT Services Banner'
+    )"
+
+    Or with custom paths:
+    th:replace="public/fragments/banner :: page-banner(
+        desktopSrc='/INDEX.webp',
+        tabletSrc='/assets/banners/tablet/home-banner.webp',
+        mobileSrc='/assets/banners/mobile/home-banner.webp',
+        alt='Custom Banner Alt Text'
+    )"
+
+    Expected structure: /assets/banners/{desktop|tablet|mobile}/{base}-banner.webp
+-->
+
+<div th:fragment="page-banner(base, desktopSrc, tabletSrc, mobileSrc, alt)" class="banner-container">
+    <picture>
+        <!-- Desktop: >= 1025px -->
+        <source th:media="'(min-width: 1025px)'"
+                th:srcset="${desktopSrc != null ? desktopSrc : '/assets/banners/desktop/' + base + '-banner.webp'}">
+
+        <!-- Tablet: 768px to 1024px -->
+        <source th:media="'(min-width: 768px)'"
+                th:srcset="${tabletSrc != null ? tabletSrc : '/assets/banners/tablet/' + base + '-banner.webp'}">
+
+        <!-- Mobile: < 768px (default/fallback) -->
+        <img th:src="${mobileSrc != null ? mobileSrc : '/assets/banners/mobile/' + base + '-banner.webp'}"
+             th:alt="${alt != null ? alt : 'Jesta Tech Solutions'}"
+             class="page-banner"
+             loading="eager">
+    </picture>
+</div>
+
+<!-- Alternative fragment for hero sections with overlay support -->
+<section th:fragment="hero-banner(base, desktopSrc, tabletSrc, mobileSrc, alt)" class="hero-section">
+    <picture>
+        <!-- Desktop: >= 1025px -->
+        <source th:media="'(min-width: 1025px)'"
+                th:srcset="${desktopSrc != null ? desktopSrc : '/assets/banners/desktop/' + base + '-banner.webp'}">
+
+        <!-- Tablet: 768px to 1024px -->
+        <source th:media="'(min-width: 768px)'"
+                th:srcset="${tabletSrc != null ? tabletSrc : '/assets/banners/tablet/' + base + '-banner.webp'}">
+
+        <!-- Mobile: < 768px (default/fallback) -->
+        <img th:src="${mobileSrc != null ? mobileSrc : '/assets/banners/mobile/' + base + '-banner.webp'}"
+             th:alt="${alt != null ? alt : 'Jesta Tech Solutions'}"
+             class="page-banner hero-banner-img"
+             loading="eager">
+    </picture>
+
+    <!-- Scroll indicator for hero sections -->
+    <div class="scroll-indicator">
+        <i class="fas fa-chevron-down"></i>
+    </div>
+</section>

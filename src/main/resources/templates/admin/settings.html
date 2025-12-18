@@ -3,6 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/jts-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/jts-32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicons/jts-48.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicons/jts-64.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicons/jts-96.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="/favicons/jts-128.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/jts-192.png">
+    <link rel="icon" type="image/png" sizes="256x256" href="/favicons/jts-256.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicons/jts-512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon-180.png">
+    <!-- Fallback -->
+    <link rel="icon" type="image/png" href="/jts.png" />
+
     <title>Settings - Jesta Tech Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -100,16 +115,16 @@
                 <i class="fas fa-bell" style="font-size: 1.3rem; color: #1f2937; cursor: pointer; transition: 0.3s;" onmouseover="this.style.color='#2563eb'" onmouseout="this.style.color='#1f2937'" title="Notifications"></i>
                 <i class="fas fa-cog" onclick="window.location.href='/admin/settings'" style="font-size: 1.3rem; color: #2563eb; cursor: pointer; transition: 0.3s;" onmouseover="this.style.transform='rotate(90deg)'" onmouseout="this.style.transform='rotate(0deg)'" title="Settings"></i>
                 <div class="user-profile" id="userProfileBtn">
-                    <div class="user-avatar" id="userAvatar">AD</div>
+                    <div class="user-avatar" id="userAvatar">U</div>
                     <div class="user-info">
-                        <h4 id="userName">Admin User</h4>
-                        <p id="userRole">Administrator</p>
+                        <h4 id="userName">User</h4>
+                        <p id="userRole">Role</p>
                     </div>
                     <i class="fas fa-chevron-down"></i>
                     <div class="profile-dropdown" id="profileDropdown">
                         <div class="dropdown-header">
-                            <h4 id="dropdownUserName">Admin User</h4>
-                            <p id="dropdownUserEmail">admin@admin.com</p>
+                            <h4 id="dropdownUserName">User</h4>
+                            <p id="dropdownUserEmail">user@example.com</p>
                         </div>
                         <ul class="dropdown-menu">
                             <li>
@@ -173,37 +188,6 @@
                         </div>
                     </div>
 
-                    <div class="form-section">
-                        <h3>Address</h3>
-                        <div class="form-group">
-                            <label>Street Address</label>
-                            <input type="text" placeholder="Enter street address">
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>City</label>
-                                <input type="text" placeholder="Enter city">
-                            </div>
-                            <div class="form-group">
-                                <label>State</label>
-                                <input type="text" placeholder="Enter state">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Country</label>
-                                <select>
-                                    <option>India</option>
-                                    <option>United States</option>
-                                    <option>United Kingdom</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Postal Code</label>
-                                <input type="text" placeholder="Enter postal code">
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="form-section">
                         <h3>Preferences</h3>
@@ -214,26 +198,6 @@
                             </div>
                             <label class="toggle-switch">
                                 <input type="checkbox" checked>
-                                <span class="slider"></span>
-                            </label>
-                        </div>
-                        <div class="setting-item">
-                            <div>
-                                <strong>Two-Factor Authentication</strong>
-                                <p style="font-size: 0.85rem; color: #6b7280; margin-top: 3px;">Add an extra layer of security to your account</p>
-                            </div>
-                            <label class="toggle-switch">
-                                <input type="checkbox">
-                                <span class="slider"></span>
-                            </label>
-                        </div>
-                        <div class="setting-item">
-                            <div>
-                                <strong>Dark Mode</strong>
-                                <p style="font-size: 0.85rem; color: #6b7280; margin-top: 3px;">Switch to dark theme for better visibility</p>
-                            </div>
-                            <label class="toggle-switch">
-                                <input type="checkbox">
                                 <span class="slider"></span>
                             </label>
                         </div>
@@ -524,26 +488,9 @@
                 roleSelect.value = currentSettings.role;
             }
 
-            // Address fields
-            const streetInput = document.querySelector('input[placeholder="Enter street address"]');
-            const cityInput = document.querySelector('input[placeholder="Enter city"]');
-            const stateInput = document.querySelector('input[placeholder="Enter state"]');
-            const postalCodeInput = document.querySelector('input[placeholder="Enter postal code"]');
-            const countrySelect = document.querySelectorAll('select')[1];
-
-            if (streetInput) streetInput.value = currentSettings.street || '';
-            if (cityInput) cityInput.value = currentSettings.city || '';
-            if (stateInput) stateInput.value = currentSettings.state || '';
-            if (postalCodeInput) postalCodeInput.value = currentSettings.postalCode || '';
-            if (countrySelect && currentSettings.country) {
-                countrySelect.value = currentSettings.country;
-            }
-
             // Toggle switches
             const toggles = document.querySelectorAll('.toggle-switch input[type="checkbox"]');
             if (toggles[0]) toggles[0].checked = currentSettings.emailNotifications !== false;
-            if (toggles[1]) toggles[1].checked = currentSettings.twoFactorEnabled === true;
-            if (toggles[2]) toggles[2].checked = currentSettings.theme === 'dark';
 
             // Company fields
             const companyNameInput = document.getElementById('companyName');
@@ -630,19 +577,8 @@
             const toggles = document.querySelectorAll('.toggle-switch input[type="checkbox"]');
             toggles.forEach((toggle, index) => {
                 toggle.addEventListener('change', function() {
-                    const labels = ['Email Notifications', 'Two-Factor Authentication', 'Dark Mode'];
+                    const labels = ['Email Notifications'];
                     console.log(`${labels[index]} ${this.checked ? 'enabled' : 'disabled'}`);
-
-                    // Apply dark mode immediately
-                    if (index === 2) {
-                        if (this.checked) {
-                            document.body.style.filter = 'invert(0.9) hue-rotate(180deg)';
-                            showToast('Dark mode enabled', 'success');
-                        } else {
-                            document.body.style.filter = 'none';
-                            showToast('Dark mode disabled', 'success');
-                        }
-                    }
                 });
             });
         }
@@ -655,12 +591,6 @@
             const phoneInput = document.querySelector('input[type="tel"]');
             const roleSelect = document.querySelector('select');
 
-            const streetInput = document.querySelector('input[placeholder="Enter street address"]');
-            const cityInput = document.querySelector('input[placeholder="Enter city"]');
-            const stateInput = document.querySelector('input[placeholder="Enter state"]');
-            const postalCodeInput = document.querySelector('input[placeholder="Enter postal code"]');
-            const countrySelect = document.querySelectorAll('select')[1];
-
             const toggles = document.querySelectorAll('.toggle-switch input[type="checkbox"]');
 
             const updateData = {
@@ -669,14 +599,7 @@
                 email: emailInput?.value || '',
                 phone: phoneInput?.value || '',
                 role: roleSelect?.value || '',
-                street: streetInput?.value || '',
-                city: cityInput?.value || '',
-                state: stateInput?.value || '',
-                postalCode: postalCodeInput?.value || '',
-                country: countrySelect?.value || '',
-                emailNotifications: toggles[0]?.checked || false,
-                twoFactorEnabled: toggles[1]?.checked || false,
-                theme: toggles[2]?.checked ? 'dark' : 'light'
+                emailNotifications: toggles[0]?.checked || false
             };
 
             try {

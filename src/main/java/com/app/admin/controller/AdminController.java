@@ -1,6 +1,9 @@
 package com.app.admin.controller;
 
+import com.app.entity.User;
+import com.app.service.UserService;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,16 +11,23 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping
     public String adminHome(HttpSession session) {
+        System.out.println("🔐 [AdminController] /admin endpoint requested");
         if (session.getAttribute("adminUser") == null) {
+            System.out.println("❌ No admin session found - Redirecting to /admin/login");
             return "redirect:/admin/login";
         }
+        System.out.println("✅ Admin session exists - Redirecting to /admin/dashboard");
         return "redirect:/admin/dashboard";
     }
 
@@ -109,28 +119,68 @@ public class AdminController {
                               @RequestParam String password,
                               Model model,
                               HttpSession session) {
-        // Support both email and username fields from different forms
-        String loginId = email != null ? email : username;
+        try {
+            // Support both email and username fields from different forms
+            String loginId = email != null ? email : username;
 
-        // Simple authentication logic - you can enhance this later
-        // For now, we'll use basic credentials check
-        if (loginId != null && password != null && !loginId.isEmpty() && !password.isEmpty()) {
-            // You can add more sophisticated authentication here
-            // For example: checking against database
-            // For now accepting admin@admin.com or admin with password: admin
-            if (("admin@admin.com".equals(loginId) || "admin".equals(loginId)) && "admin".equals(password)) {
-                // Create user session
-                Map<String, String> adminUser = new HashMap<>();
-                adminUser.put("username", "Admin User");
-                adminUser.put("email", "admin@admin.com");
-                adminUser.put("role", "Administrator");
-                session.setAttribute("adminUser", adminUser);
-                return "redirect:/admin/dashboard";
+            // Database authentication with fallback to default admin
+            if (loginId != null && password != null && !loginId.isEmpty() && !password.isEmpty()) {
+
+                // Fallback to default admin credentials first (simpler approach)
+                if (("admin@admin.com".equals(loginId) || "admin".equals(loginId)) && "admin".equals(password)) {
+                    Map<String, String> adminUser = new HashMap<>();
+                    adminUser.put("username", "Admin User");
+                    adminUser.put("email", "admin@admin.com");
+                    adminUser.put("role", "ADMIN");
+                    adminUser.put("userId", "0");
+                    session.setAttribute("adminUser", adminUser);
+                    return "redirect:/admin/dashboard";
+                }
+
+                // Try database authentication
+                try {
+                    Optional<User> authenticatedUser = userService.authenticateUser(loginId, password);
+
+                    // If not found by username, try by email
+                    if (authenticatedUser.isEmpty()) {
+                        Optional<User> userByEmail = userService.getUserByEmail(loginId);
+                        if (userByEmail.isPresent() && userService.verifyPassword(password, userByEmail.get().getPassword())) {
+                            authenticatedUser = userByEmail;
+                        }
+                    }
+
+                    if (authenticatedUser.isPresent()) {
+                        User user = authenticatedUser.get();
+
+
+                        // Create user session for database user
+                        Map<String, String> adminUser = new HashMap<>();
+                        adminUser.put("username", user.getUsername());
+                        adminUser.put("email", user.getEmail());
+                        adminUser.put("role", user.getRole());
+                        adminUser.put("userId", user.getId().toString());
+                        session.setAttribute("adminUser", adminUser);
+                        return "redirect:/admin/dashboard";
+                    }
+                } catch (Exception dbError) {
+                    // Log database error but continue to fallback
+                    System.err.println("Database authentication error: " + dbError.getMessage());
+                    dbError.printStackTrace();
+                }
             }
+
+            model.addAttribute("error", "Invalid credentials");
+            return "admin/login page";
+
+        } catch (Exception e) {
+            // Catch any unexpected errors
+            System.err.println("Login process error: " + e.getMessage());
+            e.printStackTrace();
+            model.addAttribute("error", "Login system error. Please try again or contact support.");
+            return "admin/login page";
         }
-        model.addAttribute("error", "Invalid credentials");
-        return "admin/login page";
     }
+
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {

@@ -7,9 +7,18 @@
     <meta name="robots" content="noindex, nofollow" />
 
     <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/jts-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/jts-32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicons/jts-48.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicons/jts-64.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicons/jts-96.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="/favicons/jts-128.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/jts-192.png">
+    <link rel="icon" type="image/png" sizes="256x256" href="/favicons/jts-256.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicons/jts-512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon-180.png">
+    <!-- Fallback -->
     <link rel="icon" type="image/png" href="/jts.png" />
-    <link rel="shortcut icon" href="/jts.png" />
-    <link rel="apple-touch-icon" href="/jts.png" />
 
     <title>Admin Panel - Jesta Tech Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -824,18 +833,18 @@
                     <i class="fas fa-cog"></i>
                 </div>
                 <div class="user-profile" id="userProfileBtn">
-                    <div class="user-avatar" id="userAvatar">AD</div>
+                    <div class="user-avatar" id="userAvatar">U</div>
                     <div class="user-info">
-                        <h4 id="userName">Admin User</h4>
-                        <p id="userRole">Administrator</p>
+                        <h4 id="userName">User</h4>
+                        <p id="userRole">Role</p>
                     </div>
                     <i class="fas fa-chevron-down"></i>
 
                     <!-- Profile Dropdown -->
                     <div class="profile-dropdown" id="profileDropdown">
                         <div class="dropdown-header">
-                            <h4 id="dropdownUserName">Admin User</h4>
-                            <p id="dropdownUserEmail">admin@admin.com</p>
+                            <h4 id="dropdownUserName">User</h4>
+                            <p id="dropdownUserEmail">user@example.com</p>
                         </div>
                         <ul class="dropdown-menu">
                             <li>
@@ -861,11 +870,11 @@
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-info">
-                        <h3>2,547</h3>
+                        <h3 id="totalUsers">0</h3>
                         <p>Total Users</p>
                         <div class="stat-change positive">
                             <i class="fas fa-arrow-up"></i>
-                            <span>12.5% from last month</span>
+                            <span id="usersChange">-</span>
                         </div>
                     </div>
                     <div class="stat-icon blue">
@@ -875,11 +884,11 @@
 
                 <div class="stat-card">
                     <div class="stat-info">
-                        <h3>₹4.2L</h3>
+                        <h3 id="totalRevenue">₹0</h3>
                         <p>Total Revenue</p>
                         <div class="stat-change positive">
                             <i class="fas fa-arrow-up"></i>
-                            <span>8.2% from last month</span>
+                            <span id="revenueChange">-</span>
                         </div>
                     </div>
                     <div class="stat-icon green">
@@ -889,11 +898,11 @@
 
                 <div class="stat-card">
                     <div class="stat-info">
-                        <h3>156</h3>
+                        <h3 id="activeProjects">0</h3>
                         <p>Active Projects</p>
                         <div class="stat-change positive">
                             <i class="fas fa-arrow-up"></i>
-                            <span>23 new this week</span>
+                            <span id="projectsChange">-</span>
                         </div>
                     </div>
                     <div class="stat-icon orange">
@@ -903,11 +912,11 @@
 
                 <div class="stat-card">
                     <div class="stat-info">
-                        <h3>89.5%</h3>
+                        <h3 id="successRate">0%</h3>
                         <p>Success Rate</p>
-                        <div class="stat-change negative">
-                            <i class="fas fa-arrow-down"></i>
-                            <span>2.1% from last month</span>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span id="successRateChange">-</span>
                         </div>
                     </div>
                     <div class="stat-icon red">
@@ -937,46 +946,11 @@
                     <div class="card-header">
                         <h2>Recent Activity</h2>
                     </div>
-                    <ul class="activity-list">
-                        <li class="activity-item">
-                            <div class="activity-icon blue">
-                                <i class="fas fa-user-plus"></i>
-                            </div>
-                            <div class="activity-content">
-                                <h4>New User Registered</h4>
-                                <p>Rajesh Kumar joined the platform</p>
-                                <p style="font-size: 0.75rem; margin-top: 5px;">2 hours ago</p>
-                            </div>
-                        </li>
-                        <li class="activity-item">
-                            <div class="activity-icon green">
-                                <i class="fas fa-check-circle"></i>
-                            </div>
-                            <div class="activity-content">
-                                <h4>Project Completed</h4>
-                                <p>E-commerce website delivered</p>
-                                <p style="font-size: 0.75rem; margin-top: 5px;">5 hours ago</p>
-                            </div>
-                        </li>
-                        <li class="activity-item">
-                            <div class="activity-icon orange">
-                                <i class="fas fa-exclamation-triangle"></i>
-                            </div>
-                            <div class="activity-content">
-                                <h4>Payment Pending</h4>
-                                <p>Invoice #1245 requires attention</p>
-                                <p style="font-size: 0.75rem; margin-top: 5px;">1 day ago</p>
-                            </div>
-                        </li>
-                        <li class="activity-item">
-                            <div class="activity-icon blue">
-                                <i class="fas fa-file-alt"></i>
-                            </div>
-                            <div class="activity-content">
-                                <h4>New Report Generated</h4>
-                                <p>Monthly performance summary</p>
-                                <p style="font-size: 0.75rem; margin-top: 5px;">2 days ago</p>
-                            </div>
+                    <ul class="activity-list" id="activityList">
+                        <!-- Activity items will be dynamically populated here -->
+                        <li class="activity-item" style="text-align: center; padding: 40px 20px; color: #6b7280;">
+                            <i class="fas fa-history" style="font-size: 2.5rem; margin-bottom: 15px; opacity: 0.5;"></i>
+                            <p>No recent activity</p>
                         </li>
                     </ul>
                 </div>
@@ -986,7 +960,7 @@
             <div class="card">
                 <div class="card-header">
                     <h2>Recent Projects</h2>
-                    <button class="action-btn edit">
+                    <button class="action-btn edit" onclick="window.location.href='/admin/projects'">
                         <i class="fas fa-plus"></i> Add New
                     </button>
                 </div>
@@ -1002,60 +976,12 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="recentProjectsTable">
+                            <!-- Projects will be dynamically populated here -->
                             <tr>
-                                <td><strong>E-Commerce Platform</strong></td>
-                                <td>TechMart Solutions</td>
-                                <td>Jan 15, 2025</td>
-                                <td><span class="status-badge active">Active</span></td>
-                                <td>75%</td>
-                                <td>
-                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
-                                    <button class="action-btn delete"><i class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>Mobile App Development</strong></td>
-                                <td>FitLife Wellness</td>
-                                <td>Dec 20, 2024</td>
-                                <td><span class="status-badge active">Active</span></td>
-                                <td>60%</td>
-                                <td>
-                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
-                                    <button class="action-btn delete"><i class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>CRM System Integration</strong></td>
-                                <td>Global Enterprises</td>
-                                <td>Jan 05, 2025</td>
-                                <td><span class="status-badge pending">Pending</span></td>
-                                <td>30%</td>
-                                <td>
-                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
-                                    <button class="action-btn delete"><i class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>Website Redesign</strong></td>
-                                <td>Creative Studios</td>
-                                <td>Nov 10, 2024</td>
-                                <td><span class="status-badge active">Active</span></td>
-                                <td>90%</td>
-                                <td>
-                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
-                                    <button class="action-btn delete"><i class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>SEO Optimization</strong></td>
-                                <td>Digital Marketing Co.</td>
-                                <td>Dec 01, 2024</td>
-                                <td><span class="status-badge inactive">Completed</span></td>
-                                <td>100%</td>
-                                <td>
-                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
-                                    <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                <td colspan="6" style="text-align: center; padding: 40px 20px; color: #6b7280;">
+                                    <i class="fas fa-project-diagram" style="font-size: 2.5rem; margin-bottom: 15px; opacity: 0.5; display: block;"></i>
+                                    <p>No projects found</p>
                                 </td>
                             </tr>
                         </tbody>

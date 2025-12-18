@@ -3,6 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/jts-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/jts-32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicons/jts-48.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicons/jts-64.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicons/jts-96.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="/favicons/jts-128.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/jts-192.png">
+    <link rel="icon" type="image/png" sizes="256x256" href="/favicons/jts-256.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicons/jts-512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon-180.png">
+    <!-- Fallback -->
+    <link rel="icon" type="image/png" href="/jts.png" />
+
     <title>Tasks Management - Jesta Tech Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -714,7 +729,7 @@
         .form-group select:focus,
         .form-group textarea:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
         .form-group textarea {
@@ -812,18 +827,18 @@
                 <i class="fas fa-bell" style="font-size: 1.3rem; color: #1f2937; cursor: pointer;" title="Notifications"></i>
                 <i class="fas fa-cog" onclick="window.location.href='/admin/settings'" style="font-size: 1.3rem; color: #1f2937; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.color='#2563eb'; this.style.transform='rotate(90deg)'" onmouseout="this.style.color='#1f2937'; this.style.transform='rotate(0deg)'" title="Settings"></i>
                 <div class="user-profile" id="userProfileBtn">
-                    <div class="user-avatar" id="userAvatar">AD</div>
+                    <div class="user-avatar" id="userAvatar">U</div>
                     <div class="user-info">
-                        <h4 id="userName">Admin User</h4>
-                        <p id="userRole">Administrator</p>
+                        <h4 id="userName">User</h4>
+                        <p id="userRole">Role</p>
                     </div>
                     <i class="fas fa-chevron-down"></i>
 
                     <!-- Profile Dropdown -->
                     <div class="profile-dropdown" id="profileDropdown">
                         <div class="dropdown-header">
-                            <h4 id="dropdownUserName">Admin User</h4>
-                            <p id="dropdownUserEmail">admin@admin.com</p>
+                            <h4 id="dropdownUserName">User</h4>
+                            <p id="dropdownUserEmail">user@example.com</p>
                         </div>
                         <ul class="dropdown-menu">
                             <li>

@@ -69,15 +69,16 @@
         </div>
     </header>
 
-    <!-- Page Header -->
+    <!-- Page Header with Responsive Banner -->
     <section class="page-header" style="background: none;">
-<!--        <div class="page-header-overlay"></div>-->
-        <!-- Banner image for desktop only -->
-        <img src="/scard.png" alt="Banner" class="desktop-banner-img" style="width:100%;display:block;object-fit:cover;max-height:350px;margin:0 auto;@media (max-width: 991px){display:none;}">
-<!--        <div class="container">-->
-<!--            <h1>Our Services</h1>-->
-<!--            <p>Comprehensive Technology Solutions for Your Business</p>-->
-<!--        </div>-->
+        <!-- Responsive banner component - automatically serves desktop/tablet/mobile variants -->
+        <div th:replace="~{public/fragments/banner :: page-banner(
+            base='services',
+            desktopSrc=@{/SERVICE PAGE.png},
+            tabletSrc=@{/assets/banners/tablet/tab services.png},
+            mobileSrc=@{/SERVICE PAGE.png},
+            alt='Jesta Tech Solutions – Professional IT Services and Solutions'
+        )}"></div>
     </section>
 
     <!-- Services Detail Section -->
@@ -88,7 +89,6 @@
                 <div class="service-detail-card fade-in-scroll">
                     <img src="/images/services/webs.webp" th:src="@{/images/services/webs.webp}"
                          srcset="/images/services/webs.webp 1600w, /images/services/webs.webp 1024w, /images/services/webs.webp 480w"
-                         th:srcset="@{/images/services/webs.webp 1600w, /images/services/webs.webp 1024w, /images/services/webs.webp 480w}"
                          sizes="(min-width:1200px) 800px, (min-width:768px) 520px, 100vw"
                          alt="Website Development Service" class="service-detail-image">
                     <h3>Website Development</h3>
@@ -107,7 +107,6 @@
                 <div class="service-detail-card fade-in-scroll">
                     <img src="/images/services/adns.webp" th:src="@{/images/services/adns.webp}"
                          srcset="/images/services/adns.webp 1600w, /images/services/adns.webp 1024w, /images/services/adns.webp 480w"
-                         th:srcset="@{/images/services/adns.webp 1600w, /images/services/adns.webp 1024w, /images/services/adns.webp 480w}"
                          sizes="(min-width:1200px) 800px, (min-width:768px) 520px, 100vw"
                          alt="Android & Native App Development Service" class="service-detail-image">
                     <h3>Android &amp; Native App Development</h3>

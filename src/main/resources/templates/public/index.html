@@ -57,27 +57,13 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-section">
-        <img
-            src="/INDEX.webp"
-            th:src="@{/INDEX.webp}"
-            srcset="/INDEX.webp 1920w, /INDEX.webp 1280w, /INDEX.webp 768w, /INDEX.webp 480w"
-            sizes="(min-width: 1920px) 1920px, (min-width: 1280px) 1280px, (min-width: 768px) 768px, 100vw"
-            alt="Hero Banner - Empowering Digital Innovation"
-            class="hero-background-image"
-            loading="eager"
-        >
-<!--        <div class="hero-overlay"></div>-->
-<!--        <div class="hero-content">-->
-<!--&lt;!&ndash;            <div class="hero-buttons fade-in-delay-2">&ndash;&gt;-->
-<!--&lt;!&ndash;                <a href="/contact" class="btn btn-primary">Get a Quote</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                <a href="/portfolio" class="btn btn-secondary">Explore Our Work</a>&ndash;&gt;-->
-<!--            </div>-->
-        </div>
-        <div class="scroll-indicator">
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
+    <section th:replace="public/fragments/banner :: hero-banner(
+        base='home',
+        desktopSrc=@{/INDEX.webp},
+        tabletSrc=@{/assets/banners/tablet/tab home.png},
+        mobileSrc=@{/INDEX.webp},
+        alt='Empowering Digital Innovation at Jesta Tech Solutions'
+    )"></section>
 
     <!-- Company Intro Section -->
     <section class="intro-section">
@@ -134,7 +120,7 @@
                 <!-- Website Development -->
                 <div class="service-card">
                     <div class="service-media">
-                        <img src="/WEB.png" th:src="@{/WEB.png}" class="lazy-service" loading="lazy">
+                        <img src="/WEB.png" th:src="@{/WEB.png}" class="lazy-service" loading="lazy" alt="Website Development service banner">
                     </div>
                     <div class="service-body">
                         <h3>Website Development</h3>
@@ -145,7 +131,7 @@
                 <!-- App Development -->
                 <div class="service-card">
                     <div class="service-media">
-                        <img src="/APP.png" th:src="@{/APP.png}" class="lazy-service" loading="lazy">
+                        <img src="/APP.png" th:src="@{/APP.png}" class="lazy-service" loading="lazy" alt="App Development service banner">
                     </div>
                     <div class="service-body">
                         <h3>App Development</h3>
@@ -156,7 +142,7 @@
                 <!-- Hosting Services -->
                 <div class="service-card">
                     <div class="service-media">
-                        <img src="/HOST.png" th:src="@{/HOST.png}" class="lazy-service" loading="lazy">
+                        <img src="/HOST.png" th:src="@{/HOST.png}" class="lazy-service" loading="lazy" alt="Hosting Services banner">
                     </div>
                     <div class="service-body">
                         <h3>Hosting Services</h3>
@@ -167,7 +153,7 @@
                 <!-- Server Maintenance -->
                 <div class="service-card">
                     <div class="service-media">
-                        <img src="/SERVER.png" th:src="@{/SERVER.png}" class="lazy-service" loading="lazy">
+                        <img src="/SERVER.png" th:src="@{/SERVER.png}" class="lazy-service" loading="lazy" alt="Server Maintenance banner">
                     </div>
                     <div class="service-body">
                         <h3>Server Maintenance</h3>
@@ -178,7 +164,7 @@
                 <!-- Social Media Management -->
                 <div class="service-card">
                     <div class="service-media">
-                        <img src="/SM.png" th:src="@{/SM.png}" class="lazy-service" loading="lazy">
+                        <img src="/SM.png" th:src="@{/SM.png}" class="lazy-service" loading="lazy" alt="Social Media Management banner">
                     </div>
                     <div class="service-body">
                         <h3>Social Media Management</h3>
@@ -189,7 +175,7 @@
                 <!-- Digital Marketing & SEO -->
                 <div class="service-card">
                     <div class="service-media">
-                        <img src="/DM.png" th:src="@{/DM.png}" class="lazy-service" loading="lazy">
+                        <img src="/DM.png" th:src="@{/DM.png}" class="lazy-service" loading="lazy" alt="Digital Marketing and SEO banner">
                     </div>
                     <div class="service-body">
                         <h3>Digital Marketing &amp; SEO</h3>

@@ -40,21 +40,7 @@ public class Settings {
     @Column(name = "profile_picture")
     private String profilePicture;
 
-    // Address
-    @Column
-    private String street;
 
-    @Column
-    private String city;
-
-    @Column
-    private String state;
-
-    @Column
-    private String country;
-
-    @Column(name = "postal_code")
-    private String postalCode;
 
     // Notification Settings
     @Column(name = "email_notifications")
@@ -70,8 +56,6 @@ public class Settings {
     private Boolean weeklyReport = true;
 
     // Security Settings
-    @Column(name = "two_factor_enabled")
-    private Boolean twoFactorEnabled = false;
 
     @Column(name = "session_timeout")
     private Integer sessionTimeout = 30; // minutes
@@ -80,8 +64,6 @@ public class Settings {
     private LocalDateTime passwordChangedAt;
 
     // Appearance Settings
-    @Column(name = "theme")
-    private String theme = "light"; // light, dark, auto
 
     @Column
     private String language = "en";

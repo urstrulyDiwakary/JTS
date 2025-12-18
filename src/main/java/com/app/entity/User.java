@@ -28,7 +28,14 @@ public class User {
     private String password;
 
     @Column(nullable = false)
-    private String role; // USER, ADMIN
+    private String role; // USER, ADMIN, MANAGER, DEVELOPER, DESIGNER, CLIENT
+
+    private String phone;
+
+    private String department;
+
+    private String status = "Active"; // Active, Inactive
+
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

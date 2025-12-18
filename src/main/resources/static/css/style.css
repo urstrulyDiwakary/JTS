@@ -290,7 +290,7 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url('../hero.png') center center / cover no-repeat; /* relative path to resolve hero.png in static/ */
+    /* Removed background image to rely on responsive banner component */
     margin-top: 70px;
     overflow: hidden;
 }
@@ -518,8 +518,7 @@ ul {
     /* increased height to leave room for final service images */
     height: 320px;
     overflow: hidden;
-    /* fallback background in case <img> fails (local asset) */
-    background-image: url('../hero.png');
+    /* Removed fallback background image */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -3077,3 +3076,110 @@ ul {
     }
 }
 
+/* Banner component styles */
+.banner {
+  position: relative;
+  width: 100%;
+  /* Maintain stacking context for overlays if needed */
+}
+.banner-picture {
+  display: block;
+  width: 100%;
+}
+.banner-image {
+  display: block;
+  width: 100%;
+  height: auto; /* maintain aspect ratio */
+  object-fit: cover; /* ensure nice fill when placed in constrained containers */
+}
+
+/* === DESKTOP PAGE BANNER (Uniform size) === */
+.desktop-banner-img {
+    width: 1901px; /* exact width as requested */
+    height: 327px; /* exact height as requested */
+    display: block;
+    margin: 0 auto;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Hide desktop banner on screens <= 1024px */
+@media (max-width: 1024px) {
+    .desktop-banner-img {
+        display: none !important;
+    }
+}
+
+/* ========================================
+   RESPONSIVE PAGE BANNER STYLES (NEW)
+   Picture element with desktop/tablet/mobile variants
+   ======================================== */
+
+/* Banner container wrapper */
+.banner-container {
+    width: 100%;
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Main page banner image - responsive and fluid */
+.page-banner {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Hero banner variant for homepage with absolute positioning support */
+.hero-banner-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+}
+
+/* Hero section with banner support */
+.hero-section .banner-container,
+.hero-section picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* Ensure content stays above banner in hero sections */
+.hero-section .hero-content,
+.hero-section .scroll-indicator {
+    position: relative;
+    z-index: 2;
+}
+
+/* Responsive optimizations */
+@media (min-width: 1025px) {
+    /* Desktop: Optimize for large screens */
+    .page-banner {
+        max-height: 600px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    /* Tablet: Medium screen optimization */
+    .page-banner {
+        max-height: 400px;
+    }
+}
+
+@media (max-width: 767px) {
+    /* Mobile: Optimize for small screens */
+    .page-banner {
+        max-height: 300px;
+    }
+}
