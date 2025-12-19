@@ -631,13 +631,42 @@ ul {
     color: var(--light-color);
 }
 
+/* Banner container within page header */
+.page-header .banner-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.page-header .banner-container picture {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.page-header .page-banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
 .page-header-overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.page-header .container {
+    position: relative;
+    z-index: 2;
 }
 
 .page-header h1 {
@@ -1572,6 +1601,7 @@ ul {
     color: var(--text-secondary);
     line-height: 1.8;
     font-size: 16px;
+    text-align: justify;
 }
 
 .legal-section {
@@ -1602,6 +1632,7 @@ ul {
     color: var(--text-secondary);
     line-height: 1.8;
     margin-bottom: 15px;
+    text-align: justify;
 }
 
 .contact-list {
@@ -1794,10 +1825,12 @@ ul {
     background: var(--light-color);
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
     z-index: 1100;
-    overflow-y: auto;
-    padding-top: 0;
+    overflow: hidden;
+    padding: 0;
     transform: translateX(100%);
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    flex-direction: column;
 }
 
 .side-menu.active {
@@ -1811,6 +1844,7 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .side-menu-header h3 {
@@ -1832,8 +1866,20 @@ ul {
     transform: rotate(90deg);
 }
 
+/* Scrollable content wrapper - contains both links and social */
+.side-menu-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    min-height: 0;
+}
+
 .side-menu-links {
     padding: 20px 0;
+    flex-shrink: 0;
 }
 
 .side-menu-links li {

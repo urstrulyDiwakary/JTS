@@ -332,6 +332,7 @@ function initializeCounters() {
 
 function animateCounter(counter, speed) {
     const target = parseInt(counter.getAttribute('data-target'));
+    const suffix = counter.getAttribute('data-suffix') || '+';
     const increment = target / speed;
     let current = 0;
     
@@ -339,10 +340,10 @@ function animateCounter(counter, speed) {
         current += increment;
         
         if (current < target) {
-            counter.textContent = Math.ceil(current) + '+';
+            counter.textContent = Math.ceil(current) + suffix;
             setTimeout(updateCounter, 1);
         } else {
-            counter.textContent = target + '+';
+            counter.textContent = target + suffix;
         }
     };
     
@@ -423,9 +424,25 @@ function initializeContactForm() {
     
     if (!contactForm) return;
     
+    // Check if already initialized to prevent duplicate listeners
+    if (contactForm.dataset.initialized === 'true') {
+        console.log('Contact form already initialized, skipping...');
+        return;
+    }
+
+    // Mark as initialized
+    contactForm.dataset.initialized = 'true';
+
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
+        // Prevent double submission
+        const submitBtn = contactForm.querySelector('.submit-btn');
+        if (submitBtn.disabled) {
+            console.log('Form is already being submitted, ignoring...');
+            return;
+        }
+
         // Get form values
         const name = document.getElementById('name').value.trim();
         const email = document.getElementById('email').value.trim();
@@ -434,17 +451,19 @@ function initializeContactForm() {
         const service = document.getElementById('service').value;
         const message = document.getElementById('message').value.trim();
 
-        // Basic validation
-        if (!name || !email || !subject || !message) {
-            showFormMessage('Please fill in all required fields.', 'error');
+        // Basic validation - only name, phone, and service are required
+        if (!name || !phone || !service) {
+            showFormMessage('Please fill in all required fields (Name, Phone, and Service).', 'error');
             return;
         }
         
-        // Email validation
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(email)) {
-            showFormMessage('Please enter a valid email address.', 'error');
-            return;
+        // Email validation (only if email is provided)
+        if (email) {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                showFormMessage('Please enter a valid email address.', 'error');
+                return;
+            }
         }
         
         // Prepare form data
@@ -457,8 +476,7 @@ function initializeContactForm() {
             message: message
         };
 
-        // Update submit button
-        const submitBtn = contactForm.querySelector('.submit-btn');
+        // Update submit button and disable immediately
         const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitBtn.disabled = true;

@@ -1,9 +1,11 @@
-User-agent: *
-Sitemap: https://jestatechsolutions.in/sitemap.xml
+# Robots.txt for Jesta Tech Solutions - AI Crawler Friendly
+# Last updated: 2025-12-19
 
+# General crawlers (Google, Bing, etc.)
+User-agent: *
 Disallow: /api/
 Disallow: /admin/
-
+Disallow: /uploads/
 Allow: /terms
 Allow: /privacy
 Allow: /contact
@@ -11,4 +13,58 @@ Allow: /about
 Allow: /portfolio
 Allow: /services
 Allow: /
+Crawl-delay: 0
+
+# Google-specific
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /uploads/
+
+# Google Image Bot
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /PORTFOLIO/
+Allow: /*.webp$
+Allow: /*.png$
+Allow: /*.jpg$
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /uploads/
+
+# AI Crawlers - Allow for enhanced visibility
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Omgilibot
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# Sitemap
+Sitemap: https://jestatechsolutions.in/sitemap.xml
 

@@ -51,5 +51,14 @@ public class PublicController {
         model.addAttribute("pageTitle", "Terms & Conditions");
         return "public/terms";
     }
+
+    /**
+     * Handle Chrome DevTools and browser well-known paths
+     * Returns 204 No Content to silently handle these requests
+     */
+    @GetMapping("/.well-known/**")
+    public org.springframework.http.ResponseEntity<Void> handleWellKnown() {
+        return org.springframework.http.ResponseEntity.noContent().build();
+    }
 }
 

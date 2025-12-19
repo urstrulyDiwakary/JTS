@@ -164,7 +164,8 @@ ul {
     position: absolute;
     left: 56px;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%) scale(1.4) !important;
+    transform-origin: center center;
     height: 48px !important;
     width: auto;
     max-width: 48px;
@@ -237,6 +238,8 @@ ul {
     object-fit: contain;
     filter: drop-shadow(0 2px 8px rgba(0,0,0,0.1));
     flex-shrink: 0;
+    transform: scale(1.5) !important;
+    transform-origin: center center;
 }
 
 .logo h1 {
@@ -730,13 +733,42 @@ ul {
     color: var(--light-color);
 }
 
+/* Banner container within page header */
+.page-header .banner-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.page-header .banner-container picture {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.page-header .page-banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
 .page-header-overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.page-header .container {
+    position: relative;
+    z-index: 2;
 }
 
 .page-header h1 {
@@ -755,7 +787,7 @@ ul {
 
 /* === MISSION VISION VALUES === */
 .mvv-section {
-    padding: 100px 0;
+    padding: 100px 0 70px 0;
     background-color: var(--light-color);
 }
 
@@ -815,20 +847,29 @@ ul {
 
 /* === STORY SECTION === */
 .story-section {
-    padding: 100px 0;
+    padding: 60px 0 80px 0;
     background-color: var(--bg-light);
 }
 
 .story-content {
-    max-width: none;
+    max-width: 1400px;
     margin: 0 auto;
+    text-align: justify;
+    padding: 0 60px;
 }
 
 .story-content p {
-    font-size: 18px;
+    font-size: 17px;
     color: var(--text-secondary);
-    line-height: 1.8;
-    margin-bottom: 20px;
+    line-height: 1.9;
+    margin-bottom: 24px;
+    text-align: justify;
+    word-spacing: 0.5px;
+    letter-spacing: 0.2px;
+}
+
+.story-content p:last-child {
+    margin-bottom: 0;
 }
 
 /* === TIMELINE SECTION === */
@@ -950,6 +991,20 @@ ul {
     overflow: hidden;
 }
 
+.team-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    transition: transform 0.3s ease;
+    background-color: var(--bg-light);
+}
+
+.team-card:hover .team-photo img {
+    transform: scale(1.05);
+}
+
 .photo-placeholder {
     width: 100%;
     height: 100%;
@@ -966,7 +1021,7 @@ ul {
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    background: linear-gradient(to top, rgba(20, 30, 48, 0.95), transparent);
     padding: 30px 20px;
     color: var(--light-color);
     transform: translateY(100%);
@@ -984,7 +1039,7 @@ ul {
 
 .team-overlay p {
     font-size: 14px;
-    margin-bottom: 15px;
+    margin-bottom: 0;
     color: rgba(255, 255, 255, 0.8);
 }
 
@@ -1709,6 +1764,7 @@ ul {
     color: var(--text-secondary);
     line-height: 1.8;
     font-size: 16px;
+    text-align: justify;
 }
 
 .legal-section {
@@ -1739,6 +1795,7 @@ ul {
     color: var(--text-secondary);
     line-height: 1.8;
     margin-bottom: 15px;
+    text-align: justify;
 }
 
 .contact-list {
@@ -2220,15 +2277,23 @@ ul {
     z-index: 1; /* Above content */
 }
 
-/* Scrollable content wrapper */
+/* Scrollable content wrapper - contains both links and social */
+.side-menu-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    min-height: 0; /* Important for flex child with overflow */
+}
+
+/* Navigation links */
 .side-menu-links {
     padding: 8px 0; /* Reduced from 16px */
     margin: 0; /* Remove any default margin */
     list-style: none;
-    overflow-x: hidden; /* Prevent horizontal scroll */
-    overflow-y: auto; /* Allow vertical scrolling */
-    flex: 1; /* Take remaining height */
-    -webkit-overflow-scrolling: touch; /* Smooth iOS scrolling */
+    flex-shrink: 0; /* Don't shrink the links */
 }
 
 /* Custom scrollbar for navigation links */
@@ -2339,9 +2404,10 @@ ul {
 /* === SOCIAL MEDIA SECTION IN SIDE MENU === */
 .side-menu-social {
     padding: 18px 12px 20px;
-    margin-top: auto; /* Push to bottom of menu */
+    margin-top: 8px; /* Small spacing from links */
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     background: rgba(13, 110, 253, 0.03);
+    flex-shrink: 0; /* Don't allow social section to shrink */
 }
 
 .side-menu-social h4 {
@@ -2583,6 +2649,12 @@ ul {
     .side-menu-overlay {
         display: none !important;
     }
+
+    /* Story section desktop optimization - use more screen width */
+    .story-content {
+        max-width: 1400px;
+        padding: 0 80px;
+    }
 }
 
 /* === TABLET VIEW (768px - 1024px) === */
@@ -2658,6 +2730,31 @@ ul {
     
     body {
         padding-bottom: 75px;
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .team-photo {
+        height: 350px; /* Maintain standard height for tablet */
+    }
+
+    /* Make team overlay always visible on tablet */
+    .team-overlay {
+        transform: translateY(0);
+        background: linear-gradient(to top, rgba(20, 30, 48, 0.95), rgba(20, 30, 48, 0.75));
+    }
+
+    .team-card:hover .team-overlay {
+        transform: translateY(0);
+    }
+
+    /* Story section tablet optimization */
+    .story-content {
+        max-width: 100%;
+        padding: 0 40px;
     }
 
     /* Ensure all sections have proper spacing */
@@ -2773,6 +2870,20 @@ ul {
         grid-template-columns: 1fr;
     }
     
+    .team-photo {
+        height: 400px; /* Slightly taller for mobile single column layout */
+    }
+
+    /* Make team overlay always visible on mobile */
+    .team-overlay {
+        transform: translateY(0);
+        background: linear-gradient(to top, rgba(20, 30, 48, 0.95), rgba(20, 30, 48, 0.75));
+    }
+
+    .team-card:hover .team-overlay {
+        transform: translateY(0);
+    }
+
     .footer-content {
         grid-template-columns: 1fr;
         gap: 30px;
@@ -2880,6 +2991,29 @@ ul {
         padding: 50px 0;
     }
 
+    /* MVV section mobile optimization */
+    .mvv-section {
+        padding: 60px 0 40px 0;
+    }
+
+    /* Story section mobile optimization */
+    .story-section {
+        padding: 40px 0 60px 0;
+    }
+
+    .story-content {
+        max-width: 100%;
+        padding: 0 20px;
+        text-align: left;
+    }
+
+    .story-content p {
+        font-size: 15px;
+        line-height: 1.8;
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
     /* Ensure last section has spacing */
     section:last-of-type {
         margin-bottom: 20px;
@@ -2912,6 +3046,8 @@ ul {
         width: auto;
         max-width: 42px;
         left: 52px;
+        transform: translateY(-50%) scale(1.35) !important;
+        transform-origin: center center;
     }
 
     .mobile-logo h1 {
@@ -2948,7 +3084,7 @@ ul {
     .page-header {
         margin-top: 60px;
     }
-    
+
     .hero-title {
         font-size: 28px;
     }
@@ -3004,6 +3140,30 @@ ul {
     
     .mvv-grid {
         grid-template-columns: 1fr;
+    }
+
+    .team-photo {
+        height: 350px; /* Maintain standard height on small mobile */
+    }
+
+    /* MVV section for small mobile */
+    .mvv-section {
+        padding: 50px 0 30px 0;
+    }
+
+    /* Story section for small mobile */
+    .story-section {
+        padding: 30px 0 50px 0;
+    }
+
+    .story-content {
+        padding: 0 16px;
+    }
+
+    .story-content p {
+        font-size: 14px;
+        line-height: 1.75;
+        margin-bottom: 18px;
     }
 
     .footer-content {
@@ -3171,15 +3331,8 @@ ul {
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-    /* Tablet: Medium screen optimization */
+    /* Tablet: Balance between mobile and desktop */
     .page-banner {
         max-height: 400px;
-    }
-}
-
-@media (max-width: 767px) {
-    /* Mobile: Optimize for small screens */
-    .page-banner {
-        max-height: 300px;
     }
 }

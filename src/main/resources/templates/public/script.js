@@ -192,6 +192,7 @@ function initializeCounters() {
 
 function animateCounter(counter, speed) {
     const target = parseInt(counter.getAttribute('data-target'));
+    const suffix = counter.getAttribute('data-suffix') || '+';
     const increment = target / speed;
     let current = 0;
     
@@ -199,10 +200,10 @@ function animateCounter(counter, speed) {
         current += increment;
         
         if (current < target) {
-            counter.textContent = Math.ceil(current) + '+';
+            counter.textContent = Math.ceil(current) + suffix;
             setTimeout(updateCounter, 1);
         } else {
-            counter.textContent = target + '+';
+            counter.textContent = target + suffix;
         }
     };
     

@@ -1,14 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Jesta Tech Solutions - Empowering Digital Innovation. Your Partner in Tech Growth. Expert Website Development, App Development, Hosting, SEO & Digital Marketing Services.">
     <meta name="keywords" content="web development, app development, hosting services, server maintenance, digital marketing, SEO, social media management, tech solutions">
     <meta name="author" content="Jesta Tech Solutions">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/assets/favicon.png">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/jts-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/jts-32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicons/jts-48.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicons/jts-64.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicons/jts-96.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="/favicons/jts-128.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/jts-192.png">
+    <link rel="icon" type="image/png" sizes="256x256" href="/favicons/jts-256.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicons/jts-512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon-180.png">
+    <link rel="shortcut icon" href="/favicons/jts-32.png">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -57,13 +67,21 @@
     </header>
 
     <!-- Hero Section -->
-    <section th:replace="public/fragments/banner :: hero-banner(
-        base='home',
-        desktopSrc=@{/INDEX.webp},
-        tabletSrc=@{/assets/banners/tablet/tab home.png},
-        mobileSrc=@{/INDEX.webp},
-        alt='Empowering Digital Innovation at Jesta Tech Solutions'
-    )"></section>
+    <section class="hero-section">
+        <picture>
+            <!-- Desktop: >= 1025px -->
+            <source media="(min-width: 1025px)" srcset="/INDEX.webp">
+
+            <!-- Tablet: 768px to 1024px -->
+            <source media="(min-width: 768px)" srcset="/assets/banners/tablet/home.webp">
+
+            <!-- Mobile: < 768px (default/fallback) -->
+            <img src="/assets/banners/mobile/home.webp"
+                 alt="Empowering Digital Innovation at Jesta Tech Solutions"
+                 class="hero-banner"
+                 loading="eager">
+        </picture>
+    </section>
 
     <!-- Company Intro Section -->
     <section class="intro-section">
@@ -120,7 +138,7 @@
                 <!-- Website Development -->
                 <div class="service-card">
                     <div class="service-media">
-                        <img src="/WEB.png" th:src="@{/WEB.png}" class="lazy-service" loading="lazy" alt="Website Development service banner">
+                        <img src="/WEB.png" class="lazy-service" loading="lazy" alt="Website Development service banner">
                     </div>
                     <div class="service-body">
                         <h3>Website Development</h3>
@@ -131,7 +149,7 @@
                 <!-- App Development -->
                 <div class="service-card">
                     <div class="service-media">
-                        <img src="/APP.png" th:src="@{/APP.png}" class="lazy-service" loading="lazy" alt="App Development service banner">
+                        <img src="/APP.png" class="lazy-service" loading="lazy" alt="App Development service banner">
                     </div>
                     <div class="service-body">
                         <h3>App Development</h3>
@@ -142,7 +160,7 @@
                 <!-- Hosting Services -->
                 <div class="service-card">
                     <div class="service-media">
-                        <img src="/HOST.png" th:src="@{/HOST.png}" class="lazy-service" loading="lazy" alt="Hosting Services banner">
+                        <img src="/HOST.png" class="lazy-service" loading="lazy" alt="Hosting Services banner">
                     </div>
                     <div class="service-body">
                         <h3>Hosting Services</h3>
@@ -153,7 +171,7 @@
                 <!-- Server Maintenance -->
                 <div class="service-card">
                     <div class="service-media">
-                        <img src="/SERVER.png" th:src="@{/SERVER.png}" class="lazy-service" loading="lazy" alt="Server Maintenance banner">
+                        <img src="/SERVER.png" class="lazy-service" loading="lazy" alt="Server Maintenance banner">
                     </div>
                     <div class="service-body">
                         <h3>Server Maintenance</h3>
@@ -164,7 +182,7 @@
                 <!-- Social Media Management -->
                 <div class="service-card">
                     <div class="service-media">
-                        <img src="/SM.png" th:src="@{/SM.png}" class="lazy-service" loading="lazy" alt="Social Media Management banner">
+                        <img src="/SM.png" class="lazy-service" loading="lazy" alt="Social Media Management banner">
                     </div>
                     <div class="service-body">
                         <h3>Social Media Management</h3>
@@ -175,7 +193,7 @@
                 <!-- Digital Marketing & SEO -->
                 <div class="service-card">
                     <div class="service-media">
-                        <img src="/DM.png" th:src="@{/DM.png}" class="lazy-service" loading="lazy" alt="Digital Marketing and SEO banner">
+                        <img src="/DM.png" class="lazy-service" loading="lazy" alt="Digital Marketing and SEO banner">
                     </div>
                     <div class="service-body">
                         <h3>Digital Marketing &amp; SEO</h3>
@@ -186,7 +204,7 @@
                 <!-- Video Editing & Poster Design -->
                 <div class="service-card">
                     <div class="service-media">
-                        <img src="/images/services/video edit.webp" th:src="@{/images/services/video edit.webp}" alt="Video Editing &amp; Poster Design" class="lazy-service" loading="lazy">
+                        <img src="/images/services/veps.webp" alt="Video Editing &amp; Poster Design" class="lazy-service" loading="lazy">
                     </div>
                     <div class="service-body">
                         <h3>Video Editing &amp; Poster Design</h3>
@@ -197,7 +215,7 @@
                 <!-- Video Ad Creation -->
                 <div class="service-card">
                     <div class="service-media">
-                        <img src="/images/services/video ad.webp" th:src="@{/images/services/video ad.webp}" alt="Video Ad Creation" class="lazy-service" loading="lazy">
+                        <img src="/images/services/video ad.webp" alt="Video Ad Creation" class="lazy-service" loading="lazy">
                     </div>
                     <div class="service-body">
                         <h3>Video Ad Creation</h3>
@@ -227,7 +245,7 @@
                         </div>
                         <div class="author-info">
                             <h4>Rajesh Kumar</h4>
-                            <p>CEO, Tech Innovations</p>
+                            <p>CEO, Tech Mushrooms</p>
                         </div>
                     </div>
                 </div>
@@ -241,8 +259,8 @@
                             <i class="fas fa-user"></i>
                         </div>
                         <div class="author-info">
-                            <h4>Priya Sharma</h4>
-                            <p>Founder, StartUp Hub</p>
+                            <h4>K.Subramanyam</h4>
+                            <p>Founder,Ananta Realty</p>
                         </div>
                     </div>
                 </div>
@@ -256,8 +274,8 @@
                             <i class="fas fa-user"></i>
                         </div>
                         <div class="author-info">
-                            <h4>Anil Reddy</h4>
-                            <p>Marketing Head, E-Commerce Plus</p>
+                            <h4>K.harika</h4>
+                            <p>Founder &CEO, Ananta Vastralayaa</p>
                         </div>
                     </div>
                 </div>
@@ -308,10 +326,10 @@
                     <h3>Jesta Tech Solutions</h3>
                     <p>Empowering Digital Innovation</p>
                     <div class="social-links">
-                        <a href="https://www.facebook.com/share/1Bo8k8gFUf/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
-                        <a href="https://x.com/JTS_solutions?t=eod0dW7xJ3yaJVEMr5PoZg&s=08" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.linkedin.com/company/109288157/admin/dashboard/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://www.instagram.com/jestatechsolutions?igsh=ajhldzM3d3ZqanVl" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/share/17hNFerPxJ/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+                        <a href="https://x.com/JTS_solutions" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/company/jesta-tech-solutions/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/jestatechsolutions?igsh=YmI2NTV4dHBhaTVk" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -354,25 +372,25 @@
     </footer>
 
     <!-- Mobile Bottom Navigation -->
-    <nav class="mobile-bottom-nav">
-        <a href="/" class="nav-item active">
-            <i class="fas fa-home"></i>
+    <nav class="mobile-bottom-nav" role="navigation" aria-label="Mobile navigation menu">
+        <a href="/" class="nav-item active" aria-label="Home page" aria-current="page">
+            <i class="fas fa-home" aria-hidden="true"></i>
             <span>Home</span>
         </a>
-        <a href="/services" class="nav-item">
-            <i class="fas fa-briefcase"></i>
+        <a href="/services" class="nav-item" aria-label="Our services">
+            <i class="fas fa-briefcase" aria-hidden="true"></i>
             <span>Services</span>
         </a>
-        <a href="/portfolio" class="nav-item">
-            <i class="fas fa-folder-open"></i>
+        <a href="/portfolio" class="nav-item" aria-label="View portfolio">
+            <i class="fas fa-folder-open" aria-hidden="true"></i>
             <span>Portfolio</span>
         </a>
-        <a href="/about" class="nav-item">
-            <i class="fas fa-info-circle"></i>
+        <a href="/about" class="nav-item" aria-label="About us">
+            <i class="fas fa-info-circle" aria-hidden="true"></i>
             <span>About</span>
         </a>
-        <a href="/contact" class="nav-item">
-            <i class="fas fa-envelope"></i>
+        <a href="/contact" class="nav-item" aria-label="Contact us">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
             <span>Contact</span>
         </a>
     </nav>
@@ -385,26 +403,28 @@
                 <i class="fas fa-times"></i>
             </button>
         </div>
-        <ul class="side-menu-links">
-            <li><a href="/terms"><i class="fas fa-file-contract"></i> Terms & Conditions</a></li>
-            <li><a href="/privacy"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
-            <li><a href="/contact"><i class="fas fa-comment-dots"></i> Feedback</a></li>
-        </ul>
-        <div class="side-menu-social">
-            <h4>Connect With Us</h4>
-            <div class="side-menu-social-links">
-                <a href="https://www.facebook.com/share/1Bo8k8gFUf/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                    <i class="fab fa-facebook"></i>
-                </a>
-                <a href="https://x.com/JTS_solutions?t=eod0dW7xJ3yaJVEMr5PoZg&s=08" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="https://www.linkedin.com/company/109288157/admin/dashboard/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://www.instagram.com/jestatechsolutions?igsh=ajhldzM3d3ZqanVl" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
+        <div class="side-menu-content">
+            <ul class="side-menu-links">
+                <li><a href="/terms"><i class="fas fa-file-contract"></i> Terms & Conditions</a></li>
+                <li><a href="/privacy"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                <li><a href="/contact"><i class="fas fa-comment-dots"></i> Feedback</a></li>
+            </ul>
+            <div class="side-menu-social">
+                <h4>Connect With Us</h4>
+                <div class="side-menu-social-links">
+                    <a href="https://www.facebook.com/share/17hNFerPxJ/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://x.com/JTS_solutions" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/jesta-tech-solutions/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://www.instagram.com/jestatechsolutions?igsh=YmI2NTV4dHBhaTVk" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

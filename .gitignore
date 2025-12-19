@@ -3,6 +3,7 @@ target/
 out/
 *.jar
 *.war
+*.class
 
 # Dependencies
 node_modules/
@@ -11,9 +12,13 @@ package-lock.json
 # IDE
 .idea/
 *.iml
+.vscode/
+*.iws
+*.ipr
 
 # Logs
 *.log
+logs/
 
 # OS
 .DS_Store
@@ -21,4 +26,14 @@ Thumbs.db
 
 # Environment
 .env
-application-local.propertie
+application-local.properties
+
+# Uploads
+uploads/
+!uploads/.gitkeep
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~

@@ -11,9 +11,19 @@
     <meta name="googlebot" content="index, follow" />
     <meta name="bingbot" content="index, follow" />
     <meta name="ai-bot" content="allow" />
-    <link rel="icon" type="image/png" href="/jts.png" />
-    <link rel="shortcut icon" href="/jts.png" />
-    <link rel="apple-touch-icon" href="/jts.png" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/jts-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/jts-32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicons/jts-48.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicons/jts-64.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicons/jts-96.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="/favicons/jts-128.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/jts-192.png">
+    <link rel="icon" type="image/png" sizes="256x256" href="/favicons/jts-256.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicons/jts-512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon-180.png">
+    <link rel="shortcut icon" href="/favicons/jts-32.png">
     <link rel="canonical" href="https://jestatechsolutions.in/portfolio" />
     <meta property="og:site_name" content="Jesta Tech Solutions">
     <meta property="og:title" content="Portfolio | Jesta Tech Solutions">
@@ -27,7 +37,7 @@
     <meta name="twitter:description" content="View our portfolio of successful tech projects.">
     <meta name="twitter:image" content="https://jestatechsolutions.in/jts.png">
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"Organization","name":"Jesta Tech Solutions","alternateName":"JTS","url":"https://jestatechsolutions.in","logo":"https://jestatechsolutions.in/jts.png","email":"jestatechsolutions@gmail.com","telephone":"+91-8520999351","address":{"@type":"PostalAddress","addressLocality":"Anantapur","addressRegion":"Andhra Pradesh","postalCode":"515001","addressCountry":"IN"},"sameAs":["https://www.facebook.com/share/1Bo8k8gFUf/","https://x.com/JTS_solutions?t=eod0dW7xJ3yaJVEMr5PoZg&s=08","https://www.linkedin.com/company/109288157/admin/dashboard/","https://www.instagram.com/jestatechsolutions?igsh=ajhldzM3d3ZqanVl"]}
+    {"@context":"https://schema.org","@type":"Organization","name":"Jesta Tech Solutions","alternateName":"JTS","url":"https://jestatechsolutions.in","logo":"https://jestatechsolutions.in/jts.png","email":"jestatechsolutions@gmail.com","telephone":"+91-8520999351","address":{"@type":"PostalAddress","addressLocality":"Anantapur","addressRegion":"Andhra Pradesh","postalCode":"515001","addressCountry":"IN"},"sameAs":["https://www.facebook.com/share/17hNFerPxJ/","https://x.com/JTS_solutions","https://www.linkedin.com/company/jesta-tech-solutions/","https://www.instagram.com/jestatechsolutions?igsh=YmI2NTV4dHBhaTVk"]}
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -70,14 +80,22 @@
     </header>
 
     <!-- Page Header -->
-    <section class="page-header">
-        <!-- Desktop banner image for visual consistency -->
-        <img src="/scard.png" alt="Banner" class="desktop-banner-img">
-<!--        <div class="page-header-overlay"></div>-->
-<!--        <div class="container">-->
-<!--            <h1>Our Portfolio</h1>-->
-<!--            <p>Showcasing Excellence in Every Project</p>-->
-<!--        </div>-->
+    <section class="page-header" style="background: none;">
+        <div class="banner-container">
+            <picture>
+                <!-- Desktop: >= 1025px -->
+                <source media="(min-width: 1025px)" srcset="/assets/banners/desktop/portfolio.webp">
+
+                <!-- Tablet: 768px to 1024px -->
+                <source media="(min-width: 768px)" srcset="/assets/banners/tablet/portfolio.webp">
+
+                <!-- Mobile: < 768px (default/fallback) -->
+                <img src="/assets/banners/mobile/portfolio.webp"
+                     alt="Portfolio - Showcasing Excellence in Every Project"
+                     class="page-banner"
+                     loading="eager">
+            </picture>
+        </div>
     </section>
 
     <!-- Portfolio Section -->
@@ -385,7 +403,7 @@
                     <div class="stat-icon">
                         <i class="fas fa-briefcase"></i>
                     </div>
-                    <div class="counter" data-target="16">0</div>
+                    <div class="counter" data-target="30">0</div>
                     <p>Projects Completed</p>
                 </div>
                 <div class="stat-card fade-in-scroll">
@@ -432,10 +450,10 @@
                     <h3>Jesta Tech Solutions</h3>
                     <p>Empowering Digital Innovation</p>
                     <div class="social-links">
-                        <a href="https://www.facebook.com/share/1Bo8k8gFUf/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
-                        <a href="https://x.com/JTS_solutions?t=eod0dW7xJ3yaJVEMr5PoZg&s=08" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.linkedin.com/company/109288157/admin/dashboard/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://www.instagram.com/jestatechsolutions?igsh=ajhldzM3d3ZqanVl" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/share/17hNFerPxJ/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+                        <a href="https://x.com/JTS_solutions" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/company/jesta-tech-solutions/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/jestatechsolutions?igsh=YmI2NTV4dHBhaTVk" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -509,26 +527,28 @@
                 <i class="fas fa-times"></i>
             </button>
         </div>
-        <ul class="side-menu-links">
-            <li><a href="/terms"><i class="fas fa-file-contract"></i> Terms & Conditions</a></li>
-            <li><a href="/privacy"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
-            <li><a href="/contact"><i class="fas fa-comment-dots"></i> Feedback</a></li>
-        </ul>
-        <div class="side-menu-social">
-            <h4>Connect With Us</h4>
-            <div class="side-menu-social-links">
-                <a href="https://www.facebook.com/share/1Bo8k8gFUf/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                    <i class="fab fa-facebook"></i>
-                </a>
-                <a href="https://x.com/JTS_solutions?t=eod0dW7xJ3yaJVEMr5PoZg&s=08" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="https://www.linkedin.com/company/109288157/admin/dashboard/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://www.instagram.com/jestatechsolutions?igsh=ajhldzM3d3ZqanVl" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
+        <div class="side-menu-content">
+            <ul class="side-menu-links">
+                <li><a href="/terms"><i class="fas fa-file-contract"></i> Terms & Conditions</a></li>
+                <li><a href="/privacy"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                <li><a href="/contact"><i class="fas fa-comment-dots"></i> Feedback</a></li>
+            </ul>
+            <div class="side-menu-social">
+                <h4>Connect With Us</h4>
+                <div class="side-menu-social-links">
+                    <a href="https://www.facebook.com/share/17hNFerPxJ/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://x.com/JTS_solutions" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/jesta-tech-solutions/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://www.instagram.com/jestatechsolutions?igsh=YmI2NTV4dHBhaTVk" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

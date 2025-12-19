@@ -12,9 +12,18 @@
     <meta name="bingbot" content="index, follow" />
     <meta name="ai-bot" content="allow" />
 
-    <link rel="icon" type="image/png" href="/jts.png" />
-    <link rel="shortcut icon" href="/jts.png" />
-    <link rel="apple-touch-icon" href="/jts.png" />
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/jts-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/jts-32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicons/jts-48.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicons/jts-64.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicons/jts-96.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="/favicons/jts-128.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/jts-192.png">
+    <link rel="icon" type="image/png" sizes="256x256" href="/favicons/jts-256.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicons/jts-512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon-180.png">
+    <link rel="shortcut icon" href="/favicons/jts-32.png">
     <link rel="canonical" href="https://jestatechsolutions.in/about" />
 
     <meta property="og:site_name" content="Jesta Tech Solutions">
@@ -48,10 +57,10 @@
         "addressCountry": "IN"
       },
       "sameAs": [
-        "https://www.facebook.com/share/1Bo8k8gFUf/",
-        "https://x.com/JTS_solutions?t=eod0dW7xJ3yaJVEMr5PoZg&s=08",
-        "https://www.linkedin.com/company/109288157/admin/dashboard/",
-        "https://www.instagram.com/jestatechsolutions?igsh=ajhldzM3d3ZqanVl"
+        "https://www.facebook.com/share/17hNFerPxJ/",
+        "https://x.com/JTS_solutions",
+        "https://www.linkedin.com/company/jesta-tech-solutions/",
+        "https://www.instagram.com/jestatechsolutions?igsh=YmI2NTV4dHBhaTVk"
       ]
     }
     </script>
@@ -98,13 +107,22 @@
     </header>
 
     <!-- Page Header -->
-    <section class="page-header">
-        <img src="/scard.png" alt="Banner" class="desktop-banner-img">
-<!--        <div class="page-header-overlay"></div>-->
-<!--        <div class="container">-->
-<!--            <h1>About Us</h1>-->
-<!--            <p>Innovating the Future of Technology</p>-->
-<!--        </div>-->
+    <section class="page-header" style="background: none;">
+        <div class="banner-container">
+            <picture>
+                <!-- Desktop: >= 1025px -->
+                <source media="(min-width: 1025px)" srcset="/assets/banners/desktop/about.webp">
+
+                <!-- Tablet: 768px to 1024px -->
+                <source media="(min-width: 768px)" srcset="/assets/banners/tablet/about.webp">
+
+                <!-- Mobile: < 768px (default/fallback) -->
+                <img src="/assets/banners/mobile/about.webp"
+                     alt="About Jesta Tech Solutions - Innovating the Future of Technology"
+                     class="page-banner"
+                     loading="eager">
+            </picture>
+        </div>
     </section>
 
     <!-- Mission, Vision, Values Section -->
@@ -142,24 +160,25 @@
     </section>
 
     <!-- Company Story Section -->
-    <section class="story-section">
+    <section class="story-section" aria-labelledby="story-heading">
         <div class="container">
             <div class="section-header">
-                <h2>Our Story</h2>
+                <h2 id="story-heading">Our Story - Building India's Digital Future</h2>
                 <div class="section-divider"></div>
             </div>
             <div class="story-content">
-                <p>Founded with a vision to revolutionize the digital landscape, Jesta Tech Solutions has grown from a small startup to a comprehensive technology solutions provider. Our journey is marked by countless success stories, innovative projects, and satisfied clients who trust us with their digital transformation needs.</p>
-                <p>We combine technical expertise with creative thinking to deliver solutions that not only meet but exceed expectations. Our team of passionate professionals works tirelessly to stay at the forefront of technological advancements, ensuring we bring the best solutions to our clients.</p>
+                <p>Jesta Tech Solutions was founded in Anantapur, Andhra Pradesh with a clear purpose: to empower Indian businesses through reliable, innovative, and future-ready digital solutions. What began as a focused initiative has steadily evolved into a trusted technology partner for organizations across India seeking meaningful digital transformation.</p>
+                <p>Our growth has been driven by a commitment to quality, transparency, and results. By blending strong technical expertise with creative problem-solving, we deliver solutions that align with real business objectives—not just technical requirements. From concept to execution, our team works with precision and passion to ensure every project adds measurable value for businesses in Anantapur, Andhra Pradesh, and throughout India.</p>
+                <p>At Jesta Tech Solutions, we continuously adapt to emerging technologies and industry trends, enabling our clients to stay competitive in a rapidly changing digital world. Our story is defined by long-term client relationships, consistent innovation, and a relentless focus on excellence in serving the Indian market.</p>
             </div>
         </div>
     </section>
 
     <!-- Timeline Section -->
-    <section class="timeline-section">
+    <section class="timeline-section" aria-labelledby="timeline-heading">
         <div class="container">
             <div class="section-header">
-                <h2>Our Growth Journey</h2>
+                <h2 id="timeline-heading">Our Growth Journey</h2>
                 <div class="section-divider"></div>
             </div>
             <div class="timeline">
@@ -232,46 +251,28 @@
             <div class="team-grid">
                 <div class="team-card fade-in-scroll">
                     <div class="team-photo">
-                        <div class="photo-placeholder">
-                            <i class="fas fa-user"></i>
-                        </div>
+                        <img src="/Team/diwakar.webp" alt="Diwakar.Y - Founder & CEO of Jesta Tech Solutions" loading="lazy">
                         <div class="team-overlay">
-                            <h3>Yuvaraj.Y</h3>
+                            <h3>Diwakar.Y</h3>
                             <p>Founder & CEO</p>
-                            <div class="team-social">
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="team-card fade-in-scroll">
                     <div class="team-photo">
-                        <div class="photo-placeholder">
-                            <i class="fas fa-user"></i>
-                        </div>
+                        <img src="/Team/ashok.webp" alt="Ashok.R - Design & Creative Engineer at Jesta Tech Solutions" loading="lazy">
                         <div class="team-overlay">
-                            <h3>Yuvaraj.Yl</h3>
-                            <p>Chief Technology Officer</p>
-                            <div class="team-social">
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                            </div>
+                            <h3>Ashok.R</h3>
+                            <p>Design & Creative Engineer</p>
                         </div>
                     </div>
                 </div>
                 <div class="team-card fade-in-scroll">
                     <div class="team-photo">
-                        <div class="photo-placeholder">
-                            <i class="fas fa-user"></i>
-                        </div>
+                        <img src="/Team/tharun.webp" alt="Sai Tharun.H.N - Growth Marketing Manager at Jesta Tech Solutions" loading="lazy">
                         <div class="team-overlay">
-                            <h3>Tharun</h3>
-                            <p>Lead Developer</p>
-                            <div class="team-social">
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
-                                <a href="#"><i class="fab fa-github"></i></a>
-                            </div>
+                            <h3>Tharun.H.N</h3>
+                            <p>Growth Marketing Manager</p>
                         </div>
                     </div>
                 </div>
@@ -288,10 +289,10 @@
                     <h3>Jesta Tech Solutions</h3>
                     <p>Empowering Digital Innovation</p>
                     <div class="social-links">
-                        <a href="https://www.facebook.com/share/1Bo8k8gFUf/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
-                        <a href="https://x.com/JTS_solutions?t=eod0dW7xJ3yaJVEMr5PoZg&s=08" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.linkedin.com/company/109288157/admin/dashboard/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://www.instagram.com/jestatechsolutions?igsh=ajhldzM3d3ZqanVl" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/share/17hNFerPxJ/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+                        <a href="https://x.com/JTS_solutions" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/company/jesta-tech-solutions/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/jestatechsolutions?igsh=YmI2NTV4dHBhaTVk" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -365,26 +366,28 @@
                 <i class="fas fa-times"></i>
             </button>
         </div>
-        <ul class="side-menu-links">
-            <li><a href="/terms"><i class="fas fa-file-contract"></i> Terms & Conditions</a></li>
-            <li><a href="/privacy"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
-            <li><a href="/contact"><i class="fas fa-comment-dots"></i> Feedback</a></li>
-        </ul>
-        <div class="side-menu-social">
-            <h4>Connect With Us</h4>
-            <div class="side-menu-social-links">
-                <a href="https://www.facebook.com/share/1Bo8k8gFUf/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                    <i class="fab fa-facebook"></i>
-                </a>
-                <a href="https://x.com/JTS_solutions?t=eod0dW7xJ3yaJVEMr5PoZg&s=08" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="https://www.linkedin.com/company/109288157/admin/dashboard/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://www.instagram.com/jestatechsolutions?igsh=ajhldzM3d3ZqanVl" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
+        <div class="side-menu-content">
+            <ul class="side-menu-links">
+                <li><a href="/terms"><i class="fas fa-file-contract"></i> Terms & Conditions</a></li>
+                <li><a href="/privacy"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                <li><a href="/contact"><i class="fas fa-comment-dots"></i> Feedback</a></li>
+            </ul>
+            <div class="side-menu-social">
+                <h4>Connect With Us</h4>
+                <div class="side-menu-social-links">
+                    <a href="https://www.facebook.com/share/17hNFerPxJ/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://x.com/JTS_solutions" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/jesta-tech-solutions/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://www.instagram.com/jestatechsolutions?igsh=YmI2NTV4dHBhaTVk" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
