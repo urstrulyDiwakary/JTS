@@ -9,8 +9,8 @@ public class JtsApplication {
         System.out.println("🚀 Starting JTS Application...");
         SpringApplication.run(JtsApplication.class, args);
         System.out.println("✅ JTS Application started successfully!");
-        System.out.println("🌐 Access the application at: http://localhost:8000");
-        System.out.println("🔐 Admin login: http://localhost:8000/admin/login");
+        System.out.println("🌐 Access the application at: http://localhost:8088");
+        System.out.println("🔐 Admin login: http://localhost:8088/admin/login");
         System.out.println("📋 Default credentials: admin/admin or admin@admin.com/admin");
     }
 }
