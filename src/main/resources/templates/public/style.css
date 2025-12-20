@@ -2019,6 +2019,13 @@ ul {
 
     .page-header {
         margin-top: 60px;
+        padding-top: 0;
+    }
+
+    /* Remove spacing between mobile header and banner image */
+    .page-header .banner-container {
+        margin-top: -60px;
+        padding-top: 60px;
     }
     
     .hero-title {
@@ -2104,6 +2111,13 @@ ul {
 
     .page-header {
         margin-top: 60px;
+        padding-top: 0;
+    }
+
+    /* Remove spacing between mobile header and banner image */
+    .page-header .banner-container {
+        margin-top: -60px;
+        padding-top: 60px;
     }
 
     .hero-title {
@@ -2176,6 +2190,13 @@ ul {
 
     .page-header {
         margin-top: 60px;
+        padding-top: 0;
+    }
+
+    /* Remove spacing between mobile header and banner image */
+    .page-header .banner-container {
+        margin-top: -60px;
+        padding-top: 60px;
     }
 
     .hero-title {
@@ -2205,6 +2226,33 @@ ul {
     .scroll-indicator {
         bottom: 10px;
         font-size: 18px;
+    }
+}
+
+/* === VERY SMALL MOBILE SCREENS (300px and below) === */
+@media (max-width: 300px) {
+    /* Ensure no spacing between mobile header and banner */
+    .page-header {
+        margin-top: 60px !important;
+        padding-top: 0 !important;
+    }
+
+    /* Pull banner up to eliminate gap */
+    .page-header .banner-container {
+        margin-top: -60px !important;
+        padding-top: 60px !important;
+    }
+
+    .mobile-header {
+        padding: 8px 0 !important;
+    }
+
+    .mobile-header-content {
+        height: 56px !important;
+    }
+
+    .hero-section {
+        margin-top: 60px !important;
     }
 }
 
@@ -2280,3 +2328,4 @@ ul {
         aspect-ratio: 16 / 9;
     }
 }
+

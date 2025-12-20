@@ -1,39 +1,104 @@
-# Build
+# JTS Application - .gitignore
+
+# Maven
 target/
-out/
-*.jar
-*.war
-*.class
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
 
-# Dependencies
-node_modules/
-package-lock.json
-
-# IDE
+# IDE - IntelliJ IDEA
 .idea/
-*.iml
-.vscode/
 *.iws
+*.iml
 *.ipr
+out/
 
-# Logs
-*.log
-logs/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Environment
-.env
-application-local.properties
-
-# Uploads
-uploads/
-!uploads/.gitkeep
-
-# Temporary files
+# IDE - Eclipse
+.project
+.classpath
+.settings/
+.metadata/
+bin/
+tmp/
 *.tmp
 *.bak
 *.swp
-*~
+*~.nib
+local.properties
+.loadpath
+.recommenders
+
+# IDE - VS Code
+.vscode/
+*.code-workspace
+
+# Operating System
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Application Specific
+uploads/
+!uploads/.gitkeep
+logs/
+*.log
+
+# Environment Variables
+.env
+.env.local
+.env.production
+.env.*.local
+
+# Sensitive Data
+application-prod.properties
+*.key
+*.pem
+*.p12
+*.jks
+secrets/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Compiled
+*.class
+*.jar
+!.mvn/wrapper/maven-wrapper.jar
+
+# Package Files
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Virtual Machine
+hs_err_pid*
+replay_pid*
+
+# Spring Boot
+spring-shell.log
+
+# Backup files
+*.backup
+*.orig
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+

@@ -6,9 +6,118 @@
 let currentTestimonial = 1;
 let testimonialInterval;
 
+// === DARK MODE FUNCTIONALITY (Mobile/Tablet Only) ===
+function initializeDarkMode() {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+
+    if (!darkModeToggle) return;
+
+    // Check if current screen is mobile or tablet (<=1024px)
+    function isMobileOrTablet() {
+        return window.innerWidth <= 1024;
+    }
+
+    // Show/hide toggle button based on screen size
+    function updateToggleVisibility() {
+        if (isMobileOrTablet()) {
+            darkModeToggle.style.display = 'flex';
+        } else {
+            darkModeToggle.style.display = 'none';
+            // Remove dark mode on desktop
+            document.body.classList.remove('dark-mode');
+            localStorage.removeItem('darkMode');
+        }
+    }
+
+    // Update toggle icon based on current theme
+    function updateToggleIcon(isDark) {
+        const icon = darkModeToggle.querySelector('i');
+        if (icon) {
+            if (isDark) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                darkModeToggle.setAttribute('aria-label', 'Switch to light mode');
+                darkModeToggle.setAttribute('title', 'Switch to light mode');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                darkModeToggle.setAttribute('aria-label', 'Switch to dark mode');
+                darkModeToggle.setAttribute('title', 'Switch to dark mode');
+            }
+        }
+    }
+
+    // Apply dark mode
+    function applyDarkMode(isDark) {
+        if (isDark) {
+            document.body.classList.add('dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
+        }
+        updateToggleIcon(isDark);
+    }
+
+    // Load saved theme preference (only for mobile/tablet)
+    function loadThemePreference() {
+        if (isMobileOrTablet()) {
+            const savedTheme = localStorage.getItem('darkMode');
+            if (savedTheme === 'enabled') {
+                applyDarkMode(true);
+            } else {
+                applyDarkMode(false);
+            }
+        } else {
+            // Ensure dark mode is off on desktop
+            applyDarkMode(false);
+        }
+    }
+
+    // Toggle dark mode
+    function toggleDarkMode() {
+        // Only allow toggle on mobile/tablet
+        if (!isMobileOrTablet()) return;
+
+        const isDarkMode = document.body.classList.contains('dark-mode');
+
+        if (isDarkMode) {
+            applyDarkMode(false);
+            localStorage.setItem('darkMode', 'disabled');
+        } else {
+            applyDarkMode(true);
+            localStorage.setItem('darkMode', 'enabled');
+        }
+    }
+
+    // Event listeners
+    darkModeToggle.addEventListener('click', toggleDarkMode);
+
+    // Keyboard accessibility
+    darkModeToggle.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleDarkMode();
+        }
+    });
+
+    // Handle window resize
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+            updateToggleVisibility();
+            loadThemePreference();
+        }, 150);
+    });
+
+    // Initialize on load
+    updateToggleVisibility();
+    loadThemePreference();
+}
+
 // === DOM CONTENT LOADED EVENT ===
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functionality
+    initializeDarkMode();
     initializeSideMenu();
     initializeMobileBottomNav();
     initializeTestimonialCarousel();
