@@ -322,7 +322,7 @@ function closeModal(modalId) {
 
 // Close modal on outside click
 document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('modal')) {
+    if (e.target && e.target.classList && e.target.classList.contains('modal')) {
         closeModal();
     }
 });
@@ -330,7 +330,10 @@ document.addEventListener('click', function(e) {
 // Close modal on ESC key
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
-        closeModal();
+        const activeModal = document.querySelector('.modal.active');
+        if (activeModal) {
+            closeModal();
+        }
     }
 });
 

@@ -14,17 +14,17 @@ public class ContactForm {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String email;
 
     private String phone;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String subject;
 
     private String service;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(columnDefinition = "TEXT", nullable = true)
     private String message;
 
     @Column(nullable = false)

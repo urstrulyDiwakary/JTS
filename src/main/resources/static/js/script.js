@@ -575,14 +575,14 @@ function initializeContactForm() {
             }
         }
         
-        // Prepare form data
+        // Prepare form data with empty strings for optional fields
         const formData = {
             name: name,
-            email: email,
+            email: email || '',
             phone: phone,
-            subject: subject,
+            subject: subject || '',
             service: service,
-            message: message
+            message: message || ''
         };
 
         // Update submit button and disable immediately

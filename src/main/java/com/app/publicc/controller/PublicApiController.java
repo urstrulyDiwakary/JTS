@@ -38,6 +38,38 @@ public class PublicApiController {
     public ResponseEntity<Map<String, String>> submitContactForm(@RequestBody ContactForm contactForm) {
         Map<String, String> response = new HashMap<>();
         try {
+            // Validate required fields
+            if (contactForm.getName() == null || contactForm.getName().trim().isEmpty()) {
+                response.put("status", "error");
+                response.put("message", "Name is required.");
+                return ResponseEntity.badRequest().body(response);
+            }
+
+            if (contactForm.getPhone() == null || contactForm.getPhone().trim().isEmpty()) {
+                response.put("status", "error");
+                response.put("message", "Phone number is required.");
+                return ResponseEntity.badRequest().body(response);
+            }
+
+            if (contactForm.getService() == null || contactForm.getService().trim().isEmpty()) {
+                response.put("status", "error");
+                response.put("message", "Please select a service.");
+                return ResponseEntity.badRequest().body(response);
+            }
+
+            // Set empty strings to null for optional fields
+            if (contactForm.getEmail() != null && contactForm.getEmail().trim().isEmpty()) {
+                contactForm.setEmail(null);
+            }
+
+            if (contactForm.getSubject() != null && contactForm.getSubject().trim().isEmpty()) {
+                contactForm.setSubject(null);
+            }
+
+            if (contactForm.getMessage() != null && contactForm.getMessage().trim().isEmpty()) {
+                contactForm.setMessage(null);
+            }
+
             contactFormService.saveContactForm(contactForm);
             response.put("status", "success");
             response.put("message", "Thank you for your message! We'll get back to you soon.");
